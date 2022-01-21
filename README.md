@@ -25,8 +25,8 @@
             - Takes Username, Name, Email, Password, Confirm Password, Profile Picture, Bio, Home town
             - Returns the created user instance
  
- # * /api/user/{uuid}
-### Authorization Enabled for non-safe methods
+* /api/user/{uuid}
+       *Authorization Enabled for non-safe methods*
        **Request Type: GET**
        Returns the specific user creds
        **Request Type: PUT, PATCH, DELETE**
