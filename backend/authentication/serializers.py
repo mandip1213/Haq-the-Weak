@@ -1,0 +1,110 @@
+from builtins import staticmethod #like classmethod 
+from django.contrib.auth import get_user_model
+
+from rest_framework import serializers
+from rest_framework import validators
+from rest_framework.validators import UniqueValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class CustomObtainPairSerializer(TokenObtainPairSerializer):
+    #takes the token
+    @classmethod
+    def get_token(cls, user):
+        token =  super().get_token(user)
+        token['username'] = user.username
+        return token
+
+        
+class FollowerOrFollowingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = (
+            'name',
+            'username',
+            'profile_picture',
+        )
+
+class UserSerializer(serializers.ModelSerializer):
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+    followers = FollowerOrFollowingSerializer(many=True)
+    following = FollowerOrFollowingSerializer(many=True)
+
+
+    class Meta:
+        model = get_user_model()
+        fields = ('name',
+                'username',
+                'profile_picture',
+                'uuid',
+                'followers_count',
+                'following_count',
+                'followers',
+                'following')
+        
+
+    @staticmethod
+    def get_following_count(self):
+        return self.following.count()
+    
+    @staticmethod
+    def get_followers_count(self):
+        return self.followers.count()
+
+
+class RegisterUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True,required=True,style={'input_type':'password'})
+    confirm_password = serializers.CharField(style={'input_type':'password'},write_only=True,label = 'Confirm Password')
+
+    email = serializers.EmailField(validators=[
+        UniqueValidator(
+            queryset=get_user_model().objects.all(),
+            message='This Email is already in use'
+        )
+    ])
+
+    class Meta:
+        model = get_user_model()
+
+        fields = (
+            'name',
+            'username',
+            'email',
+            'password',
+            'confirm_password',
+            'profile_picture',
+            'uuid',
+            'id',
+            'bio',
+            'homewtown'
+        )
+
+        extra_kwargs ={
+            'password':
+            {'write_only':True},
+            'uuid':
+                {'read_only':True}
+        }
+
+    def validate(self, attrs):
+        password = attrs['password']
+        confirm_password = attrs['confirm_password']
+        if password!=confirm_password:
+            raise serializers.ValidationError(
+                {
+                    'password':"Error:The Passwords didn't match"
+                }
+            )
+        return attrs
+
+    def create(self, validated_data):
+        name = validated_data['name']
+        email = validated_data['email']
+        password = validated_data['password']
+        profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
+
+        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture)
+        user.set_password(password)
+        user.save()
+        return user
