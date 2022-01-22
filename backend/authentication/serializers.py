@@ -92,7 +92,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             'uuid',
             'id',
             'bio',
-            'homewtown'
+            'home_town'
         )
 
         extra_kwargs ={
