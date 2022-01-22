@@ -9,5 +9,3 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Batches)
 class BatchAdmin(admin.ModelAdmin):
     list_display = ['id','batch_name']
-    class Meta:
-        verbose_name = 'Batches'
