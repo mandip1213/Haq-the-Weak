@@ -1,7 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import serializers, views, viewsets, status
-from rest_framework import parsers
-from rest_framework.decorators import parser_classes, permission_classes
+from rest_framework import viewsets, status, mixins
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -15,7 +13,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomObtainPairSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(mixins.ListModelMixin,
+                mixins.RetrieveModelMixin,
+                mixins.DestroyModelMixin,
+                viewsets.GenericViewSet):
 
     permission_classes = [IsTheSameUserOrReadOnly]
     parser_classes = [MultiPartParser,FormParser]

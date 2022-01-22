@@ -1,6 +1,6 @@
 from builtins import staticmethod #like classmethod 
 from django.contrib.auth import get_user_model
-
+from .models import Batches
 from rest_framework import serializers
 from rest_framework import validators
 from rest_framework.validators import UniqueValidator
@@ -24,13 +24,21 @@ class FollowerOrFollowingSerializer(serializers.ModelSerializer):
             'username',
             'profile_picture',
         )
+class BatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Batches
+        fields = (
+            'batch_name',
+            'batch_photo',
+        )
 
 class UserSerializer(serializers.ModelSerializer):
     followers_count = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()
     followers = FollowerOrFollowingSerializer(many=True)
     following = FollowerOrFollowingSerializer(many=True)
-
+    batch = BatchSerializer(many=True)
+    batch_count = serializers.SerializerMethodField()
 
     class Meta:
         model = get_user_model()
@@ -41,7 +49,10 @@ class UserSerializer(serializers.ModelSerializer):
                 'followers_count',
                 'following_count',
                 'followers',
-                'following')
+                'following',
+                'batch',
+                'batch_count',
+                )
         
 
     @staticmethod
@@ -51,6 +62,10 @@ class UserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_followers_count(self):
         return self.followers.count()
+
+    @staticmethod
+    def get_batch_count(self):
+        return self.batch.count()
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):
