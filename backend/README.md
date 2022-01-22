@@ -4,17 +4,17 @@
 ### Authorization using simple jwt token - access and refresh
 
 **Refresh Token not changed**
- * /api/auth/token/ : 
+ * /api/auth/token/ : <!-- login -->
         **Request Type:POST**
         - Takes Email and Password
         - Returns refresh and access Token
 
- * /api/auth/token/refresh/ :
+ * /api/auth/token/refresh/ :<!-- refresh token -->
         **Request Type:POST**
         - Takes Refresh Token
         - Returns access Token
 
- * /api/user/ :
+ * /api/user/ :<!-- signup -->
         **Request Type : GET**
             - Returns all the Users and their creds along with uuid
         **Request Type : POST**
