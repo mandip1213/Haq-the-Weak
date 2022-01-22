@@ -3,6 +3,9 @@ const Reducer = (state, { type, payload }) => {
 	if (type === "LOGIN") {
 		return ({ ...state, isLoggedIn: true })
 	}
+	if (type === "LOGOUT") {
+		return ({ ...state, isLoggedIn: false })
+	}
 	return state;
 }
 

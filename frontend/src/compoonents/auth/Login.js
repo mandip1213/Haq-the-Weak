@@ -32,24 +32,25 @@ const Login = () => {
 		if (password.length < 6)
 			return setError("Incorrect Password");
 		let result;
-		try {
-			const res = await fetch(`${URL}/api/auth/token`, {
-				method: "POST",
-				body: JSON.stringify({ email, password }),
-				headers: {
-					"content-type": "application/json"
-				}
-			})
-			result = await res.json()
-			console.log(result);
-		}
-		catch (error) {
-			return setError("An unknown error occured")
-		}
-		if (result.status = 0) {
-			return setError("Invalid email and password")
-		}
 
+/* temp */dispatch({ type: "LOGIN" })
+		// try {
+		// 	const res = await fetch(`${URL}/api/auth/token`, {
+		// 		method: "POST",
+		// 		body: JSON.stringify({ email, password }),
+		// 		headers: {
+		// 			"content-type": "application/json"
+		// 		}
+		// 	})
+		// 	result = await res.json()
+		// 	console.log(result);
+		// }
+		// catch (error) {
+		// 	return setError("An unknown error occured")
+		// }
+		// if (result.status = 0) {
+		// 	return setError("Invalid email and password")
+		// }
 		// if (result.access_token && result.refresh_token && result.username && result.email) {
 		// 	console.log("hello");
 		// 	localStorage.setItem("refresh_token", JSON.stringify(result.refresh_token));

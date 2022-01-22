@@ -7,14 +7,22 @@ import LandingPage from "./LandingPage"
 const Home = () => {
 
 
-	const { isLoggedIn } = useGlobalContext()
-	console.log(isLoggedIn);
+	const { isLoggedIn, dispatch } = useGlobalContext()
+	console.log("Home isLoggedIn", isLoggedIn);
+
 	if (!isLoggedIn) {
 		return (
 			<LandingPage />
 		)
 	}
-	return <div>this is home page and you are seeing this because you are logged in</div>;
+	return (
+		<>
+
+			<div>this is home page <br /> and <br /> you are seeing this because you are logged in</div>
+			<button onClick={() => { dispatch({ type: "LOGOUT" }) }}>Logout</button>
+		</>
+	)
 };
+
 
 export default Home;
