@@ -25,4 +25,4 @@
        *Authorization Enabled for non-safe methods*
        **Request Type: GET**
        Returns the specific user creds
-       **Request Type: PUT, PATCH, DELETE**
+       **Request Type: PATCH, DELETE**
