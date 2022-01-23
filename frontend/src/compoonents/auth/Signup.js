@@ -8,15 +8,15 @@ const Signup = () => {
 	const { isLoggedIn } = useGlobalContext()
 	const [signupDetails, setsignupDetails] = useState({
 		email: "temp@temp.com", password: "temppassword	", confirmPassword: "temppassword"
-		, username: "khamer", firstname: "lorem", lastname: "ipsum", bio: "Nepal lies between China and India ", hometown: "Dreamland"
+		, username: "khamer", firstname: "lorem", lastname: "ipsum", bio: "Nepal lies between China and India ", home_town: "Dreamland"
 	})
 	// const [signupDetails, setsignupDetails] = useState({
 	// 	email: "", password: "", confirmPassword: "",
-	// 	username: "", firstname: "", lastname: "", bio: "", hometown: ""
+	// 	username: "", firstname: "", lastname: "", bio: "", home_town: ""
 	// })
 	const [error, setError] = useState("")
-	const profilepicture = createRef()
-	const { email, password, username, confirmPassword, firstname, lastname, bio, hometown } = signupDetails;
+	const profile_picture = createRef()
+	const { email, password, username, confirmPassword, firstname, lastname, bio, home_town } = signupDetails;
 
 	React.useEffect(() => {
 		if (isLoggedIn) {
@@ -28,19 +28,41 @@ const Signup = () => {
 		if (error) setError("");
 		setsignupDetails({ ...signupDetails, [name]: value })
 	}
+	console.log(firstname);
+	// 'name',
+	// 'username',
+	// 	'email',
+	// 	'password',
+	// 	'confirm_password',
+	// 	'profile_picture',
+	// 	'bio',
+	// 	'home_town'
 
 
 	const signup = (_signupDetails) => (e) => {
-		e.preventDefault()
-		// console.log(profilepicture.current.files[0]);
+		e.preventDefault();
 
-		const formdata = new FormData(document.querySelector(".form"))
-		console.log(formdata);
+		const { email, password, username, confirmPassword, firstname, lastname, bio, home_town } = _signupDetails;
+
+		// console.log(profile_picture.current.files[0]);
+
+		const formdata = new FormData()
+
+		formdata.append("name", (firstname + lastname))
+		formdata.append("username", username)
+		formdata.append("email", email)
+		formdata.append("password", password)
+		formdata.append("confirm_password", confirmPassword)
+		if (profile_picture.current.files[0])
+			formdata.append("profile_picture", profile_picture.current.files[0]);
+		formdata.append("bio", bio)
+		formdata.append("home_town", home_town)
+		// console.log(formdata);
 		for (let [key, values] of formdata.entries()) {
 			console.log(key, values);
 		}
 
-		fetch(`${URL}/api/user`, {
+		fetch(`${URL}/api/user/`, {
 			method: "POST",
 			body: formdata,
 			headers: {
@@ -50,9 +72,6 @@ const Signup = () => {
 			.then(res => console.log(res))
 		return/* temp */
 		console.log("signup");
-		const { email, password, username, confirmPassword, firstname, lastname, bio, hometown } = _signupDetails;
-
-
 		if (!email || !password || !confirmPassword || !username)
 			return setError("All fields must bve filled");
 		if (password !== confirmPassword)
@@ -108,13 +127,13 @@ const Signup = () => {
 
 
 				<div className="inputContainer">
-					<label htmlFor="" className="label">hometown</label>
-					<input type="text" className="input" value={hometown} name="hometown" onChange={handleChange} />
+					<label htmlFor="" className="label">home_town</label>
+					<input type="text" className="input" value={home_town} name="home_town" onChange={handleChange} />
 				</div >
 
 				<div className="inputContainer">
-					<label htmlFor="profilepicture"></label>
-					<input type="file" id="profilepicture" name="profilepicture" ref={profilepicture} />
+					<label htmlFor="profile_picture"></label>
+					<input type="file" id="profile_picture" name="profile_picture" ref={profile_picture} />
 				</div>
 
 				<input type="submit" className="submitBtn" value="Sign up" />

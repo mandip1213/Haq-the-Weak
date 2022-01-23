@@ -33,39 +33,42 @@ const Login = () => {
 			return setError("Incorrect Password");
 		let result;
 
-/* temp */dispatch({ type: "LOGIN" })
-		// try {
-		// 	const res = await fetch(`${URL}/api/auth/token`, {
-		// 		method: "POST",
-		// 		body: JSON.stringify({ email, password }),
-		// 		headers: {
-		// 			"content-type": "application/json"
-		// 		}
-		// 	})
-		// 	result = await res.json()
-		// 	console.log(result);
-		// }
-		// catch (error) {
-		// 	return setError("An unknown error occured")
-		// }
+		// /* temp */dispatch({ type: "LOGIN" })
+		try {
+			const res = await fetch(`${URL}/api/auth/token/`, {
+				method: "POST",
+				body: JSON.stringify({ email, password }),
+				headers: {
+					"content-type": "application/json"
+				}
+			})
+			result = await res.json()
+			console.log(result);
+		}
+		catch (error) {
+			return setError("An unknown error occured")
+		}
 		// if (result.status = 0) {
 		// 	return setError("Invalid email and password")
 		// }
-		// if (result.access_token && result.refresh_token && result.username && result.email) {
-		// 	console.log("hello");
-		// 	localStorage.setItem("refresh_token", JSON.stringify(result.refresh_token));
-		// 	localStorage.setItem("access_token", JSON.stringify(result.access_token));
-		// 	localStorage.setItem("userDetails", JSON.stringify({ username: result.username, email: result.email, id: result.id }))
-		// 	dispatch({
-		// 		type: "LOG_IN",
-		// 		payload: {
-		// 			access_token: result.access_token,
-		// 			refresh_token: result.refresh_token,
-		// 			userDetails: { username: result.username, email: result.email, id: result.id }
-		// 		}
-		// 	})
-		// 	return;
-		// }
+		const { access: access_token, refresh: refresh_token, id, username } = result
+		if (access_token && refresh_token && username && id) {
+			console.log("hello");
+			localStorage.setItem("refresh_token", JSON.stringify(refresh_token));
+			localStorage.setItem("access_token", JSON.stringify(access_token));
+			localStorage.setItem("userDetails", JSON.stringify({ username: username, id: id }))
+			dispatch({
+				type: "LOG_IN",
+				payload: {
+					access_token: access_token,
+					refresh_token: refresh_token,
+					userDetails: { username: username, email: email, id: id }
+				}
+			})
+			return;
+		} else {
+			console.log("not enough field on respnse");
+		}
 
 
 	}
@@ -87,6 +90,7 @@ const Login = () => {
 					</div>
 
 					<div className="inputContainer">
+
 						<label htmlFor="" className="label">Password</label>
 						<input type="text" name="password" className="input" value={password} onChange={handleChange} />
 					</div>
