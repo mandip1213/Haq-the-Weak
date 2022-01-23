@@ -116,9 +116,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         name = validated_data['name']
         email = validated_data['email']
         password = validated_data['password']
+        username = validated_data['username']
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
-        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture)
+        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture,username=username)
         user.set_password(password)
         user.save()
         return user

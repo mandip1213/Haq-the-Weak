@@ -30,6 +30,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     profile_picture = models.ImageField(blank=True,null=True,upload_to ='user/profile/')
     email = models.EmailField('Email Address',unique=True)
     batch = models.ManyToManyField(Batches,blank=True)
+    #Age remains to be added as DOB
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
