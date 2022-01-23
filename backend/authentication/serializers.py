@@ -4,6 +4,9 @@ from .models import Batches
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.settings import api_settings
+from django.contrib.auth.models import update_last_login
+
 
 
 class CustomObtainPairSerializer(TokenObtainPairSerializer):
@@ -13,6 +16,19 @@ class CustomObtainPairSerializer(TokenObtainPairSerializer):
         token =  super().get_token(user)
         token['username'] = user.username
         return token
+    
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+        data['uuid'] = str(self.user.uuid)
+        if api_settings.UPDATE_LAST_LOGIN:
+            update_last_login(None, self.user)
+
+        return data
 
         
 class FollowerOrFollowingSerializer(serializers.ModelSerializer):
@@ -117,9 +133,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         email = validated_data['email']
         password = validated_data['password']
         username = validated_data['username']
+        bio = validated_data['bio']
+        home_town = validated_data['home_town']
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
-        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture,username=username)
+        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town)
         user.set_password(password)
         user.save()
         return user
