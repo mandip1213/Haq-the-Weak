@@ -33,11 +33,14 @@ AUTH_USER_MODEL = 'authentication.User'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ]
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000/',
+    'http://localhost:3000',
     #add your host here
 ]
 # Application definition
@@ -58,7 +61,7 @@ INSTALLED_APPS = [
     #created
     'authentication',
     'api',
-    # 'tripping',
+    'tripping',
 ]
 
 APPEND_SLASH = False
