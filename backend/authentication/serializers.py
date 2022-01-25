@@ -134,7 +134,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         password = validated_data['password']
         username = validated_data['username']
         bio = validated_data['bio']
-        home_town = validated_data['home_town']
+        if validated_data['home_town'] == '':
+            home_town = 'Kathmandu'
+        else:
+            home_town = validated_data['home_town']
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
         user = self.Meta.model(name=name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town)

@@ -1,6 +1,6 @@
 from tabnanny import verbose
 import uuid
-
+from utils.data import Districts
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -21,12 +21,13 @@ class Batches(models.Model):
 
 
 class User(AbstractBaseUser,PermissionsMixin):
+    
     id = models.UUIDField(editable=False,unique=True,default=uuid.uuid4,primary_key=True)
     uuid = models.UUIDField(editable=False,unique=True,default=uuid.uuid4)
     name = models.CharField(max_length=128)
     username = models.CharField(max_length=128)
     bio = models.CharField(max_length=256,null=True,blank=True,default='')
-    home_town = models.CharField(max_length=256,null=True,blank=True,default='')
+    home_town = models.CharField(max_length=256,null=True,blank=True,choices=Districts)
     profile_picture = models.ImageField(blank=True,null=True,upload_to ='user/profile/')
     email = models.EmailField('Email Address',unique=True)
     batch = models.ManyToManyField(Batches,blank=True)
