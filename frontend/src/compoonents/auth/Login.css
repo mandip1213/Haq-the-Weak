@@ -1,50 +1,5 @@
-.login-comp {
-    margin: 0 auto;
-    /* box-sizing: border-box; */
-    padding: 1rem 2rem;
-    border: 2px solid green;
-    width: 450px;
-}
-
-.logo-wrapper {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    align-items: center;
-}
-
-.logo-text {
-    position: absolute;
-    bottom: 27px;
-    font-size: 2rem;
-    color: blue;
-    font-weight: bolder;
-}
-
-.logo-subtext {
-    text-align: center;
-    font-size: 1.5rem;
-    ;
-}
-
 .auth-title {
     text-align: center;
-}
-
-.images {
-    display: flex;
-}
-
-.middle {
-    align-self: flex-start;
-}
-
-.upper {
-    padding-bottom: 1rem;
-    border-bottom: 2px solid grey;
-    border-width: 80%;
-    margin-bottom: 1rem;
 }
 
 .error {
@@ -60,11 +15,8 @@ form.auth-form>* {
     margin-top: 1rem;
 }
 
-.label {
-    display: block;
-}
-
 .input-container {
+    /* contains input and label */
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
@@ -72,7 +24,11 @@ form.auth-form>* {
     align-items: start;
 }
 
-input {
+.label {
+    display: block;
+}
+
+.input-container input {
     padding: 0.25rem 0.5rem;
     border: 2px solid rgb(185, 183, 183);
     border-radius: 5px;
@@ -80,7 +36,7 @@ input {
     width: 100%;
 }
 
-input:focus {
+.input-container input:focus {
     border-color: black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
@@ -122,35 +78,4 @@ button.auth-button {
 
 .to-signup {
     text-align: center;
-}
-
-@media screen and (min-width:1000px) {
-    .login-comp {
-        position: absolute;
-        right: 15%;
-        top: 5%;
-        /* bottom: 25%; */
-    }
-}
-
-@media screen and (max-width:450px) {
-    .login-comp {
-        width: 90vw;
-    }
-}
-
-@media screen and (max-width:370px) {
-    .login-comp {
-        /* width: 90vw; */
-        padding: 1rem 0.5rem;
-        width: 95vw;
-    }
-}
-
-@media screen and (max-width:320px) {
-    .login-comp {
-        /* width: 90vw; */
-        padding: 1rem 0.5rem;
-        width: 100vw;
-    }
 }
