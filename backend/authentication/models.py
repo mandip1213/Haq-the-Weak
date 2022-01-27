@@ -24,9 +24,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     genders=[
         ('Male','Male'),
         ('Female','Female'),
-        ('Gay','Gay'),
-        ('Lesbian','Lesbian'),
-        ('Prefer not to say','Prefer not to say')
+
     ]
     id = models.UUIDField(editable=False,unique=True,default=uuid.uuid4,primary_key=True)
     uuid = models.UUIDField(editable=False,unique=True,default=uuid.uuid4)
