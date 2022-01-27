@@ -69,6 +69,8 @@
 <br/>
 <br/>
 
+
+
 ### Leaderboard Details
 * /api/leaderbord/ <!-- Travellers Leaderboard -->
 **Request Type : GET**
@@ -82,3 +84,4 @@
 *  replace name with first name and last name
 * create a table of hometown i guess
 * add birthday, sex  field on user
+
