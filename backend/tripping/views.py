@@ -1,12 +1,13 @@
 from rest_framework.response import Response
 from .models import Vendor,VisitedPlaces
-from .serializers import LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer
+from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer
 from rest_framework.views import APIView
 from utils.permissions import IsAuthorOrReadOnly,ReadOnly
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from django.db.models import Count,Sum
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
+from django.db.models import Count,Sum,Value
 from rest_framework import viewsets, status, mixins,status,generics
 from rest_framework.parsers import MultiPartParser, FormParser
+from authentication.models import User
 # Create your views here.
 
 class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
@@ -18,18 +19,6 @@ class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,viewsets.Gen
     lookup_field = 'id'
 
 
-# class VisitedPlaceAPIView(mixins.ListModelMixin,
-#                         mixins.CreateModelMixin,
-#                         viewsets.GenericViewSet):
-
-#     parser_classes = [MultiPartParser,FormParser]
-#     queryset = VisitedPlaces.objects.all()
-#     serializer_class = VisitedPlacesSerializer
-#     lookup_field = 'id'
-
-#     def create(self, request,**kwargs):
-#         print(request.data)
-#         register_serializer = VisitedPlacesSerializer(data=request.data)
         
 class VisitedPlacesViewSet(mixins.ListModelMixin,
                             mixins.CreateModelMixin,
@@ -64,3 +53,22 @@ class LeaderboardViewSet(mixins.ListModelMixin,
     queryset = leaderboard
     permission_classes = [ReadOnly]
     serializer_class = LeaderboardSerializer
+
+
+# Landing Page view includes total user, total vendor, total qr scans 
+# Dashboard: user_uuid, user_id, username, user_profile_picture, user_score, user_visited_place
+
+class DashboardViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
+    queryset=VisitedPlaces.objects.all().values('user').annotate(score=Sum('location_score'))
+    permission_classes = [IsAuthenticated]
+    serializer_class = DashboardSerializer
+
+    
+class LandingPageViewSet(viewsets.GenericViewSet):
+    no_of_vendors = Vendor.objects.all().count()
+    no_of_users = User.objects.all().count()
+    no_of_visits = VisitedPlaces.objects.all().count()
+    queryset = VisitedPlaces.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        return Response({'vendors':self.no_of_vendors,'users':self.no_of_users,'visits':self.no_of_visits})
