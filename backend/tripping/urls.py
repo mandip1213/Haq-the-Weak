@@ -1,8 +1,12 @@
 from rest_framework.routers import DefaultRouter
-from django.urls import path
-from .views import VendorViewSet,VisitedPlacesViewSet,LeaderboardViewSet
+
+from .views import DashboardViewSet, VendorViewSet,VisitedPlacesViewSet,LeaderboardViewSet,LandingPageViewSet
+
 router = DefaultRouter()
 router.register('vendor',VendorViewSet)
 router.register('visit',VisitedPlacesViewSet)
 router.register('leaderboard',LeaderboardViewSet)
+router.register('dashboard',DashboardViewSet)
+router.register('index',LandingPageViewSet)
+
 urlpatterns = []
