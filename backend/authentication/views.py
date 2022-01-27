@@ -4,9 +4,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-
 from .serializers import CustomObtainPairSerializer,UserSerializer,RegisterUserSerializer
-from utils.permissions import IsTheSameUserOrReadOnly
+from utils.permissions import IsTheSameUserOrReadOnly,IsTheSameUser
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -18,7 +17,7 @@ class UserViewSet(mixins.ListModelMixin,
                 mixins.DestroyModelMixin,
                 viewsets.GenericViewSet):
 
-    permission_classes = [IsTheSameUserOrReadOnly]
+    permission_classes = [IsTheSameUser]
     parser_classes = [MultiPartParser,FormParser]
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
