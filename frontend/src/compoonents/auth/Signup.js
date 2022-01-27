@@ -6,17 +6,17 @@ import "./Signup.css"
 
 function Signup() {
 	/* states */
-	const [tab, setTab] = useState(1);
+	const [tab, setTab] = useState(3);
 	const [signupDetails, setsignupDetails] = useState({
 		// email: "",
 		email: "temp@mail.com",
 
 		password: "temppassword", confirmPassword: "temppassword",
-		gender: "male",
+		gender: "Male",
 		birthday: "",
 		// birthday: new Date("2000-01-01").toISOString().substring(0, 10),
 		username: "khamer", firstname: "lorem", lastname: "ipsum",
-		bio: "Nepal lies between China and India ", home_town: "Dreamland",
+		bio: "Nepal lies between China and India ", home_town: "Morang",
 		contact: ""
 	})
 	const [error, setError] = useState({})
@@ -112,15 +112,15 @@ function Signup() {
 		formdata.append("email", email)
 		formdata.append("password", password)
 		formdata.append("confirm_password", confirmPassword)
-		formdata.append("firstname", firstname)
-		formdata.append("lastname", lastname)
+		formdata.append("first_name", firstname)
+		formdata.append("last_name", lastname)
 		formdata.append("gender", gender)
 		formdata.append("home_town", home_town)
+		formdata.append("bio", bio)
+		formdata.append("Age", "2000-01-01")
 
 		if (profile_picture.current.files[0])
 			formdata.append("profile_picture", profile_picture.current.files[0]);
-		formdata.append("bio", bio)
-		formdata.append("home_town", home_town)
 		// console.log(formdata);
 		// for (let [key, values] of formdata.entries()) {
 		// 	console.log(key, values);
@@ -179,7 +179,7 @@ function Signup() {
 						<input type="text" className="input" value={confirmPassword} id="confirmPassword" name="confirmPassword" onChange={handleChange} />
 					</div >
 
-					< div class="button-div">
+					< div className="button-div">
 						<button type="button" name="next" onClick={() => { setTab(2) }}
 							className="next action-button" >Next</button>
 					</div>
@@ -222,7 +222,7 @@ function Signup() {
 							onChange={handleChange} />
 					</div >
 
-					< div class="button-div">
+					< div className="button-div">
 						<button type="button" name="previous" className="previous action-button"
 							onClick={() => { setTab(1) }}>
 							Previous
@@ -279,7 +279,7 @@ function Signup() {
 							onChange={handleChange} />
 					</div>
 
-					< div class="button-div">
+					< div className="button-div">
 						<button type="button" name="previous" onClick={() => { setTab(2) }} className="previous action-button"  >Previous</button>
 						<button type="submit" name="submit" className="submit action-button"  >Submit</button>
 					</div>

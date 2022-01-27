@@ -4,7 +4,6 @@ import left from "../images/bee_left.png"
 import middle from "../images/bee_middle.png"
 import right from "../images/bee_right.png"
 const AuthLayout = ({ children }) => {
-	console.log(children);
 	return (
 		<div className="auth-layout">
 

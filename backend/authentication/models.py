@@ -14,7 +14,7 @@ class Batches(models.Model):
 
     def __str__(self):
         return self.batch_name
-    
+
     class Meta:
         verbose_name = 'Batch'
         verbose_name_plural = "Batches"
@@ -37,7 +37,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField('Email Address',unique=True)
     batch = models.ManyToManyField(Batches,blank=True)
     gender = models.CharField(max_length=20,choices=genders,null=True,blank=True)
-    Age = models.DateField(null=True,blank=True)
+    age = models.DateField(null=True,blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -49,4 +49,4 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def __str__(self):
         return self.first_name + '-' + self.email
-    
+

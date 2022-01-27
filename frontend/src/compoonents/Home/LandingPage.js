@@ -7,6 +7,7 @@ const LandingPage = () => {
 			<div className="logo">logo</div>
 			<nav>This si Landing Page</nav>
 			<Link to="/login">Login</Link>
+			<Link to="/dashboard">dashboard</Link>
 		</div>
 	</>
 	);
