@@ -6,7 +6,7 @@ class VisitedPlacesSerializer(serializers.ModelSerializer):
     class Meta:
         model = VisitedPlaces
         fields = ('id','user','vendor','content','public')
-    
+
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
@@ -30,11 +30,11 @@ class   LeaderboardSerializer(serializers.ModelSerializer):
     def get_username(self,obj):
         new_user = User.objects.get(id=obj['user'])
         return new_user.username
-    
+
     def get_user_uuid(self,obj):
         new_user = User.objects.get(id=obj['user'])
         return new_user.uuid
-    
+
     def get_user_profile_picture(self,obj):
         new_user = User.objects.get(id=obj['user'])
         

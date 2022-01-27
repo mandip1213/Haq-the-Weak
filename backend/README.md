@@ -15,9 +15,13 @@
         - Returns access Token
 
  * /api/user/ :<!-- signup -->
+
         **Request Type : GET**
+
             - Returns all the Users and their creds along with uuid
+
         **Request Type : POST**
+
             - Takes Username, Name, Email, Password, Confirm Password, Profile Picture, Bio, Home town
             - Returns the created user instance
  
@@ -50,6 +54,7 @@
               - Returns the list of all the visits of all the user which is marked as public
 
 **Request Type : POST**
+
 <br />
               - Only works when Authenticated user sends request
 <br />
@@ -59,6 +64,10 @@
 <br />
        Fields: id, user, vendor, content, public, location_score(hidden,read_only)
 
+
+
+<br/>
+<br/>
 
 ### Leaderboard Details
 * /api/leaderbord/ <!-- Travellers Leaderboard -->
@@ -86,3 +95,8 @@
 
 <br />
        -Returns 'vendors','users','visits' as total number of vendors we have, total users we have and total visits we have
+
+# TODO
+*  replace name with first name and last name
+* create a table of hometown i guess
+* add birthday, sex  field on user

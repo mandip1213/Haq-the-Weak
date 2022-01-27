@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { GlobalContextProvider } from "./compoonents/utils/Globalcontext"
-
+import "./index.css"
 
 
 ReactDOM.render(

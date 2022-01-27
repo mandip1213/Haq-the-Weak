@@ -1,0 +1,81 @@
+.auth-title {
+    text-align: center;
+}
+
+.error {
+    margin-top: 1rem;
+    color: red;
+    text-align: center;
+    font-size: 1rem;
+    background-color: rgb(242, 222, 222);
+    padding: 0.25rem;
+}
+
+form.auth-form>* {
+    margin-top: 1rem;
+}
+
+.input-container {
+    /* contains input and label */
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.label {
+    display: block;
+}
+
+.input-container input {
+    padding: 0.25rem 0.5rem;
+    border: 2px solid rgb(185, 183, 183);
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.input-container input:focus {
+    border-color: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.password-input {
+    position: relative;
+}
+
+.password-input>span {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translatey(-45%);
+    cursor: pointer;
+}
+
+.show-hide-password:after {
+    position: absolute;
+    content: ' ';
+    left: 50%;
+    top: 50%;
+    transform: translate(-55%, -55%) rotate(-45deg);
+    /* transform: rotate(-45deg); */
+    width: 3px;
+    height: 80%;
+    background-color: #333;
+}
+
+button.auth-button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.25rem;
+    padding: 0.3rem;
+}
+
+.password-input {
+    align-self: stretch;
+}
+
+.to-signup {
+    text-align: center;
+}

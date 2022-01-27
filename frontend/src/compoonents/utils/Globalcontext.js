@@ -6,21 +6,18 @@ const initialState = {
 
 	access_token: "",
 	refresh_token: "",
-	userDetails: {
-		username: "", email: "", id: ""
-
-	},
+	uuid: "",
 	isLoggedIn: false,
 }
 const initializeState = (state) => {
 	let refresh_token = localStorage.getItem("refresh_token");
 	let access_token = localStorage.getItem("access_token");
-	let userDetails = localStorage.getItem("userDetails")
-	if (access_token && refresh_token && userDetails) {
+	let uuid = localStorage.getItem("uuid")
+	if (access_token && refresh_token && uuid) {
 		refresh_token = JSON.parse(refresh_token)
 		access_token = JSON.parse(access_token)
-		userDetails = JSON.parse(userDetails)
-		return { ...state, access_token, refresh_token, userDetails, isLoggedIn: true }
+		uuid = JSON.parse(uuid)
+		return { ...state, access_token, refresh_token, uuid, isLoggedIn: true }
 	}
 	return state
 }
