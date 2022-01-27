@@ -82,14 +82,14 @@ const Login = () => {
 		<AuthLayout>
 
 
-			<div className="form-wrapper">
-				<h1 className="auth-title">Log in</h1>
+			{/* TODO: insert alert symbol */}
+			<form onSubmit={login(loginDetails)} action="" id="login-form">
 
-				{/* TODO: insert alert symbol */}
-				{error && <div className="error">{error}</div>}
-				<form onSubmit={login(loginDetails)} action="" className="auth-form login">
+				<fieldset>
+					<legend className="fs-title">Login</legend>
+					<h3 className='fs-subtitle'	> some senseless text here</h3>
 
-
+					{error && <div className="error">{error}</div>}
 
 					<div className="input-container">
 						<label htmlFor="email" className="label">Email</label>
@@ -106,13 +106,12 @@ const Login = () => {
 					</div>
 
 					<div className="forgot-password"><Link to="/login " className="hover-link">forgot password?</Link></div>
-					<button type="submit" className="auth-button">Login</button>
+					<button type="submit" className=" action-button">Login</button>
 
 					<div className="to-signup">Don't have an account ?   <Link to="/signup" className="hover-link">signup</Link></div>
+				</fieldset>
+			</form>
 
-				</form>
-
-			</div>
 		</AuthLayout>
 	)
 }

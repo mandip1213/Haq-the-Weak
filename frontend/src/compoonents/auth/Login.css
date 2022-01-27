@@ -1,7 +1,3 @@
-.auth-title {
-    text-align: center;
-}
-
 .error {
     margin-top: 1rem;
     color: red;
@@ -11,34 +7,69 @@
     padding: 0.25rem;
 }
 
-form.auth-form>* {
+#login-form .fs-title {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.25rem 1rem;
+}
+
+#login-form .fs-subtitle {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+/*
+#login-form {
+    width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+    position: relative;
+} */
+
+#login-form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    /* margin: 0 1rem; */
+    margin: auto;
+    /*stacking fieldsets above each other*/
+    /* position: relative; */
+}
+
+#login-form>* {
     margin-top: 1rem;
 }
 
-.input-container {
-    /* contains input and label */
-    margin-top: 1rem;
+#login-form .input-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
 }
 
+.input-container input,
+.input-container textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-family: montserrat;
+    color: #2C3E50;
+}
+
 .label {
     display: block;
-}
-
-.input-container input {
-    padding: 0.25rem 0.5rem;
-    border: 2px solid rgb(185, 183, 183);
-    border-radius: 5px;
-    outline: none;
-    width: 100%;
-}
-
-.input-container input:focus {
-    border-color: black;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
 .password-input {
@@ -65,17 +96,28 @@ form.auth-form>* {
     background-color: #333;
 }
 
-button.auth-button {
-    width: 100%;
-    cursor: pointer;
-    font-size: 1.25rem;
-    padding: 0.3rem;
-}
-
 .password-input {
     align-self: stretch;
 }
 
 .to-signup {
     text-align: center;
+}
+
+#login-form .action-button {
+    width: 100px;
+    background-color: rgba(39, 174, 95, 0.8);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#login-form .action-button:hover,
+#login-form .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    background-color: rgba(39, 174, 95, 1);
 }
