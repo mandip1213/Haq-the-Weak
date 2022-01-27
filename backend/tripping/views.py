@@ -65,9 +65,14 @@ class DashboardViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
 
     
 class LandingPageViewSet(viewsets.GenericViewSet):
-    no_of_vendors = Vendor.objects.all().count()
-    no_of_users = User.objects.all().count()
-    no_of_visits = VisitedPlaces.objects.all().count()
+    try:
+        no_of_vendors = Vendor.objects.all().count()
+        no_of_users = User.objects.all().count()
+        no_of_visits = VisitedPlaces.objects.all().count()
+    except:
+        no_of_vendors = 0
+        no_of_users =0
+        no_of_visits =0
     queryset = VisitedPlaces.objects.all()
 
     def list(self, request, *args, **kwargs):
