@@ -1,0 +1,201 @@
+/*custom font*/
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/* added by me */
+
+#signup-form .fs-title {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.25rem 1rem;
+    /* padding: 0.25rem; */
+}
+
+#signup-form .fs-subtitle {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+/* added by me */
+
+
+/*form styles*/
+
+#signup-form {
+    width: 400px;
+    margin: 2rem auto;
+    /* text-align: center; */
+    position: relative;
+    border: 2px solid green;
+}
+
+#signup-form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    width: 80%;
+    /* margin: 0 1rem; */
+    margin: auto;
+    /*stacking fieldsets above each other*/
+    /* position: relative; */
+}
+
+
+/*Hide all except first fieldset*/
+
+
+/*inputs*/
+
+#signup-from .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.input-container input,
+.input-container textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-family: montserrat;
+    color: #2C3E50;
+}
+
+
+/*buttons*/
+
+#signup-form .action-button {
+    width: 100px;
+    background-color: rgba(39, 174, 95, 0.8);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#signup-form .action-button:hover,
+#signup-form .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    background-color: rgba(39, 174, 95, 1);
+}
+
+
+/*headings*/
+
+
+/*progressbar*/
+
+#progressbar {
+    padding: 0.3rem;
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    /* color: white; */
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+}
+
+
+/*progressbar connectors*/
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1;
+    /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+
+/*marking active/completed steps green*/
+
+
+/*The number of the step and the connector before it = green*/
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #27AE60;
+    color: white;
+}
+
+#signup-form .button-div {
+    text-align: center;
+}
+
+@media screen and (max-width:500px) {
+    #signup-form {
+        margin: 1rem auto;
+        width: 90vw;
+    }
+    #signup-form fieldset {
+        padding: 1rem 0.5rem;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:370px) {
+    #signup-form {
+        width: 95vw;
+    }
+    #signup-form fieldset {
+        padding: 1rem 0.5rem;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:320px) {
+    #signup-form {
+        width: 100vw;
+    }
+    #signup-form fieldset {
+        padding: 1rem 0.5rem;
+        width: 95%;
+    }
+}
