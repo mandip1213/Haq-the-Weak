@@ -35,7 +35,8 @@ class FollowerOrFollowingSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = (
-            'name',
+            'first_name',
+            'last_name',
             'username',
             'profile_picture',
         )
@@ -57,8 +58,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('name',
+        fields = ('first_name',
+                'last_name',
                 'username',
+                'Age',
+                'gender',
                 'profile_picture',
                 'uuid',
                 'followers_count',
@@ -98,7 +102,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         model = get_user_model()
 
         fields = (
-            'name',
+            'first_name',
+            'last_name',
             'username',
             'email',
             'password',
@@ -107,7 +112,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             'uuid',
             'id',
             'bio',
-            'home_town'
+            'home_town',
+            'Age',
+            'gender'
         )
 
         extra_kwargs ={
@@ -129,18 +136,22 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        name = validated_data['name']
+        first_name = validated_data['first_name']
+        last_name = validated_data['last_name']
         email = validated_data['email']
         password = validated_data['password']
         username = validated_data['username']
         bio = validated_data['bio']
+        Age = validated_data['Age']
+        gender = validated_data['gender']
         if validated_data['home_town'] == '':
             home_town = 'Kathmandu'
         else:
             home_town = validated_data['home_town']
+
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
-        user = self.Meta.model(name=name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town)
+        user = self.Meta.model(first_name=first_name,last_name=last_name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town,Age=Age,gender=gender)
         user.set_password(password)
         user.save()
         return user

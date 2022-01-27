@@ -46,38 +46,17 @@ class   LeaderboardSerializer(serializers.ModelSerializer):
 
 # Dashboard: user_uuid, user_id, username, user_profile_picture, score, visited_place
 class DashboardSerializer(serializers.ModelSerializer):
-    user = serializers.UUIDField()
-    user_uuid = serializers.SerializerMethodField()
-    score=serializers.FloatField()
-    username=serializers.SerializerMethodField()
-    user_profile_picture = serializers.SerializerMethodField()
+    score=serializers.SerializerMethodField()
     visited_places = serializers.SerializerMethodField()
 
     class Meta:
-        model = VisitedPlaces
-        fields = ('user','user_uuid','username','user_profile_picture','score','visited_places','score')
+        model = User
+        fields = ('uuid','username','profile_picture','visited_places','score')
 
-    def get_user_uuid(self,obj):
-        new_user = User.objects.get(id=obj['user'])
-        return new_user.uuid
     
-   
-
-    def get_username(self,obj):
-        new_user = User.objects.get(id=obj['user'])
-        return new_user.username
-
-
-    def get_user_profile_picture(self,obj):
-        new_user = User.objects.get(id=obj['user'])
-        
-        try:
-            return new_user.profile_picture.url
-        except:
-            return None
-
     def get_visited_places(self,obj):
-        visited_places = VisitedPlaces.objects.filter(user=obj['user'])
+
+        visited_places = VisitedPlaces.objects.filter(user=obj)
         listed = visited_places.values('vendor')
         final_list = []
         for i in listed.iterator():
@@ -87,3 +66,10 @@ class DashboardSerializer(serializers.ModelSerializer):
         final_list = list(dict.fromkeys(final_list))
         return final_list
 
+    def get_score(self,obj):
+        visited_places = VisitedPlaces.objects.filter(user=obj)
+        final_score = float()
+        for i in visited_places.values('location_score').iterator():
+            final_score+=i['location_score']
+            
+        return final_score

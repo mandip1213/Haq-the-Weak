@@ -4,7 +4,7 @@ from .models import *
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id','name','email']
+    list_display = ['id','first_name','email']
 
 @admin.register(Batches)
 class BatchAdmin(admin.ModelAdmin):

@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from utils.permissions import IsTheSameUser
 from .models import Vendor,VisitedPlaces
 from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer
 from rest_framework.views import APIView
@@ -58,16 +59,31 @@ class LeaderboardViewSet(mixins.ListModelMixin,
 # Landing Page view includes total user, total vendor, total qr scans 
 # Dashboard: user_uuid, user_id, username, user_profile_picture, user_score, user_visited_place
 
-class DashboardViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
-    queryset=VisitedPlaces.objects.all().values('user').annotate(score=Sum('location_score'))
-    permission_classes = [IsAuthenticated]
+class DashboardViewSet(viewsets.GenericViewSet):
+    queryset=User.objects.all()
+    permission_classes = [IsTheSameUser]
     serializer_class = DashboardSerializer
 
-    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset().filter(id=request.user.id))
+        
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 class LandingPageViewSet(viewsets.GenericViewSet):
-    no_of_vendors = Vendor.objects.all().count()
-    no_of_users = User.objects.all().count()
-    no_of_visits = VisitedPlaces.objects.all().count()
+    try:
+        no_of_vendors = Vendor.objects.all().count()
+        no_of_users = User.objects.all().count()
+        no_of_visits = VisitedPlaces.objects.all().count()
+    except:
+        no_of_vendors = 0
+        no_of_users =0
+        no_of_visits =0
     queryset = VisitedPlaces.objects.all()
 
     def list(self, request, *args, **kwargs):

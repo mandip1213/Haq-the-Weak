@@ -69,8 +69,6 @@
 <br/>
 <br/>
 
-
-
 ### Leaderboard Details
 * /api/leaderbord/ <!-- Travellers Leaderboard -->
 **Request Type : GET**
@@ -100,7 +98,9 @@
        -Returns 'vendors','users','visits' as total number of vendors we have, total users we have and total visits we have
 
 # TODO
-*  replace name with first name and last name
-* create a table of hometown i guess
-* add birthday, sex  field on user
+* create a table of hometown i guess(Not Required)
 
+
+# DONE
+*  replaced name with first_name and last name 
+*  add birthday, sex  field on user
