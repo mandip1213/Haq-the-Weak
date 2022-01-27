@@ -67,3 +67,22 @@
        -Returns the list of users and their scores based on the the total score of their visits and ranks them.
 </br>
      * fields: user(user_id), visits, unique_visits, username, user_uuid, user_profile_picture, score *
+
+### Dashboard/Profile Details
+* /api/dashboard/ <!-- Personal Dashboard -->
+<br />
+
+**Request Type : GET**
+
+<br />
+       - Returns 
+       ('user','user_uuid','username','user_profile_picture','score','visited_places','score') details when the Authorization Cred. is provided in the header.
+
+### Landing Page Details
+* /api/index/
+<br />
+
+**Request Type : GET**
+
+<br />
+       -Returns 'vendors','users','visits' as total number of vendors we have, total users we have and total visits we have
