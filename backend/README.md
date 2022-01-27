@@ -97,6 +97,8 @@
        -Returns 'vendors','users','visits' as total number of vendors we have, total users we have and total visits we have
 
 # TODO
-*  replace name with first name and last name
 * create a table of hometown i guess
 * add birthday, sex  field on user
+
+# DONE
+*  replaced name with name and last name where name stores the first_name
