@@ -5,7 +5,7 @@ from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSeria
 from rest_framework.views import APIView
 from utils.permissions import IsAuthorOrReadOnly,ReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
-from django.db.models import Count,Sum,Value
+from django.db.models import Count,Sum,Value,F
 from rest_framework import viewsets, status, mixins,status,generics
 from rest_framework.parsers import MultiPartParser, FormParser
 from authentication.models import User
@@ -50,7 +50,7 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
 class LeaderboardViewSet(mixins.ListModelMixin,
                         viewsets.GenericViewSet):
     
-    leaderboard = VisitedPlaces.objects.all().values('user').annotate(unique_visits=Count('vendor',distinct=True),visits=Count('user'),score = Sum('location_score')).order_by('score')
+    leaderboard = VisitedPlaces.objects.all().values('user').annotate(unique_visits=Count('vendor',distinct=True),visits=Count('user'),score = Sum('location_score')).order_by(F('score').desc())
     queryset = leaderboard
     permission_classes = [ReadOnly]
     serializer_class = LeaderboardSerializer
