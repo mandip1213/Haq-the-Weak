@@ -12,7 +12,7 @@ img {
     max-width: 100%;
 }
 
-:root {
+ :root {
     --body-font: "Inter", sans-serif;
     --theme-bg: #1f1d2b;
     --body-color: #808191;
@@ -22,7 +22,7 @@ img {
     --delay: 0s;
 }
 
-body {
+div#root {
     font-family: var(--body-font);
     color: var(--body-color);
     display: flex;
@@ -32,24 +32,28 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    position: relative;
+    /* color: white; */
 }
 
+
+/*
 body:before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(163deg, #1f1d2b 21%, rgba(31, 29, 43, 0.3113620448) 64%);
-    opacity: 0.4;
-    /* content: ""; */
-}
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(163deg, #1f1d2b 21%, rgba(31, 29, 43, 0.3113620448) 64%);
+opacity: 0.4;
+
+} */
 
 .container {
     background-color: var(--theme-bg);
     /* max-width: 1240px;
-    max-height: 900px;
-    height: 95vh; */
+max-height: 900px;
+height: 95vh; */
     display: flex;
     overflow: hidden;
     width: 100%;
@@ -71,6 +75,51 @@ body:before {
     transition-duration: 0.2s;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.small-screen-only {
+    display: none;
+}
+
+@media screen and (max-width:800px) {
+    div#root {
+        display: unset;
+    }
+    .sidebar {
+        order: 2;
+        width: 100%;
+        overflow-x: auto;
+        /* else ccupy whole screen */
+        height: auto;
+        position: fixed;
+        bottom: 0%;
+        z-index: 10000;
+        /* always show on bottom */
+        background-color: white;
+        /* background-color: rgb(82, 122, 82); */
+        padding: 0.25rem 0.5rem;
+    }
+    .side-wrapper {
+        padding: 0 !important;
+    }
+    .side-wrapper.secondary {
+        display: none;
+    }
+    .large-screen-only {
+        display: none !important;
+    }
+    .small-screen-only {
+        display: unset;
+    }
+    .container {
+        flex-direction: column;
+        overflow: auto;
+        position: relative;
+    }
+    div#root {
+        overflow: auto;
+        /* TODO auto vs scroll */
+    }
 }
 
 .sidebar .logo {
@@ -104,6 +153,14 @@ body:before {
     width: 200px;
     height: 70px;
     z-index: -1;
+}
+
+@media screen and (max-width:800px) {
+    .sidebar .logo,
+    .sidebar .logo-expand,
+    .sidebar .side-title {
+        display: none;
+    }
 }
 
 .sidebar-link:hover,
@@ -176,14 +233,14 @@ body:before {
     flex-direction: column;
 }
 
-.side-menu a {
+.side-menu .sidebar-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: var(--body-color);
 }
 
-.side-menu a+a {
+.side-menu .sidebar-link+.sidebar-link {
     margin-top: 26px;
 }
 
@@ -198,6 +255,26 @@ body:before {
 
 .side-menu svg:hover {
     color: #fff;
+}
+
+@media screen and (max-width:800px) {
+    .side-menu {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .side-menu .sidebar-link {
+        margin-top: 0 !important;
+        /* todo the disalignment is due to lack of margin top on logout buttton on fullscreen  */
+    }
+    .side-menu .sidebar-link {
+        flex-direction: column;
+        gap: 0.25rem;
+        justify-content: center;
+    }
+    .side-menu svg {
+        margin-right: 0;
+    }
 }
 
 .side-title {
@@ -221,3 +298,13 @@ body:before {
     flex-direction: column;
     flex-grow: 1;
 }
+
+@media screen and (max-width:800px) {
+    .side-wrapper {
+        width: 100%;
+        align-self: stretch;
+    }
+}
+
+
+/* new add */
