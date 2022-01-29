@@ -61,7 +61,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('first_name',
                 'last_name',
                 'username',
-                'Age',
+                'date_of_birth',
                 'gender',
                 'profile_picture',
                 'uuid',
@@ -113,7 +113,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             'id',
             'bio',
             'home_town',
-            'Age',
+            'date_of_birth',
             'gender'
         )
 
@@ -142,7 +142,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         password = validated_data['password']
         username = validated_data['username']
         bio = validated_data['bio']
-        Age = validated_data['Age']
+        date_of_birth = validated_data['date_of_birth']
         gender = validated_data['gender']
         if validated_data['home_town'] == '':
             home_town = 'Kathmandu'
@@ -151,7 +151,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
-        user = self.Meta.model(first_name=first_name,last_name=last_name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town,Age=Age,gender=gender)
+        user = self.Meta.model(first_name=first_name,last_name=last_name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town,date_of_birth=date_of_birth,gender=gender)
         user.set_password(password)
         user.save()
         return user

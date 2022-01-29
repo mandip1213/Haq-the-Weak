@@ -37,7 +37,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField('Email Address',unique=True)
     batch = models.ManyToManyField(Batches,blank=True)
     gender = models.CharField(max_length=20,choices=genders,null=True,blank=True)
-    Age = models.DateField(null=True,blank=True)
+    date_of_birth = models.DateField(null=True,blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
