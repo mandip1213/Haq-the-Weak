@@ -1,2 +1,5 @@
-temp
-lol
+*.sqlite3
+__pycache__
+test.*
+*.csv
+.gitignore
