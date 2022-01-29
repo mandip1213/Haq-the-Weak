@@ -9,16 +9,17 @@ const Login = () => {
 	const navigate = useNavigate()
 	const { dispatch, isLoggedIn } = useGlobalContext();
 	const [error, setError] = useState("")
-	const [loginDetails, setLoginDetails] = useState({ email: "temp@temp.com", password: "temppassword	" })
+	const [loginDetails, setLoginDetails] = useState({ email: "temp@mail.com", password: "temppassword	" })
 	// const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
 	const { email, password } = loginDetails;
 
 	React.useEffect(() => {
 		if (isLoggedIn) {
-			navigate("/dashboard");
+			navigate("/");
 		}
 	}, [isLoggedIn])
+
 	const togglePassword = (e) => {
 		e.currentTarget.classList.toggle("show-hide-password")
 		const element = document.querySelector("input.password")

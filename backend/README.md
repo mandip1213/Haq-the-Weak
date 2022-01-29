@@ -87,6 +87,7 @@
        - Returns 
        ('user','user_uuid','username','user_profile_picture','score','visited_places','score') details when the Authorization Cred. is provided in the header.
 
+
 ### Landing Page Details
 * /api/index/
 <br />
