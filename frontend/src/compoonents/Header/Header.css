@@ -36,6 +36,7 @@
     padding-left: 20px;
     flex-shrink: 0;
     margin-left: auto;
+    position: relative/*  */
 }
 
 .user-settings svg {

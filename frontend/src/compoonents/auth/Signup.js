@@ -109,6 +109,7 @@ function Signup() {
 		const formdata = new FormData()
 
 		formdata.append("username", username)
+		// formdata.append("username", "")
 		formdata.append("email", email)
 		formdata.append("password", password)
 		formdata.append("confirm_password", confirmPassword)
