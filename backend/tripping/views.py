@@ -60,13 +60,12 @@ class LeaderboardViewSet(mixins.ListModelMixin,
 # Dashboard: user_uuid, user_id, username, user_profile_picture, user_score, user_visited_place
 
 class DashboardViewSet(viewsets.GenericViewSet):
-    queryset=User.objects.all()
+    queryset = VisitedPlaces.objects.all()
     permission_classes = [IsTheSameUser]
     serializer_class = DashboardSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset().filter(id=request.user.id))
-        
+        queryset = self.filter_queryset(self.get_queryset().filter(user=request.user).annotate(score=F('location_score')))
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
