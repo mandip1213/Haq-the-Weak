@@ -1,8 +1,8 @@
 from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
 from .models import Vendor,VisitedPlaces
-from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer
-from rest_framework.views import APIView
+from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, VisitsSerializer
+from utils.utils import get_distance
 from utils.permissions import IsAuthorOrReadOnly,ReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 from django.db.models import Count,Sum,Value,F
@@ -36,7 +36,14 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
         json_data = (request.data).copy()
         id = request.user.id
         json_data.update({"user":id})
-        register_serializer = VisitedPlacesSerializer(data=json_data)
+        vendor = Vendor.objects.filter(id=json_data['vendor'])
+        distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitide')[0]['latitide'],vendor.values('longitude')[0]['longitude'])
+        distance_score = distance/20000    
+        importance_score = vendor.values('importance_point')[0]['importance_point']
+        
+        json_data['location_score'] = distance_score + importance_score
+
+        register_serializer = VisitsSerializer(data=json_data)
         
         if register_serializer.is_valid():
             new_visit = register_serializer.save(user=request.user,vendor=Vendor.objects.get(id=json_data['vendor']))

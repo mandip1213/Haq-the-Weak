@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.conf import settings
 from django.db import models
 from utils.data import Districts,distance
@@ -12,6 +11,9 @@ class Vendor(models.Model):
     id = models.UUIDField(editable=False,unique=True,default=uuid.uuid4,primary_key=True)
     name = models.CharField(max_length=150)
     location = models.CharField(max_length=150,choices=Districts)
+    latitide = models.DecimalField(max_digits=9,decimal_places=6,blank=True,null=True)
+    longitude = models.DecimalField(max_digits=9,decimal_places=6,blank=True,null=True)
+    importance_point = models.IntegerField(null=True,blank=True)
     contact = models.CharField(max_length=50,blank=True,null=True)
     image = models.ImageField(blank=True,null=True,upload_to='places/')
     type_of_place = models.CharField(max_length=100)
@@ -37,22 +39,6 @@ class VisitedPlaces(models.Model):
     class Meta:
         verbose_name = 'Visited Place'
         verbose_name_plural ='Visited Places' 
-
-
-    @property
-    def get_location_score(self):
-        MAX_EAST_DIST = 835.3
-        MAX_WEST_DIST = 960.86
-        base_point = 2.0
-        x_dist = float(distance[self.user.home_town]['x_dist'])-float(distance[self.vendor.location]['x_dist'])
-        y_dist = float(distance[self.user.home_town]['y_dist'])-float(distance[self.vendor.location]['y_dist'])
-        dist = math.sqrt(x_dist*x_dist+y_dist*y_dist)
-        return base_point + (dist/(MAX_EAST_DIST+MAX_WEST_DIST))*10.0
-
-
-    def save(self,*args,**kwarg):
-        self.location_score = self.get_location_score
-        super(VisitedPlaces,self).save(*args, **kwarg)
 
     def __str__(self):
         return str(self.user)+' - '+str(self.vendor) 
