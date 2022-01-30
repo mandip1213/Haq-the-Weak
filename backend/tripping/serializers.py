@@ -90,7 +90,8 @@ class DashboardSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     vendor = DashboardVendorSerializer()
     score = serializers.FloatField()
+    created_at = serializers.DateTimeField()
 
     class Meta:
         model = VisitedPlaces
-        fields= ('id','user','vendor','score')
+        fields= ('id','user','vendor','score','created_at')
