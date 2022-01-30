@@ -27,7 +27,8 @@ function Global() {
 	}
 	return (
 
-		<div className="list">
+		<div className="list  ">
+			<h1 className="heading">Leaderboard</h1>
 			<div className="list__body">
 				<table className="list__table">
 					<thead>
@@ -47,7 +48,7 @@ function Global() {
 								user_profile_picture = user_profile_picture ? user_profile_picture : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"
 
 								return (
-									<tr className="list__row" data-image={user_profile_picture} data-nationality="British" data-dob="1985-01-07" data-country="gb">
+									<tr key={user_uuid} className="list__row" data-image={user_profile_picture} data-nationality="British" data-dob="1985-01-07" data-country="gb">
 										<td className="list__cell"><span className="list__value">{index + 1}</span></td>
 
 										<td className="list__cell with-image">
