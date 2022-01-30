@@ -9,7 +9,7 @@ function Signup() {
 	const [tab, setTab] = useState(3);
 	const [signupDetails, setsignupDetails] = useState({
 		// email: "",
-		email: "temp3@mail.com",
+		email: "temp@mail.com",
 		username: "ellipsers",
 		password: "temppassword", confirmPassword: "temppassword",
 		gender: "Male",
