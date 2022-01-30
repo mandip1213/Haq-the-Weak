@@ -22,7 +22,7 @@ const LogInView = () => {
 	return (
 		<div className="container">
 			<Sidebar />
-			<div className="wrapper">
+			<div className="wrapper overflow-auto">
 				<Header />
 				<Outlet />
 			</div>

@@ -9,13 +9,13 @@ function Signup() {
 	const [tab, setTab] = useState(3);
 	const [signupDetails, setsignupDetails] = useState({
 		// email: "",
-		email: "temp@mail.com",
-
+		email: "temp3@mail.com",
+		username: "ellipsers",
 		password: "temppassword", confirmPassword: "temppassword",
 		gender: "Male",
 		birthday: "",
 		// birthday: new Date("2000-01-01").toISOString().substring(0, 10),
-		username: "khamer", firstname: "lorem", lastname: "ipsum",
+		firstname: "lorem", lastname: "ipsum",
 		bio: "Nepal lies between China and India ", home_town: "Morang",
 		contact: ""
 	})
@@ -108,8 +108,8 @@ function Signup() {
 
 		const formdata = new FormData()
 
-		formdata.append("username", username)
 		// formdata.append("username", "")
+		formdata.append("username", username)
 		formdata.append("email", email)
 		formdata.append("password", password)
 		formdata.append("confirm_password", confirmPassword)
@@ -118,7 +118,8 @@ function Signup() {
 		formdata.append("gender", gender)
 		formdata.append("home_town", home_town)
 		formdata.append("bio", bio)
-		formdata.append("Age", "2000-01-01")
+		formdata.append("date_of_birth", "2000-01-01")
+		// if()
 
 		if (profile_picture.current.files[0])
 			formdata.append("profile_picture", profile_picture.current.files[0]);

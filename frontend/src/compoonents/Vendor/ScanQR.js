@@ -4,13 +4,14 @@ import PostRequest from '../utils/PostReq';
 
 const ScanQR = () => {
 	const { access_token } = useGlobalContext()
-	const _id = ["8a07ed59-fcec-4672-bea9-9fa97e8953f3", "761d3741-0213-46b8-a0d6-233573855c24", "4a4d2c5d-3636-42ae-8195-592450461e72", "0a4d2c5d-3636-42ae-8195-592450461e72"]
-	const id = _id[Math.floor(Math.random() * _id.length)]
-	const body = {
-		vendor: id,
-		public: true
-	}
+	const _id = ["cd82cdc2-2455-43df-a850-1661692e5320", "b15151e7-4a68-4106-96e0-b3c86879a931", "84ac6466-63f2-40a6-bcb2-2bf6db5d1171", "734e6abd-6da1-4177-929f-3076e452e4f9"]
+
 	const handleAdd = async () => {
+		const id = _id[Math.floor(Math.random() * _id.length)]
+		const body = {
+			vendor: id,
+			public: true
+		}
 
 		PostRequest({ endpoint: "/api/visit/", access_token, options: { body: JSON.stringify(body) } })
 	}

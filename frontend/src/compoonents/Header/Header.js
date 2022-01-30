@@ -7,7 +7,7 @@ const Header = () => {
 	return (
 		<div className="header">
 
-			<div className="header-logo-text">TripBee</div>
+			<div className="header-logo-text small-screen-only">TripBee</div>
 
 			<div className="search-bar large-screen-only">
 				<input type="text" placeholder="Search" />

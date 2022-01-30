@@ -873,6 +873,11 @@ button.vjs-play-control.vjs-control.vjs-button {
 /* ///TODO style it */
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(21, 20, 26, 0.63);
+    background-color: red;
     border-radius: 10px;
+}
+
+.overflow-auto {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }

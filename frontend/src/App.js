@@ -9,10 +9,22 @@ import Home from "./compoonents/Home/Home"
 import LogInView from './compoonents/Layout/LogInView';
 import Vendor from './compoonents/Vendor/Vendor';
 import Leaderboard from './compoonents/Leaderboard/Leaderboard';
+import Profile from './compoonents/Profile/Profile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 
 
 const App = () => {
+  if (navigator.geolocation) {
+    console.log("geoloactojn");
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("latitude  ", position.coords.latitude)
+      console.log("longitude  ", position.coords.longitude)
+    });
+  } else {
+
+    console.log(" no geoloactojn");
+
+  }
   const { isLoggedIn } = useGlobalContext()
   return (<>
     <Router>
@@ -25,7 +37,7 @@ const App = () => {
           <Route path="/" element={<Home />}> </Route>
           <Route path="/dashboard" element={<Dashboard />}> </Route>
           <Route path="/vendor" element={<Vendor />}> </Route>
-          <Route path="/profile" element={<Temp />}> </Route>
+          <Route path="/profile" element={<Profile />}> </Route>
           <Route path="/leaderbord" element={<Leaderboard />}> </Route>
           <Route path="/friends" element={<Temp />}> </Route>
           <Route path="/add" element={<ScanQR />}> </Route>

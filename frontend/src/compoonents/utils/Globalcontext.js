@@ -7,7 +7,7 @@ const initialState = {
 	access_token: "",
 	refresh_token: "",
 	uuid: "",
-	isLoggedIn: true,
+	isLoggedIn: false,
 }
 const initializeState = (state) => {
 	let refresh_token = localStorage.getItem("refresh_token");
