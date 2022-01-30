@@ -33,11 +33,17 @@ class User(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=128)
     bio = models.CharField(max_length=256,null=True,blank=True,default='')
     home_town = models.CharField(max_length=256,null=True,blank=True,choices=Districts)
+    home_latitude = models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True)
+    home_longitude = models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True)
+    latest_latitude = models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True)
+    latest_longitude = models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True)
     profile_picture = models.ImageField(blank=True,null=True,upload_to ='user/profile/')
     email = models.EmailField('Email Address',unique=True)
     batch = models.ManyToManyField(Batches,blank=True)
     gender = models.CharField(max_length=20,choices=genders,null=True,blank=True)
     date_of_birth = models.DateField(null=True,blank=True)
+
+
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)

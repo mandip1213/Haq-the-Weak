@@ -114,7 +114,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             'bio',
             'home_town',
             'date_of_birth',
-            'gender'
+            'gender',
+            'home_latitude',
+            'home_longitude',
         )
 
         extra_kwargs ={
@@ -144,6 +146,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         bio = validated_data['bio']
         date_of_birth = validated_data['date_of_birth']
         gender = validated_data['gender']
+        home_latitude = validated_data['home_latitude']
+        home_longitude = validated_data['home_longitude']
+        latest_latitude = validated_data['home_latitude']
+        latest_longitude = validated_data['home_longitude']
         if validated_data['home_town'] == '':
             home_town = 'Kathmandu'
         else:
@@ -151,7 +157,19 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
         profile_picture = validated_data['profile_picture'] if 'profile_picture' in validated_data else None
 
-        user = self.Meta.model(first_name=first_name,last_name=last_name,email=email,profile_picture=profile_picture,username=username,bio=bio,home_town=home_town,date_of_birth=date_of_birth,gender=gender)
+        user = self.Meta.model(first_name=first_name,
+                                last_name=last_name,
+                                email=email,
+                                profile_picture=profile_picture,
+                                username=username,
+                                bio=bio,
+                                home_town=home_town,
+                                date_of_birth=date_of_birth,
+                                gender=gender,
+                                home_latitude=home_latitude,
+                                home_longitude=home_longitude,
+                                latest_latitude=latest_latitude,
+                                latest_longitude=latest_longitude)
         user.set_password(password)
         user.save()
         return user
