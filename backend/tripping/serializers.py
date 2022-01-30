@@ -86,10 +86,11 @@ class DashboardVendorSerializer(serializers.ModelSerializer):
         fields = ('name','location','image','type_of_place')
 
 class DashboardSerializer(serializers.ModelSerializer):
+    id = serializers.UUIDField()
     user = UserSerializer()
     vendor = DashboardVendorSerializer()
     score = serializers.FloatField()
 
     class Meta:
         model = VisitedPlaces
-        fields= ('user','vendor','score')
+        fields= ('id','user','vendor','score')
