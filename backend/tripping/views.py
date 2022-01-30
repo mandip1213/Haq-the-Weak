@@ -7,7 +7,7 @@ from utils.permissions import IsAuthorOrReadOnly,ReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 from django.db.models import Count,Sum,Value,F
 from rest_framework import viewsets, status, mixins,status,generics
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from authentication.models import User
 # Create your views here.
 
@@ -26,7 +26,7 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
                             viewsets.GenericViewSet):
 
     permission_classes = [IsAuthorOrReadOnly,IsAuthenticatedOrReadOnly]
-    parser_classes = [MultiPartParser,FormParser]
+    parser_classes = [MultiPartParser,FormParser,JSONParser]
     queryset = VisitedPlaces.objects.filter(public=True)
     serializer_class = VisitedPlacesSerializer
     lookup_field = 'id'
