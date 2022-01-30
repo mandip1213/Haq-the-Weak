@@ -5,6 +5,25 @@
     padding: 30px;
 }
 
+@media screen and (max-width:800px) {
+    .header {
+        padding: 0.5rem
+    }
+    .user-settings {
+        gap: 1rem;
+    }
+}
+
+.scan-qr {
+    width: 60px;
+}
+
+.header-logo-text {
+    font-size: 2rem;
+    color: blue;
+    font-weight: bolder;
+}
+
 .search-bar {
     height: 34px;
     display: flex;

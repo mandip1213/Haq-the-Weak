@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 const LogInView = () => {
 	const { isLoggedIn } = useGlobalContext()
 	const { pathname } = useLocation()
+	// console.log(window.geolocation.getCurrentPosition());
 
 	if (!isLoggedIn && pathname !== "/") {
 		return (

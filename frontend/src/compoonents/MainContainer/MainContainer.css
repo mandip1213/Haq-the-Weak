@@ -848,9 +848,6 @@ button.vjs-play-control.vjs-control.vjs-button {
     .main-container {
         padding: 0 20px 20px;
     }
-    .header {
-        padding: 20px;
-    }
     .sidebar.collapse {
         width: 40px;
     }
@@ -871,6 +868,9 @@ button.vjs-play-control.vjs-control.vjs-button {
     width: 6px;
     border-radius: 10px;
 }
+
+
+/* ///TODO style it */
 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(21, 20, 26, 0.63);
