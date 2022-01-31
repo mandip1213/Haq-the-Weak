@@ -36,7 +36,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ]
+    ],
+    'DEFAULT_THROTTLE_RATES':{
+        'visits':'2/w'
+    }
 }
 
 CORS_ALLOWED_ORIGINS = [
