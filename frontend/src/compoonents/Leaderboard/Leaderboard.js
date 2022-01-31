@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useDebugValue } from 'react';
+import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
 import "./Leaderboard.css"
 const Leaderboard = () => {
@@ -21,7 +22,7 @@ const Leaderboard = () => {
 function Global() {
 	const { isLoading, data: globals, error } = useFetch("/api/leaderboard/")
 	if (isLoading) {
-		return <div>loading</div>
+		return <Loading />
 	} if (error) {
 		return <div>error</div>
 	}

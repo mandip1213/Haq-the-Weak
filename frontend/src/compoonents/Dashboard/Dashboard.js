@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
 const Dashboard = () => {
 
@@ -9,7 +10,7 @@ const Dashboard = () => {
 
 	console.log(dashboard);
 	if (isLoading) {
-		return (<div>loading</div>)
+		return (<Loading />)
 	}
 	if (error) {
 		return (<div>error: {error}</div>)

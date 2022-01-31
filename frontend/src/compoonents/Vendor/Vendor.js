@@ -3,7 +3,7 @@ import useFetch from '../utils/UseFetch';
 
 const Vendor = () => {
 	const { isLoading, data: vendors, error } = useFetch("/api/vendor/")
-	const { isLoading: lol, data, error: lll } = useFetch("/api/vendor/8a07ed59-fcec-4672-bea9-9fa97e8953f3/")
+	// const { isLoading: lol, data, error: lll } = useFetch("/api/vendor/8a07ed59-fcec-4672-bea9-9fa97e8953f3/")
 
 	if (isLoading) {
 		return <div>Loading</div>

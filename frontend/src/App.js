@@ -11,6 +11,8 @@ import Vendor from './compoonents/Vendor/Vendor';
 import Leaderboard from './compoonents/Leaderboard/Leaderboard';
 import Profile from './compoonents/Profile/Profile';
 import ScanQR from './compoonents/Vendor/ScanQR';
+import Four04 from './compoonents/extras/404';
+import Loading from './compoonents/extras/Loading';
 
 
 const App = () => {
@@ -41,6 +43,7 @@ const App = () => {
           <Route path="/leaderbord" element={<Leaderboard />}> </Route>
           <Route path="/friends" element={<Temp />}> </Route>
           <Route path="/add" element={<ScanQR />}> </Route>
+          <Route path="*" element={<Four04 />} ></Route>
         </Route>
 
 
