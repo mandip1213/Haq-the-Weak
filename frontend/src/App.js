@@ -12,9 +12,8 @@ import Leaderboard from './compoonents/Leaderboard/Leaderboard';
 import Profile from './compoonents/Profile/Profile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 import Four04 from './compoonents/extras/404';
-import Loading from './compoonents/extras/Loading';
-
-
+import QRscanner from './compoonents/Vendor/ScanQR';
+// import Loading from './compoonents/extras/Loading';
 const App = () => {
   if (navigator.geolocation) {
     console.log("geoloactojn");
@@ -36,10 +35,11 @@ const App = () => {
         <Route path="/login" element={<Login />}> </Route>
 
         <Route element={<LogInView />}>
-          <Route path="/" element={<Home />}> </Route>
+          <Route path="/" element={<QRscanner />}> </Route>
+          {/* <Route path="/" element={<Qr />}> </Route> */}
           <Route path="/dashboard" element={<Dashboard />}> </Route>
           <Route path="/vendor" element={<Vendor />}> </Route>
-          <Route path="/profile" element={<Profile />}> </Route>
+          <Route path="/profile/:userid" element={<Profile />}> </Route>
           <Route path="/leaderbord" element={<Leaderboard />}> </Route>
           <Route path="/friends" element={<Temp />}> </Route>
           <Route path="/add" element={<ScanQR />}> </Route>
@@ -52,10 +52,10 @@ const App = () => {
     </Router>
   </>)
 };
-
 function Temp() {
-  return (
-    <div>Under construction</div>
+  return (<><div>Under construction</div>
+  </>
+
 
   )
 }
