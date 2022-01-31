@@ -192,7 +192,7 @@
     }
 }
 
-.video {
+.video-wrapper .video {
     position: relative;
     background-color: var(--video-bg);
     border-radius: 20px;
@@ -259,7 +259,7 @@
     right: 8px;
 }
 
-.video:hover video {
+.video:hover.video-wrapper video {
     transform: scale(1.6);
     transform-origin: center;
 }
@@ -292,7 +292,7 @@
     border-color: var(--video-bg);
 }
 
-video {
+.video-wrapper video {
     max-width: 100%;
     width: 100%;
     border-radius: 20px 20px 0 0;
