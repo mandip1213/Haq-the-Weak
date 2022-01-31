@@ -75,7 +75,7 @@ class GetUserViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
 
     def list(self,request,*args,**kwargs):
         query = request.data
-        query = query['q'] if 'q' in query else None
+        query = query['user'] if 'user' in query else None
         if query is not None:
             lookups = Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query)
             queryset = self.filter_queryset(self.get_queryset().filter(lookups))
