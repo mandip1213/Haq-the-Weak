@@ -9,3 +9,20 @@ def get_distance(loc1_lat,loc1_lon,loc2_lat,loc2_lon):
     response = requests.request("GET",url,headers=headers,data=payload)
     dist_in_meter=response.json().get('routes').get('car').get('distance')['value']
     return dist_in_meter
+
+def add_geofence(name,tag,externalId,latitude,longitude):
+    payload = {
+        "description":name,
+        "tag":tag,
+        "externalId":externalId,
+        "type":"circle",
+        "radius":200,
+        "coordinates":[longitude,latitude],
+        "enabled":"true"
+
+    }
+    url = "https://api.radar.io/v1/geofences/"
+    headers = {"Authorization":"prj_test_sk_bdea6662fe333d9499147a9ad130c6902b1f3882"}
+
+    response = requests.request("POST",url,headers=headers,data=payload)
+    return response
