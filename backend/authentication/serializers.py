@@ -1,6 +1,6 @@
 from builtins import staticmethod #like classmethod 
 from django.contrib.auth import get_user_model
-from .models import Batches
+from .models import Batches, User
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -35,6 +35,7 @@ class FollowerOrFollowingSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = (
+            'uuid',
             'first_name',
             'last_name',
             'username',
@@ -138,18 +139,19 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        first_name = validated_data['first_name']
+        first_name = validated_data['first_name'] 
         last_name = validated_data['last_name']
         email = validated_data['email']
         password = validated_data['password']
         username = validated_data['username']
-        bio = validated_data['bio']
-        date_of_birth = validated_data['date_of_birth']
-        gender = validated_data['gender']
-        home_latitude = validated_data['home_latitude']
-        home_longitude = validated_data['home_longitude']
-        latest_latitude = validated_data['home_latitude']
-        latest_longitude = validated_data['home_longitude']
+        bio = validated_data['bio'] if 'bio' in validated_data else None
+        date_of_birth = validated_data['date_of_birth'] if 'date_of_birth' in validated_data else None
+        gender = validated_data['gender'] if 'gender' in validated_data else None
+        home_latitude = validated_data['home_latitude'] if 'home_latitude' in validated_data else None
+        home_longitude = validated_data['home_longitude'] if 'home_longitude' in validated_data else None
+        latest_latitude = validated_data['home_latitude'] if 'home_latitude' in validated_data else None
+        latest_longitude = validated_data['home_longitude'] if 'home_longitude' in validated_data else None
+        
         if validated_data['home_town'] == '':
             home_town = 'Kathmandu'
         else:
@@ -173,3 +175,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class GetSearchedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("uuid","first_name","last_name","profile_picture","gender")

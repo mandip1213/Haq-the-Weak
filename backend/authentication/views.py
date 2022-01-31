@@ -4,8 +4,10 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomObtainPairSerializer,UserSerializer,RegisterUserSerializer
+from .serializers import CustomObtainPairSerializer,UserSerializer,RegisterUserSerializer,GetSearchedUserSerializer
 from utils.permissions import IsTheSameUserOrReadOnly,IsTheSameUser
+from .models import User
+from django.db.models import Q
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -66,13 +68,22 @@ class UserViewSet(mixins.ListModelMixin,
         user_serializer.save()
         return Response(user_serializer.data, status=status.HTTP_200_OK)
 
-    def get_parsers(self):
-        """
-        Put this if Error with swagger appear - parsers problem
-        :return:
-        :rtype:
-        """
-        if getattr(self, 'swagger_fake_view', False):
-            return []
 
-        return super().get_parsers()
+class GetUserViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = GetSearchedUserSerializer
+
+    def list(self,request,*args,**kwargs):
+        query = request.data
+        query = query['q'] if 'q' in query else None
+        if query is not None:
+            lookups = Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query)
+            queryset = self.filter_queryset(self.get_queryset().filter(lookups))
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        return Response({"detail":"No query received for search"})
