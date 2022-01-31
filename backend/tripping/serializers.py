@@ -15,7 +15,7 @@ class VendorSerializer(serializers.ModelSerializer):
         model = Vendor
         fields = '__all__'
 
-class VisitsSerializer(serializers.ModelSerializer):
+class RegisterVisitSerializer(serializers.ModelSerializer):
     location_score = serializers.FloatField()
     
     class Meta:

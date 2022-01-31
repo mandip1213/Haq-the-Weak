@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from utils.data import Districts,distance
-import math
+from utils.utils import add_geofence
 import uuid
 
 User = settings.AUTH_USER_MODEL
@@ -25,6 +25,11 @@ class Vendor(models.Model):
     class Meta:
         verbose_name = "Vendor"
         verbose_name_plural = "Vendors"
+
+    def save(self,*args,**kwargs):
+        add_geofence(self.name,self.type_of_place,self.id,self.latitide,self.longitude)
+        super().save(*args,**kwargs)
+
 
 
 class VisitedPlaces(models.Model):

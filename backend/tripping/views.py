@@ -1,9 +1,9 @@
 from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
 from .models import Vendor,VisitedPlaces
-from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, VisitsSerializer
+from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
 from utils.utils import get_distance
-from utils.permissions import IsAuthorOrReadOnly,ReadOnly
+from utils.permissions import IsAuthorOrReadOnly,IsStaffOrReadOnly,ReadOnly,VisitedPlacesThrottle
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 from django.db.models import Count,Sum,Value,F
 from rest_framework import viewsets, status, mixins,status,generics
@@ -11,9 +11,9 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from authentication.models import User
 # Create your views here.
 
-class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
+class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin,viewsets.GenericViewSet):
 
-    permission_classes = [ReadOnly]
+    permission_classes = [IsStaffOrReadOnly]
     parser_classes = [MultiPartParser,FormParser]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
@@ -30,7 +30,7 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
     queryset = VisitedPlaces.objects.filter(public=True)
     serializer_class = VisitedPlacesSerializer
     lookup_field = 'id'
-
+    throttle_classes = (VisitedPlacesThrottle,)
     
     def create(self,request,**kwargs):
         json_data = (request.data).copy()
@@ -40,10 +40,13 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
         distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitide')[0]['latitide'],vendor.values('longitude')[0]['longitude'])
         distance_score = distance/20000    
         importance_score = vendor.values('importance_point')[0]['importance_point']
-        
         json_data['location_score'] = distance_score + importance_score
 
-        register_serializer = VisitsSerializer(data=json_data)
+        request.user.latest_latitude = json_data['latitude']
+        request.user.latest_longitude = json_data['longitude']
+        request.user.save()
+        
+        register_serializer = RegisterVisitSerializer(data=json_data)
         
         if register_serializer.is_valid():
             new_visit = register_serializer.save(user=request.user,vendor=Vendor.objects.get(id=json_data['vendor']))
