@@ -1,0 +1,113 @@
+.profile-card {
+    padding: 1rem 4rem;
+    background: #2d2f40;
+    margin: 0 6rem 0 4rem;
+    position: relative;
+    height: 100%;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    margin-left: auto;
+}
+
+.pic {
+    padding: 8px;
+    background: linear-gradient(130deg, #74b9ff, #e66767);
+    border-radius: 50%;
+    animation: animated-gradient 2s linear infinite;
+}
+
+.pic img {
+    display: block;
+    --img: 250px;
+    width: var(--img);
+    height: var(--img);
+    border-radius: 50%;
+}
+
+.right {
+    border: 2px solid green;
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.15rem;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.name {
+    color: #EEEDF0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.batches {
+    display: flex;
+    gap: 1rem;
+}
+
+.follow-stats span {
+    margin-right: 1ch;
+}
+
+.follow-stats {
+    display: flex;
+    align-items: center;
+}
+
+.bio {
+    padding: 2rem 0;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.numbers {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.numbers .item {
+    flex: 1;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #CB69C1;
+    font-weight: 500;
+}
+
+.numbers .item span {
+    display: block;
+    color: #2c3a47;
+    font-size: 30px;
+}
+
+.border {
+    width: 2px;
+    height: 30px;
+    /*   background: #bbb; */
+    background: linear-gradient(130deg, #74b9ff, #e66767);
+}
+
+@keyframes animated-gradient {
+    25% {
+        background-position: left bottom;
+    }
+    50% {
+        background-position: right bottom;
+    }
+    75% {
+        background-position: right top;
+    }
+    100% {
+        background-position: left top;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-card {
+        margin: 0 4rem;
+    }
+}
