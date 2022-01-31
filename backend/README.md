@@ -93,6 +93,11 @@
        **Request Type : GET**
        -Returns 'vendors','users','visits' as total number of vendors we have, total users we have and total visits we have
 
+### Search Users
+* /api/searchuser/
+
+       **Request Type : GET**
+       - takes the data "user" and returns the users ("uuid","first_name","last_name","profile_picture","gender").
 # TODO
 * create a table of hometown i guess(Not Required)
 
