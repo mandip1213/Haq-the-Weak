@@ -9,7 +9,7 @@ const Login = () => {
 	const navigate = useNavigate()
 	const { dispatch, isLoggedIn } = useGlobalContext();
 	const [error, setError] = useState("")
-	const [loginDetails, setLoginDetails] = useState({ email: "temp@mail.com", password: "temppassword	" })
+	const [loginDetails, setLoginDetails] = useState({ email: "temp@gmail.com", password: "temppassword	" })
 	// const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
 	const { email, password } = loginDetails;
