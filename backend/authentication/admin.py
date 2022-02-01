@@ -9,3 +9,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Batches)
 class BatchAdmin(admin.ModelAdmin):
     list_display = ['id','batch_name']
+
+@admin.register(Vendor)
+class VendorAdmin(admin.ModelAdmin):
+    list_display = ['id','name']

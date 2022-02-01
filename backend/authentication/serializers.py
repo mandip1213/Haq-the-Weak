@@ -1,6 +1,6 @@
 from builtins import staticmethod #like classmethod 
 from django.contrib.auth import get_user_model
-from .models import Batches, User
+from .models import Batches, User, Vendor
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -176,6 +176,69 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+class RegisterVendorSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True,required=True,style={'input_type':'password'})
+    confirm_password = serializers.CharField(style={'input_type':'password'},write_only=True,label = 'Confirm Password')
+    
+    email = serializers.EmailField(validators=[
+        UniqueValidator(
+            queryset=get_user_model().objects.all(),
+            message='This Email is already in use'
+        )
+    ],
+    write_only=True)
+
+    class Meta:
+        model = Vendor
+        fields = ('username',
+                'email',
+                'password',
+                'confirm_password',
+                'name',
+                'location',
+                'latitude',
+                'longitude',
+                'image',
+                'type_of_place',
+                'contact')
+    
+    def validate(self, attrs):
+        password = attrs['password']
+        confirm_password = attrs['confirm_password']
+        if password!=confirm_password:
+            raise serializers.ValidationError(
+                {
+                    'password':"Error:The Passwords didn't match"
+                }
+            )
+        return attrs
+
+    def create(self, validated_data):
+        email = validated_data['email']
+        username = validated_data['username']
+        is_vendor = True
+        user = User.objects.create(email=email,username=username,is_vendor=is_vendor,is_active=False)
+        password = validated_data['password']
+        user.set_password(password)
+        user.save()
+        image = validated_data['image'] if 'image' in validated_data else None
+        contact = validated_data['contact'] if 'contact' in validated_data else None
+
+        vendor = Vendor(vendor=user,
+                        name=validated_data['name'],
+                        location = validated_data['location'],
+                        latitude = validated_data['latitude'],
+                        longitude = validated_data['longitude'],
+                        image=image,
+                        type_of_place = validated_data['type_of_place'],
+                        contact = contact)
+        
+        vendor.save()
+        return vendor
+
+
+        
 class GetSearchedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

@@ -4,9 +4,13 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomObtainPairSerializer,UserSerializer,RegisterUserSerializer,GetSearchedUserSerializer
+from .serializers import (CustomObtainPairSerializer,
+                        UserSerializer,
+                        RegisterUserSerializer,
+                        GetSearchedUserSerializer,
+                        RegisterVendorSerializer)
 from utils.permissions import IsTheSameUserOrReadOnly,IsTheSameUser
-from .models import User
+from .models import User,Vendor
 from django.db.models import Q
 
 
@@ -21,7 +25,7 @@ class UserViewSet(mixins.ListModelMixin,
 
     permission_classes = [IsTheSameUser]
     parser_classes = [MultiPartParser,FormParser]
-    queryset = get_user_model().objects.all()
+    queryset = get_user_model().objects.all().filter(is_vendor=False)
     serializer_class = UserSerializer
     lookup_field = 'uuid'
 
@@ -70,7 +74,7 @@ class UserViewSet(mixins.ListModelMixin,
 
 
 class GetUserViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().filter(is_vendor=False)
     serializer_class = GetSearchedUserSerializer
 
     def list(self,request,*args,**kwargs):
@@ -87,3 +91,15 @@ class GetUserViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
         return Response({"detail":"No query received for search"})
+
+
+class VendorViewSet(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    viewsets.GenericViewSet):
+    queryset = Vendor.objects.all()
+    serializer_class = RegisterVendorSerializer
+
+    def get_permissions(self):
+        if self.action in ['create']:
+            return [AllowAny(), ]
+        return super(VendorViewSet,self).get_permissions()
