@@ -1,16 +1,15 @@
 from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
-from .models import Vendor,VisitedPlaces
+from .models import VisitedPlaces
 from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
 from utils.utils import get_distance
 from utils.permissions import IsAuthorOrReadOnly,IsStaffOrReadOnly,ReadOnly,VisitedPlacesThrottle
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
 from django.db.models import Count,Sum,Value,F,Q
-from rest_framework import viewsets, status, mixins,status,generics
+from rest_framework import viewsets, status, mixins,status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
-from authentication.models import User
-from authentication.serializers import UserSerializer
-from django.core.paginator import Paginator
+from authentication.models import User,Vendor
+
 # Create your views here.
 
 
