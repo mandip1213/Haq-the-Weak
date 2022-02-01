@@ -15,7 +15,11 @@ const Dashboard = () => {
 	if (error) {
 		return (<div>error: {error}</div>)
 	}
-
+	if (dashboard.length === 0) {
+		return (
+			<div>You have no scans</div>
+		)
+	}
 	const user = dashboard[0].user
 	const { first_name, last_name, username, profile_picture, batch, batch_count, total_score } = user;
 	// const { first_name, last_name, username, date_of_birth, gender, profile_picture, uuid, followers_count, following_count, followers, following, batch, batch_count } = user;
@@ -55,7 +59,7 @@ const Dashboard = () => {
 				</thead>
 				<tbody>
 
-					{dashboard.map(({ user, vendor, id, score }, index) => {
+					{dashboard.length !== 0 && dashboard.map(({ user, vendor, id, score }, index) => {
 						let { name, location, image, type_of_place } = vendor
 						image = image ? image : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"
 
