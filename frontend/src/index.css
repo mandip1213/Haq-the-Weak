@@ -1,24 +1,28 @@
-*,
-::before,
-::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-input,
-button {
-    font-size: 1rem;
-}
-
-a {
-    text-decoration: none;
-}
-
-.hover-link {
-    color: rgb(108, 108, 233);
-}
-
-.hover-link:hover {
-    color: blue;
-}
+    *,
+     ::before,
+     ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    input,
+    button {
+        font-size: 1rem;
+    }
+    
+    button {
+        cursor: pointer;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .hover-link {
+        color: rgb(108, 108, 233);
+    }
+    
+    .hover-link:hover {
+        color: blue;
+    }

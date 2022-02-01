@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useDebugValue } from 'react';
 import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
+import defaultpp from "../images/pp.jpg"
 import "./Leaderboard.css"
+import { Link } from "react-router-dom"
 const Leaderboard = () => {
 	const { isLoading, data: dashboard, error } = useFetch("/api/leaderboard/");
 	const [tab, setTab] = useState("global");
@@ -46,7 +48,7 @@ function Global() {
 						{
 							globals.map(({ user_uuid, username, score, user_profile_picture, unique_visits, visits }, index) => {
 
-								user_profile_picture = user_profile_picture ? user_profile_picture : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"
+								user_profile_picture = user_profile_picture ? user_profile_picture : defaultpp
 
 								return (
 									<tr key={user_uuid} className="list__row" data-image={user_profile_picture} data-nationality="British" data-dob="1985-01-07" data-country="gb">
@@ -54,7 +56,7 @@ function Global() {
 
 										<td className="list__cell with-image">
 											<img className='user__image' src={user_profile_picture} alt="" />
-											<span className="list__value">{username}</span>
+											<Link className="list__value" to={`/profile/${user_uuid}`}>{username}</Link>
 										</td>
 
 										<td className="list__cell"><span className="list__value">{score.toFixed(2)}</span></td>

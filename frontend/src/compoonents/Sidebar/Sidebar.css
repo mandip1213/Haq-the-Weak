@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -25,15 +30,11 @@ img {
 div#root {
     font-family: var(--body-font);
     color: var(--body-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     width: 100%;
-    height: 100vh;
-    overflow: scroll;
-    position: relative;
-    /* color: white; */
+}
+
+.container {
+    overflow: scroll !important;
 }
 
 
@@ -57,6 +58,7 @@ height: 95vh; */
     display: flex;
     overflow: hidden;
     width: 100%;
+    height: 100vh;
     /* border-radius: 20px; */
     font-size: 15px;
     font-weight: 500;
