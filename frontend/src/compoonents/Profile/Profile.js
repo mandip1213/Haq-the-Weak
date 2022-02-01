@@ -4,14 +4,36 @@ import useFetch from '../utils/UseFetch';
 import Loading from "../extras/Loading"
 import { useParams } from 'react-router-dom';
 import "./Profile.css"
+import baseurl from '../../baseurl';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 	const { userid } = useParams()
+	const { uuid, access_token } = useGlobalContext();
+	let isSameUser = false;
+	if (uuid === userid) {
+		isSameUser = true;
+	}
 	const { isLoading, data: profileData, error } = useFetch(`/api/user/${userid}/`)
-	console.table(profileData)
 	if (isLoading) return <Loading />;
 
-	const { first_name, last_name, profile_picture, followers_count, following_count } = profileData
+	const handleFollow = () => {
+		//TODO : handle case for already followed
+		fetch(`${baseurl}/api/user/${uuid}/`, {
+			method: "PATCH",
+			body: JSON.stringify({
+				"action": "FOLLOW",
+				"follow_uuid": userid
+			}), headers: {
+				Authorization: `Bearer ${access_token}`,
+				"Content-type": "application/json"
+			}
+		}).then(res => res.json())
+			.then(res => { console.log(res) })
+			.catch(err => { console.log(err) })
+	}
+
+	const { first_name, last_name, bio, birthday, profile_picture, contact, home_town, username, followers_count, following_count } = profileData
 	return (
 
 		<div className="profile-card">
@@ -28,7 +50,12 @@ const Profile = () => {
 
 					<div className="name">
 						{first_name + " " + last_name}
-						<button>follow{/* edit if user */}</button>
+						{isSameUser ?
+							<button><Link to={`/profile/edit/${uuid}`} state={{
+								first_name, last_name, bio, birthday, contact, home_town, username
+							}}> Edit Profile</Link></button>
+							: <button onClick={handleFollow}>follow</button>
+						}
 					</div>
 					<div className="batches">
 						<div>ba</div>
