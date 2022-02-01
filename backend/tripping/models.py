@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
-from utils.data import Districts,distance
-from utils.utils import add_geofence
+from django.core.validators import MaxValueValidator,MinValueValidator
 import uuid
 from authentication.models import Vendor
 User = settings.AUTH_USER_MODEL
@@ -16,6 +15,8 @@ class VisitedPlaces(models.Model):
     created_at = models.DateTimeField(auto_now=True,editable=False)
     location_score = models.FloatField(editable=False,null=True)
     public = models.BooleanField(default=True)
+    # ratings = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
+
 
     class Meta:
         verbose_name = 'Visited Place'

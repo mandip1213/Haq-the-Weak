@@ -45,7 +45,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     is_vendor = models.BooleanField(default=False)
 
-
+    # wishlist
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -65,9 +65,9 @@ class Vendor(models.Model):
     vendor = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     location = models.CharField(max_length=150,choices=Districts)
-    latitude = models.DecimalField(max_digits=9,decimal_places=6,blank=True,null=True)
-    longitude = models.DecimalField(max_digits=9,decimal_places=6,blank=True,null=True)
-    importance_point = models.IntegerField(null=True,blank=True)
+    latitude = models.DecimalField(max_digits=9,decimal_places=6)
+    longitude = models.DecimalField(max_digits=9,decimal_places=6)
+    importance_point = models.IntegerField(null=True)
     contact = models.CharField(max_length=50,blank=True,null=True)
     image = models.ImageField(blank=True,null=True,upload_to='places/')
     type_of_place = models.CharField(max_length=100)

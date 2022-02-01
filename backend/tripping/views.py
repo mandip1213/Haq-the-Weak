@@ -39,13 +39,13 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
         id = request.user.id
         json_data.update({"user":id})
         vendor = Vendor.objects.filter(id=json_data['vendor'])
-        distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitide')[0]['latitide'],vendor.values('longitude')[0]['longitude'])
+        distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitude')[0]['latitude'],vendor.values('longitude')[0]['longitude'])
         distance_score = distance/20000
         importance_score = vendor.values('importance_point')[0]['importance_point']
         json_data['location_score'] = distance_score + importance_score
 
-        request.user.latest_latitude = json_data['latitude']
-        request.user.latest_longitude = json_data['longitude']
+        request.user.latest_latitude = vendor.values('latitude')[0]['latitude']
+        request.user.latest_longitude = vendor.values('longitude')[0]['longitude']
         request.user.save()
         
         register_serializer = RegisterVisitSerializer(data=json_data)
