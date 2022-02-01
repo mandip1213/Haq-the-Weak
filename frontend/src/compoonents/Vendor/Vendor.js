@@ -80,5 +80,14 @@ const Vendor = () => {
 		</div >
 	)
 };
+function TempVendor() {
+	const { isLoading, data, error } = useFetch("/api/vendor/")
+	return (
+		<div>
 
-export default Vendor;
+			vendors
+		</div>
+	)
+}
+export default TempVendor;
+// export default Vendor;
