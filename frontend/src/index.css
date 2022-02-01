@@ -1,28 +1,53 @@
-    *,
-     ::before,
-     ::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    input,
-    button {
-        font-size: 1rem;
-    }
-    
-    button {
-        cursor: pointer;
-    }
-    
-    a {
-        text-decoration: none;
-    }
-    
-    .hover-link {
-        color: rgb(108, 108, 233);
-    }
-    
-    .hover-link:hover {
-        color: blue;
-    }
+*,
+ ::before,
+ ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input,
+button {
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hover-link {
+    color: rgb(108, 108, 233);
+}
+
+.hover-link:hover {
+    color: blue;
+}
+
+.container {
+    transition: background 0.4s linear;
+    /* transition: background-color 0.4s linear; */
+}
+
+body.light {
+    --main-bg-color: rgba(255, 255, 255, 0.849) !important;
+    --body-font: "Inter", sans-serif !important;
+    --body-color: #2b2b2e !important;
+    --button-bg: #ccc9dc !important;
+    --border-color: rgb(128 129 145 / 24%) !important;
+    --video-bg: #252936 !important;
+    --delay: 0s !important;
+}
+
+:root {
+    --main-bg-color: #1f1d2b;
+    --body-font: "Inter", sans-serif;
+    --body-color: #808191;
+    --button-bg: #353340;
+    --border-color: rgb(128 129 145 / 24%);
+    --video-bg: #252936;
+    --delay: 0s;
+}

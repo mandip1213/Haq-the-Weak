@@ -5,7 +5,7 @@ import LandingPage from "./LandingPage"
 import URL from "../../baseurl"
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
-import { MainContainer, Video } from '../MainContainer/MainContainer';
+import MainContainer from '../MainContainer/MainContainer';
 
 const Home = () => {
 	const { isLoggedIn, dispatch, access_token } = useGlobalContext()

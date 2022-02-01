@@ -24,8 +24,8 @@ const App = () => {
         <Route path="/login" element={<Login />}> </Route>
 
         <Route element={<LogInView />}>
-          <Route path="/" element={<QRscanner />}> </Route>
-          {/* <Route path="/" element={<Qr />}> </Route> */}
+          {/* <Route path="/" element={<QRscanner />}> </Route> */}
+          <Route path="/" element={<Home />}> </Route>
           <Route path="/dashboard" element={<Dashboard />}> </Route>
           <Route path="/vendor" element={<Vendor />}> </Route>
           <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
