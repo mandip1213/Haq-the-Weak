@@ -13,24 +13,13 @@ import Profile from './compoonents/Profile/Profile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 import Four04 from './compoonents/extras/404';
 import QRscanner from './compoonents/Vendor/ScanQR';
+import VendorMap from './compoonents/Vendor/VendorMap';
 // import Loading from './compoonents/extras/Loading';
 const App = () => {
-  if (navigator.geolocation) {
-    console.log("geoloactojn");
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log("latitude  ", position.coords.latitude)
-      console.log("longitude  ", position.coords.longitude)
-    });
-  } else {
-
-    console.log(" no geoloactojn");
-
-  }
   const { isLoggedIn } = useGlobalContext()
   return (<>
     <Router>
       <Routes>
-
         <Route path="/signup" element={<Signup />}> </Route>
         <Route path="/login" element={<Login />}> </Route>
 
@@ -39,6 +28,7 @@ const App = () => {
           {/* <Route path="/" element={<Qr />}> </Route> */}
           <Route path="/dashboard" element={<Dashboard />}> </Route>
           <Route path="/vendor" element={<Vendor />}> </Route>
+          <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
           <Route path="/profile/:userid" element={<Profile />}> </Route>
           <Route path="/leaderbord" element={<Leaderboard />}> </Route>
           <Route path="/friends" element={<Temp />}> </Route>
