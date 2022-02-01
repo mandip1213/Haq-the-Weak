@@ -36,7 +36,7 @@ class IsTheSameUser(BasePermission):
 
 class ReadOnly(BasePermission):
 
-    def has_permission(self,request,views,obj):
+    def has_permission(self,request,views):
         return request.method in permissions.SAFE_METHODS
 
 
