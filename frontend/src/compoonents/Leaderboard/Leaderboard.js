@@ -5,80 +5,83 @@ import defaultpp from "../images/pp.jpg"
 import "./Leaderboard.css"
 import { Link } from "react-router-dom"
 const Leaderboard = () => {
-	const { isLoading, data: dashboard, error } = useFetch("/api/leaderboard/");
-	const [tab, setTab] = useState("global");
+	const [endpoint, setEndpoint] = useState("leaderboard");
 	useEffect(() => {
-		// constuseFetch("/api/leaderbord/")
-
 	}, [])
-
+	console.log("rerender")
 	return (
 		<>
-			{tab === "global" ? <Global /> : <Global />}
+			< div className="list  " >
+				<h1 className="heading">Leaderboard</h1>
+				<div className="tabs--">
+					<button onClick={() => { setEndpoint("leaderboard") }}> Global</button>
+					<button onClick={() => { setEndpoint("following-leaderboard") }}> Followings</button>
+
+				</div>
+				{
+
+
+					<LeaderboardTable endpoint={endpoint} />
+				}
+
+			</div>
 		</>
 	)
 };
 
-function Global() {
-	const { isLoading, data: globals, error } = useFetch("/api/leaderboard/")
+export const LeaderboardTable = ({ endpoint }) => {
+	console.log("leaderboard  ", endpoint)
+	const { isLoading, data: globals, error } = useFetch(`/api/${endpoint}/`, [endpoint])
 	if (isLoading) {
 		return (
-			<div className="list  ">
-				<h1 className="heading">Leaderboard</h1>
-				<Loading />
-			</div>
+			<Loading />
 		)
 	} if (error) {
-		return (< div className="list  " >
-			<h1 className="heading">Leaderboard</h1>
+		return (
 			<div>error</div>
-		</div >)
+		)
+
 	}
 	return (
 
-		<div className="list leaderboard  ">
+		<div className="list__body">
+			<table className="list__table">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Username</th>
+						<th>Score</th>
+						<th>Scans{/* visits */}</th>
+						<th>Visits{/* unique visits */}</th>
+					</tr>
+				</thead>
 
-			<h1 className="heading">Leaderboard</h1>
+				<tbody>
+					{
+						globals.map(({ user_uuid, username, score, user_profile_picture, unique_visits, visits }, index) => {
 
-			<div className="list__body">
-				<table className="list__table">
-					<thead>
-						<tr>
-							<th>Rank</th>
-							<th>Username</th>
-							<th>Score</th>
-							<th>Scans{/* visits */}</th>
-							<th>Visits{/* unique visits */}</th>
-						</tr>
-					</thead>
+							user_profile_picture = user_profile_picture ? user_profile_picture : defaultpp
 
-					<tbody>
-						{
-							globals.map(({ user_uuid, username, score, user_profile_picture, unique_visits, visits }, index) => {
+							return (
+								<tr key={user_uuid} className="list__row" data-image={user_profile_picture} data-nationality="British" data-dob="1985-01-07" data-country="gb">
+									<td className="list__cell"><span className="list__value">{index + 1}</span></td>
 
-								user_profile_picture = user_profile_picture ? user_profile_picture : defaultpp
+									<td className="list__cell with-image">
+										<img className='user__image' src={user_profile_picture} alt="" />
+										<Link className="list__value" to={`/profile/${user_uuid}`}>{username}</Link>
+									</td>
 
-								return (
-									<tr key={user_uuid} className="list__row" data-image={user_profile_picture} data-nationality="British" data-dob="1985-01-07" data-country="gb">
-										<td className="list__cell"><span className="list__value">{index + 1}</span></td>
-
-										<td className="list__cell with-image">
-											<img className='user__image' src={user_profile_picture} alt="" />
-											<Link className="list__value" to={`/profile/${user_uuid}`}>{username}</Link>
-										</td>
-
-										<td className="list__cell"><span className="list__value">{score.toFixed(2)}</span></td>
-										<td className="list__cell"><span className="list__value">{visits}</span></td>
-										<td className="list__cell"><span className="list__value">{unique_visits}</span></td>
-									</tr>
-								)
-							})
+									<td className="list__cell"><span className="list__value">{score.toFixed(2)}</span></td>
+									<td className="list__cell"><span className="list__value">{visits}</span></td>
+									<td className="list__cell"><span className="list__value">{unique_visits}</span></td>
+								</tr>
+							)
+						})
 
 
-						}
-					</tbody>
-				</table>
-			</div>
+					}
+				</tbody>
+			</table>
 		</div>
 	)
 
