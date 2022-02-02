@@ -10,6 +10,7 @@ import LogInView from './compoonents/Layout/LogInView';
 import Vendor from './compoonents/Vendor/Vendor';
 import Leaderboard from './compoonents/Leaderboard/Leaderboard';
 import Profile from './compoonents/Profile/Profile';
+import EditProfile from './compoonents/Profile/EditProfile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 import Four04 from './compoonents/extras/404';
 import QRscanner from './compoonents/Vendor/ScanQR';
@@ -24,12 +25,13 @@ const App = () => {
         <Route path="/login" element={<Login />}> </Route>
 
         <Route element={<LogInView />}>
-          <Route path="/" element={<QRscanner />}> </Route>
-          {/* <Route path="/" element={<Qr />}> </Route> */}
+          {/* <Route path="/" element={<QRscanner />}> </Route> */}
+          <Route path="/" element={<Home />}> </Route>
           <Route path="/dashboard" element={<Dashboard />}> </Route>
           <Route path="/vendor" element={<Vendor />}> </Route>
           <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
           <Route path="/profile/:userid" element={<Profile />}> </Route>
+          <Route path="/profile/edit/:userid" element={<EditProfile />}> </Route>
           <Route path="/leaderbord" element={<Leaderboard />}> </Route>
           <Route path="/friends" element={<Temp />}> </Route>
           <Route path="/add" element={<ScanQR />}> </Route>

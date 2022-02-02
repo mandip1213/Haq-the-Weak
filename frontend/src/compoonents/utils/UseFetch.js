@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import useGlobalContext from "./Globalcontext";
 import URL from "../../baseurl"
 
-const useFetch = (endpoint) => {
+const useFetch = (endpoint, dependencyArray = []) => {
 	const [state, setState] = useState({ isLoading: true, data: [], error: "" });
 	const { access_token, refresh_token, dispatch } = useGlobalContext();
 
@@ -73,7 +73,7 @@ const useFetch = (endpoint) => {
 			setState({ ...state, error: "Check all fields", isLoading: false })
 		}
 
-	}, []);
+	}, dependencyArray);
 
 	return state;
 

@@ -8,7 +8,7 @@ function getFormData(object) {
 const auth = async () => {
 	const _ = await fetch(`${url}/auth/token/`, {
 		method: "POST",
-		body: JSON.stringify({ email: "temp@gmail.com", password: "temppassword" }),
+		body: JSON.stringify({ email: "aviato@gmail.com", password: "password" }),
 		headers: {
 			"content-type": "application/json"
 		}
@@ -83,4 +83,4 @@ async function addVendorToUser() {
 
 }
 
-// addVendorToUser()
+addVendorToUser()

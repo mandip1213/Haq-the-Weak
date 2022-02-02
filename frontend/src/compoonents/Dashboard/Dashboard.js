@@ -8,16 +8,25 @@ const Dashboard = () => {
 	// const { isLoading, data: dashboard, error } = useFetch("/api/visit/");
 	//TODO return s all visits
 
-	console.log(dashboard);
 	if (isLoading) {
-		return (<Loading />)
+		return (
+			<div className="list dashboard">
+				<h1 className="head">Dashboard</h1>
+				<Loading />
+			</div>
+
+		)
 	}
 	if (error) {
 		return (<div>error: {error}</div>)
 	}
 	if (dashboard.length === 0) {
-		return (
+		return (<div className="list dashboard">
+			<h1 className="head">Dashboard</h1>
 			<div>You have no scans</div>
+		</div>
+
+
 		)
 	}
 	const user = dashboard[0].user
@@ -26,7 +35,7 @@ const Dashboard = () => {
 
 	/*
 	*/
-	return (<div className="list">
+	return (<div className="list dashboard">
 		<h1 className="head">Dashboard</h1>
 		<div className="list__body">
 

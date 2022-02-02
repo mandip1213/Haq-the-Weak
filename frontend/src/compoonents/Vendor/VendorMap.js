@@ -12,6 +12,7 @@ const VendorMap = (props) => {
 	const curr_long = searchParams.get("curr_long")
 	console.log(curr_lat, curr_long)
 	console.log(lat, long)
+	console.log(`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDMvYPiNrMzPVK1PtKJzMyfTUzWdWnZccU&origin=${curr_lat},${curr_long}&destination=${lat},${long}`)
 	return (
 		<div>
 			<div>Lorem ipsum dolor sit amet cotnsectetur adipisicing elit. Porro, natus.</div>

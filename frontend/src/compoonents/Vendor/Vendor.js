@@ -7,18 +7,22 @@ const Vendor = () => {
 	const [vendors, setVendors] = useState({ isLoading: true, _vendors: [], error: false });
 	const { isLoading, _vendors, error } = vendors
 	console.log("rerender")
+	const [currCoords, setCurrCoords] = useState([]);
 
 	useEffect(() => {
-		console.log("useeffect")
+
+
+		const ac = new AbortController();
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(({ coords: { latitude: lat, longitude: long } }) => {
-				lat = 26.555720; long = 87.29474;
+				setCurrCoords([lat, long])
 				/* https://radar.com/documentation/api#:~:text=tags%20(string%2C%20optional,Defaults%20to%2010 */
 				fetch(`https://api.radar.io/v1/search/geofences?near=${lat},${long}&radius=10000&limit=10`, {
 					headers: {
 						authorization: "prj_test_pk_a82bd4875128c70b94c610afdee4fe507389d1b3"//my key
 						// authorization: "prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8" //aavash key
-					}
+					},
+					signal: ac.signal
 				}).then(res => res.json())
 					.then(res => {
 						console.log(isLoading, "  isLoading")
@@ -30,11 +34,18 @@ const Vendor = () => {
 						setVendors({ ...vendors, isLoading: false, error: "An unknown Error occured" })
 					})
 			}, (error) => {
+				setVendors({ ...vendors, isLoading: false, error: "Please Provide map access" })
 				console.log("geolocation  error ", error)
 			});
+
+
 		} else {
 			console.log(" no geolocation");
 			// setVendors({ ..._vendors, isLoading: false, error: true })
+		}
+		return () => {
+			ac.abort()//https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp#:~:text=43-,Sharing,-the%20AbortController%20between
+			console.log("aborted")
 		}
 	}, [])
 	//TODO remove cant updat statee after component is unmounnted
@@ -56,13 +67,12 @@ const Vendor = () => {
 						return (
 							<div key={_id} style={{ display: "flex", justifyContent: "space-between" }}>
 								<div>
-									<Link to={{ pathname: `/vendor/${_id}?lat=${coordinates[0]}&long=${coordinates[1]}&curr_lat=26.555720&curr_long=87.29474`, state: { coordinates } }} state="state">
+									<Link to={{ pathname: `/vendor/${_id}?lat=${coordinates[1]}&long=${coordinates[0]}&curr_lat=${currCoords[0]}&curr_long=${currCoords[1]}`, state: { coordinates } }} state="state">
 										{name}
 									</Link>
 								</div>
 								<div>{tag}</div>
 							</div>
-
 						)
 					})
 			}
@@ -70,5 +80,14 @@ const Vendor = () => {
 		</div >
 	)
 };
+function TempVendor() {
+	const { isLoading, data, error } = useFetch("/api/vendor/")
+	return (
+		<div>
 
-export default Vendor;
+			vendors
+		</div>
+	)
+}
+export default TempVendor;
+// export default Vendor;

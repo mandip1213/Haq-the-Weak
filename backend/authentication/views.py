@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets, status, mixins
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -23,7 +23,7 @@ class UserViewSet(mixins.ListModelMixin,
                 viewsets.GenericViewSet):
 
     permission_classes = [IsTheSameUser]
-    parser_classes = [MultiPartParser,FormParser]
+    parser_classes = [MultiPartParser,FormParser, JSONParser]
     queryset = get_user_model().objects.all().filter(is_vendor=False)
     serializer_class = UserSerializer
     lookup_field = 'uuid'

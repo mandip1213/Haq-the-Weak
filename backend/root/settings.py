@@ -49,6 +49,30 @@ CORS_ALLOWED_ORIGINS = [
 ]
 # Application definition
 
+""" BELOW :ADDED BY MANDIP """
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'authorisation',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'cache-control'
+]
+
+""" ABOVE: ADDED BY MANDIP """
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
