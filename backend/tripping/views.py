@@ -17,7 +17,10 @@ from authentication.serializers import RegisterVendorSerializer
 # Create your views here.
 
 
-class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin,viewsets.GenericViewSet):
+class VendorViewSet(mixins.RetrieveModelMixin,
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    viewsets.GenericViewSet):
 
     permission_classes = [IsVendorOrReadOnly]
     parser_classes = [MultiPartParser,FormParser]
@@ -201,7 +204,10 @@ class ActivityFeedViewSet(mixins.ListModelMixin,
         for i in query:
             query_filter = query_filter | Q(user = i['id'])
 
-        queryset = self.filter_queryset(self.get_queryset().filter(query_filter).order_by('-created_at'))        
+        if query.exists():
+            queryset = self.filter_queryset(self.get_queryset().filter(query_filter).order_by('-created_at'))  
+        else:
+            queryset = query
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
