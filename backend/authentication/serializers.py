@@ -237,7 +237,39 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
         vendor.save()
         return vendor
 
+class PublicUserSerializer(serializers.ModelSerializer):
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+    followers = FollowerOrFollowingSerializer(many=True,write_only=True)
+    following = FollowerOrFollowingSerializer(many=True,write_only=True)
+    batch = BatchSerializer(many=True)
+    batch_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = ('username',
+                'first_name',
+                'last_name',
+                'gender',
+                'uuid',
+                'following',
+                'followers',
+                'followers_count',
+                'following_count',
+                'batch',
+                'batch_count')
 
+    @staticmethod
+    def get_following_count(self):
+        return self.following.count()
+    
+    @staticmethod
+    def get_followers_count(self):
+        return self.followers.count()
+
+    @staticmethod
+    def get_batch_count(self):
+        return self.batch.count()
         
 class GetSearchedUserSerializer(serializers.ModelSerializer):
     class Meta:
