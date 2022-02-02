@@ -39,7 +39,8 @@
     color: rgb(36, 36, 167);
 }
 
-.activity__user-image {
+.activity__user-image,
+.activity__vendor-image {
     border-radius: 50%;
     aspect-ratio: 1/1 !important;
     width: 50px;
@@ -56,9 +57,15 @@
     justify-content: space-between;
 }
 
+.activity__vendor-text {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
 .acitvity__vendor {
     display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
 .acitvity__vendor .vendor-name {

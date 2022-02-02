@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+.outlet>div {
+    background-color: #2d2f40;
+    border-radius: 10px;
+}
+
 input,
 button {
     font-size: 1rem;
@@ -50,4 +55,22 @@ body.light {
     --border-color: rgb(128 129 145 / 24%);
     --video-bg: #252936;
     --delay: 0s;
+}
+
+
+/* ///TODO style it */
+
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-radius: 10px;
+}
+
+.overflow-auto {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
