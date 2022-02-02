@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useGlobalContext from '../utils/Globalcontext';
 import useFetch from '../utils/UseFetch';
 import Loading from "../extras/Loading"
@@ -15,25 +15,43 @@ const Profile = () => {
 		isSameUser = true;
 	}
 	const { isLoading, data: profileData, error } = useFetch(`/api/user/${userid}/`)
+	const [following, setFollowing] = useState(false);
+	useEffect(() => {
+		if (isLoading) return;
+		if (error) return;
+		const _following = followers.some(_followers => _followers.uuid === uuid);
+		setFollowing(_following);
+	}, [isLoading]);
+
 	if (isLoading) return <Loading />;
 
-	const handleFollow = () => {
+	const handleFollow = (action) => (e) => {
+		console.log(action, "action")
 		//TODO : handle case for already followed
 		fetch(`${baseurl}/api/user/${uuid}/`, {
 			method: "PATCH",
 			body: JSON.stringify({
-				"action": "FOLLOW",
+				"action": action,
 				"follow_uuid": userid
 			}), headers: {
 				Authorization: `Bearer ${access_token}`,
 				"Content-type": "application/json"
 			}
 		}).then(res => res.json())
-			.then(res => { console.log(res) })
+			.then(res => {
+				console.log(res)
+				setFollowing(prev => !prev)
+				//TOD handle error
+				//TODO the followers count dont decrease this way
+				//anothoer approach can be sending req again
+				//or decreasing followers count yourself , the user never knows lol
+
+			})
 			.catch(err => { console.log(err) })
 	}
 
-	const { first_name, last_name, bio, birthday, profile_picture, contact, home_town, username, followers_count, following_count } = profileData
+	const { first_name, last_name, bio, birthday, profile_picture, contact, home_town, username, followers, followers_count, following_count } = profileData
+
 	return (
 
 		<div className="profile-card">
@@ -54,7 +72,17 @@ const Profile = () => {
 							<button><Link to={`/profile/edit/${uuid}`} state={{
 								first_name, last_name, bio, birthday, contact, home_town, username
 							}}> Edit Profile</Link></button>
-							: <button onClick={handleFollow}>follow</button>
+							:
+							following ?
+								<button onClick={handleFollow("UNFOLLOW")}>
+									unfollow
+								</button>
+								: <button onClick={handleFollow("FOLLOW")}>
+									follow
+								</button>
+
+
+
 						}
 					</div>
 					<div className="batches">
