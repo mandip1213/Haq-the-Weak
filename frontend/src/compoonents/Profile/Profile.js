@@ -67,24 +67,24 @@ const Profile = () => {
 				<div className="right">
 
 					<div className="name">
-						{first_name + " " + last_name}
+						<span>
+							{first_name + " " + last_name}
+						</span>
+
 						{isSameUser ?
-							<button><Link to={`/profile/edit/${uuid}`} state={{
+							<button className="profile-action"><Link to={`/profile/edit/${uuid}`} state={{
 								first_name, last_name, bio, birthday, contact, home_town, username
 							}}> Edit Profile</Link></button>
 							:
 							following ?
-								<button onClick={handleFollow("UNFOLLOW")}>
+								<button className="profile-action" onClick={handleFollow("UNFOLLOW")}>
 									unfollow
 								</button>
-								: <button onClick={handleFollow("FOLLOW")}>
+								: <button className="profile-action" onClick={handleFollow("FOLLOW")}>
 									follow
-								</button>
-
-
-
-						}
+								</button>}
 					</div>
+
 					<div className="batches">
 						<div>ba</div>
 						<div>tc</div>
