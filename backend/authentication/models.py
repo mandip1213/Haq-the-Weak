@@ -80,7 +80,7 @@ class Vendor(models.Model):
     
 
     def save(self,*args,**kwargs):
-        # add_geofence(self.name,self.type_of_place,self.id,self.latitide,self.longitude)
+        add_geofence(self.name,self.type_of_place,self.id,self.latitude,self.longitude)
         super().save(*args,**kwargs)
 
 
