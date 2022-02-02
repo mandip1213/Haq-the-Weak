@@ -24,7 +24,8 @@ const LogInView = () => {
 			<Sidebar />
 			<div className="wrapper overflow-auto">
 				<Header />
-				<div className="outlet" style={{ flex: 1 }}>	<Outlet />
+				<div className="outlet" style={{ flex: 1 }}>
+					<Outlet />
 				</div>
 			</div>
 		</div>

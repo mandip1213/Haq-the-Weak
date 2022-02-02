@@ -15,7 +15,7 @@ const useFetch = (endpoint, dependencyArray = []) => {
 			})
 
 			const res = await _res.json()
-			console.log("response from server : ", res);
+			console.log("response for  ", endpoint, res);
 
 			if (_res.status === 401) {
 				//token exdpired now reresh the access token
@@ -52,7 +52,7 @@ const useFetch = (endpoint, dependencyArray = []) => {
 					return;
 				}
 
-				console.log("res from server  ", __res)
+				console.log("res for   ", endpoint, __res)
 				setState({ ...state, data: __res, isLoading: false })
 				return;
 

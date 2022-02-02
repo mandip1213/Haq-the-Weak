@@ -87,7 +87,7 @@ const VendorSignup = () => {
 		formdata.append("name", name)
 		formdata.append("location", location)
 		formdata.append("type_of_place", type_of_place)
-		formdata.append("contact", "contact")
+		formdata.append("contact", contact)
 
 		if (profile_picture.current.files[0])
 			formdata.append("image", profile_picture.current.files[0]);
