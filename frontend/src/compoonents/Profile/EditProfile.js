@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-const EditProfile = () => {
-	const { first_name, last_name, bio, birthday, contact, home_town, username } = useLocation();
-	const [state, setState] = useState({ first_name, last_name, bio, birthday, contact, home_town, username });
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import useGlobalContext from '../utils/Globalcontext';
+import { PatchRequest } from "../utils/PostReq"
+import useFetch from '../utils/UseFetch';
 
+const EditProfile = () => {
+	const { access_token, uuid } = useGlobalContext()
+	console.log(useLocation())
+	const { state: { first_name, last_name, bio, birthday, contact, home_town, username } } = useLocation();
+	const [state, setState] = useState({ first_name, last_name, bio, birthday, contact, home_town, username });
+	const navigate = useNavigate()
 	const [error, setError] = useState("")
-	const handleEditProfile = (e) => {
+	const handleEditProfile = async (e) => {
 		e.preventDefault()
 
-		if (first_name.length < 3) {
+		if (state.first_name.length < 3) {
 			setError("First_name must be 3 characters long.")
 			return;
-		} if (last_name.length < 3) {
+		} if (state.last_name.length < 3) {
 			setError("last_name must be 3 characters long.")
 			return;
 		}
+		const res = await PatchRequest({
+			access_token, endpoint: `/api/user/${uuid}/`, options: {
+				body: JSON.stringify(state)
+			}
+		})
+		console.log(res, " patch profile")
+		if (res == 1) {
+			navigate(`/profile/${uuid}`)
+		}
+
 	}
 	const handleChange = ({ target: { name, value } }) => {
 		if (error) setError("");
