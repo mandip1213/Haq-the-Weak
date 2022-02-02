@@ -26,3 +26,14 @@ def add_geofence(name,tag,externalId,latitude,longitude):
 
     response = requests.request("POST",url,headers=headers,data=payload)
     return response
+
+def get_geofence_near_me(latitude,longitude,tags='Public'):
+    url =  "https://api.radar.io/v1/search/geofences?tags={}&near={},{}&radius=100".format(tags,latitude,longitude)
+    headers = {"Authorization":"prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8"}
+
+    list_of_ids =[]
+    response = requests.request("GET",url,headers=headers)
+    for vendors in response.json().get('geofences'):
+        list_of_ids.append(vendors['externalId'])
+
+    return list_of_ids[0]

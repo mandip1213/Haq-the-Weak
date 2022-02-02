@@ -69,6 +69,9 @@ class VisitedPlacesThrottle(SimpleRateThrottle):
         duration = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400,'w':604800}[period[0]]
         return (num_requests, duration)
 
+class PublicVisitedPlacesThrottle(VisitedPlacesThrottle):
+    scope = 'public_visits'
+
 class IsStaffOrReadOnly(BasePermission):
 
     def has_permission(self, request, view):
