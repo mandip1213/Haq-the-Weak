@@ -38,9 +38,9 @@ class VendorViewSet(mixins.RetrieveModelMixin,
         return super().create(request, *args, **kwargs)
 
 
+    
 
-
-
+        
 class VisitedPlacesViewSet(mixins.ListModelMixin,
                             mixins.CreateModelMixin,
                             viewsets.GenericViewSet):
@@ -51,7 +51,7 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
     serializer_class = VisitedPlacesSerializer
     lookup_field = 'id'
     throttle_classes = (VisitedPlacesThrottle,)
-
+    
     def create(self,request,**kwargs):
         json_data = (request.data).copy()
         id = request.user.id
@@ -65,16 +65,16 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
         request.user.latest_latitude = vendor.values('latitude')[0]['latitude']
         request.user.latest_longitude = vendor.values('longitude')[0]['longitude']
         request.user.save()
-
+        
         register_serializer = RegisterVisitSerializer(data=json_data)
-
+        
         if register_serializer.is_valid():
             new_visit = register_serializer.save(user=request.user,vendor=Vendor.objects.get(id=json_data['vendor']))
             if new_visit:
                 return Response(register_serializer.data,status=status.HTTP_201_CREATED)
-
+        
         return Response(register_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
+    
 class PublicVisitedPlacesViewSet(mixins.CreateModelMixin,
                                 viewsets.GenericViewSet):
 
@@ -84,14 +84,14 @@ class PublicVisitedPlacesViewSet(mixins.CreateModelMixin,
     serializer_class = VisitedPlacesSerializer
     lookup_field = 'id'
     throttle_classes = (PublicVisitedPlacesThrottle,)
-
+    
     def create(self,request,**kwargs):
         json_data = (request.data).copy()
         id = request.user.id
         json_data.update({"user":id})
         print(json_data['latitude'],json_data['longitude'])
         vendor_id = get_geofence_near_me(json_data['latitude'],json_data['longitude'],"Cafe")
-
+        
         vendor = Vendor.objects.filter(id=vendor_id)
         json_data.update({'vendor':vendor_id})
         distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitude')[0]['latitude'],vendor.values('longitude')[0]['longitude'])
@@ -102,20 +102,20 @@ class PublicVisitedPlacesViewSet(mixins.CreateModelMixin,
         request.user.latest_latitude = vendor.values('latitude')[0]['latitude']
         request.user.latest_longitude = vendor.values('longitude')[0]['longitude']
         request.user.save()
-
+        
         register_serializer = RegisterVisitSerializer(data=json_data)
-
+        
         if register_serializer.is_valid():
             new_visit = register_serializer.save(user=request.user,vendor=Vendor.objects.get(id=vendor_id))
             if new_visit:
                 return Response(register_serializer.data,status=status.HTTP_201_CREATED)
-
+        
         return Response(register_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 class GlobalLeaderboardViewSet(mixins.ListModelMixin,
                         viewsets.GenericViewSet):
-
+    
     leaderboard = VisitedPlaces.objects.all().values('user').annotate(unique_visits=Count('vendor',distinct=True),visits=Count('user'),score = Sum('location_score')).order_by(F('score').desc())
     queryset = leaderboard
     permission_classes = [ReadOnly]
@@ -145,8 +145,8 @@ class FollowingLeaderboardViewSet(mixins.ListModelMixin,
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-
-# Landing Page view includes total user, total vendor, total qr scans
+        
+# Landing Page view includes total user, total vendor, total qr scans 
 # Dashboard: user_uuid, user_id, username, user_profile_picture, user_score, user_visited_place
 
 class DashboardViewSet(viewsets.GenericViewSet):
@@ -199,13 +199,13 @@ class ActivityFeedViewSet(mixins.ListModelMixin,
 
     def list(self, request, *args, **kwargs):
         query = request.user.following.all().values('id')
-
+        
         query_filter = Q()
         for i in query:
             query_filter = query_filter | Q(user = i['id'])
 
         if query.exists():
-            queryset = self.filter_queryset(self.get_queryset().filter(query_filter).order_by('-created_at'))
+            queryset = self.filter_queryset(self.get_queryset().filter(query_filter).order_by('-created_at'))  
         else:
             queryset = query
         page = self.paginate_queryset(queryset)

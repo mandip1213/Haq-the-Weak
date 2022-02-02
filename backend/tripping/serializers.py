@@ -1,6 +1,6 @@
 from dataclasses import field
 from rest_framework import serializers
-
+from django.db.models import Avg
 from authentication.serializers import UserSerializer,PublicUserSerializer
 from .models import *
 from authentication.models import User
@@ -11,14 +11,20 @@ class VisitedPlacesSerializer(serializers.ModelSerializer):
         fields = ('id','user','vendor','content','public')
 
 class VendorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Vendor
-        fields = '__all__'
+    rating = serializers.SerializerMethodField()
 
-class PublicVendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
-        fields = ('id','name','location','latitude','longitude','contact','type_of_place')
+        fields = ('id','name','location','latitude','longitude','contact','image','type_of_place','rating')
+
+    def get_rating(self,obj):
+        visits = VisitedPlaces.objects.all().filter(vendor=obj.id)
+        if visits.exists():
+            average_rating = visits.aggregate(Avg('ratings'))
+            return str(average_rating['ratings__avg'])
+        return None
+
+
 
 class RegisterVisitSerializer(serializers.ModelSerializer):
     location_score = serializers.FloatField()
@@ -88,8 +94,8 @@ class DashboardSerializer(serializers.ModelSerializer):
 
 class ActivityFeedSerializer(serializers.ModelSerializer):
     user = PublicUserSerializer()
-    vendor = PublicVendorSerializer()
+    vendor = VendorSerializer()
 
     class Meta:
         model = VisitedPlaces
-        fields = ('user','content','vendor')
+        fields = ('user','content','vendor','ratings')
