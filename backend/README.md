@@ -67,8 +67,18 @@
 
        Fields: id, user, vendor, content, public, location_score(hidden,read_only)
 
+* /api/public-visit/
 
+       **Request Type : POST**
 
+              
+              -H Authorization of User
+              -d latitude=
+              -d longitude=
+              -d public=
+              -d content=
+              
+              - Returns The visited place instances
 
 <br/>
 
