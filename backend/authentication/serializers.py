@@ -1,4 +1,4 @@
-from builtins import staticmethod #like classmethod 
+from builtins import staticmethod #like classmethod
 from django.contrib.auth import get_user_model
 from .models import Batches, User, Vendor
 from rest_framework import serializers
@@ -16,7 +16,7 @@ class CustomObtainPairSerializer(TokenObtainPairSerializer):
         token =  super().get_token(user)
         token['username'] = user.username
         return token
-    
+
     def validate(self, attrs):
         data = super().validate(attrs)
 
@@ -27,12 +27,14 @@ class CustomObtainPairSerializer(TokenObtainPairSerializer):
         data['is_vendor'] = str(self.user.is_vendor)
         if self.user.is_vendor:
             data['uuid'] = str(self.user.vendor.id)
+        else:
+            data['uuid'] = str(self.user.uuid)
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
 
         return data
 
-        
+
 class FollowerOrFollowingSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
@@ -75,12 +77,12 @@ class UserSerializer(serializers.ModelSerializer):
                 'batch',
                 'batch_count',
                 )
-        
+
 
     @staticmethod
     def get_following_count(self):
         return self.following.count()
-    
+
     @staticmethod
     def get_followers_count(self):
         return self.followers.count()
@@ -141,7 +143,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        first_name = validated_data['first_name'] 
+        first_name = validated_data['first_name']
         last_name = validated_data['last_name']
         email = validated_data['email']
         password = validated_data['password']
@@ -153,7 +155,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         home_longitude = validated_data['home_longitude'] if 'home_longitude' in validated_data else None
         latest_latitude = validated_data['home_latitude'] if 'home_latitude' in validated_data else None
         latest_longitude = validated_data['home_longitude'] if 'home_longitude' in validated_data else None
-        
+
         if validated_data['home_town'] == '':
             home_town = 'Kathmandu'
         else:
@@ -182,7 +184,7 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
     username = serializers.CharField(write_only=True)
     password = serializers.CharField(write_only=True,required=True,style={'input_type':'password'})
     confirm_password = serializers.CharField(style={'input_type':'password'},write_only=True,label = 'Confirm Password')
-    
+
     email = serializers.EmailField(validators=[
         UniqueValidator(
             queryset=get_user_model().objects.all(),
@@ -204,7 +206,7 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
                 'image',
                 'type_of_place',
                 'contact')
-    
+
     def validate(self, attrs):
         password = attrs['password']
         confirm_password = attrs['confirm_password']
@@ -235,7 +237,7 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
                         image=image,
                         type_of_place = validated_data['type_of_place'],
                         contact = contact)
-        
+
         vendor.save()
         return vendor
 
@@ -246,7 +248,7 @@ class PublicUserSerializer(serializers.ModelSerializer):
     following = FollowerOrFollowingSerializer(many=True,write_only=True)
     batch = BatchSerializer(many=True)
     batch_count = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = User
         fields = ('username',
@@ -264,7 +266,7 @@ class PublicUserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_following_count(self):
         return self.following.count()
-    
+
     @staticmethod
     def get_followers_count(self):
         return self.followers.count()
@@ -272,7 +274,7 @@ class PublicUserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_batch_count(self):
         return self.batch.count()
-        
+
 class GetSearchedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
