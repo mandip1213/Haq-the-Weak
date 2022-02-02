@@ -7,10 +7,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import (CustomObtainPairSerializer,
                         UserSerializer,
                         RegisterUserSerializer,
-                        GetSearchedUserSerializer,
-                        RegisterVendorSerializer)
+                        GetSearchedUserSerializer)
 from utils.permissions import IsTheSameUserOrReadOnly,IsTheSameUser
-from .models import User,Vendor
+from .models import User
 from django.db.models import Q
 
 
@@ -92,14 +91,3 @@ class GetUserViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
             return Response(serializer.data)
         return Response({"detail":"No query received for search"})
 
-
-class VendorViewSet(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    viewsets.GenericViewSet):
-    queryset = Vendor.objects.all()
-    serializer_class = RegisterVendorSerializer
-
-    def get_permissions(self):
-        if self.action in ['create']:
-            return [AllowAny(), ]
-        return super(VendorViewSet,self).get_permissions()

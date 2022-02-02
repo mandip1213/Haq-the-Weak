@@ -4,8 +4,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 from .views import (CustomTokenObtainPairView,
                     UserViewSet,
-                    GetUserViewSet,
-                    VendorViewSet)
+                    GetUserViewSet)
 
 
 app_name = 'authentication'
@@ -13,7 +12,6 @@ router = DefaultRouter()
 
 router.register('user',UserViewSet)
 router.register('searchuser',GetUserViewSet)
-router.register('v3ndor',VendorViewSet)
 
 urlpatterns=[
     path('token/',CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
