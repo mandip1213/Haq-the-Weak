@@ -38,7 +38,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
     'DEFAULT_THROTTLE_RATES':{
-        'visits':'2/w'
+        'visits':'1/d',
+        'public_visits':'1/w'
     }
 }
 
