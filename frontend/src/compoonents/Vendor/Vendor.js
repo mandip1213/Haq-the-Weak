@@ -17,8 +17,8 @@ const Vendor = () => {
 				/* https://radar.com/documentation/api#:~:text=tags%20(string%2C%20optional,Defaults%20to%2010 */
 				fetch(`https://api.radar.io/v1/search/geofences?near=${lat},${long}&radius=10000&limit=10`, {
 					headers: {
-						// authorization: "prj_test_pk_a82bd4875128c70b94c610afdee4fe507389d1b3"//my key
-						authorization: "prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8" //aavash key
+						authorization: "prj_test_pk_a82bd4875128c70b94c610afdee4fe507389d1b3"//my key
+						// authorization: "prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8" //aavash key
 					},
 					signal: ac.signal
 				}).then(res => res.json())

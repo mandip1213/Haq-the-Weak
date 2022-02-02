@@ -26,7 +26,7 @@ const Home = () => {
 
 							<div className="activity__header">
 								<div className="activity__user">
-									<img className="activity__user-image" src="https://lh3.googleusercontent.com/ogw/ADea4I70PeEcDK4HGIqjH7bes64KQIL7TIq5lpPdBlIJJQ=s192-c-mo" />
+									<img className="activity__user-image" src="https://images.unsplash.com/photo-1587918842454-870dbd18261a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=943&q=80" />
 									<div>	<Link to={`/profile/${uuid}`}>{username}</Link> visited {location}.</div>
 								</div>
 								<span className="activity__date">10 minutes ago</span>
@@ -36,8 +36,12 @@ const Home = () => {
 
 								<div className="activity__body-main">
 									<div className="acitvity__vendor">
-										<span className="vendor-name">{vendorname}</span>
-										<span className='vendor-type'>{type_of_place}</span>
+										<img className="activity__vendor-image"
+											src="https://lh3.googleusercontent.com/ogw/ADea4I70PeEcDK4HGIqjH7bes64KQIL7TIq5lpPdBlIJJQ=s192-c-mo" />
+										<div className="activity__vendor-text">
+											<span className="vendor-name">{vendorname}</span>
+											<span className='vendor-type'>{type_of_place}</span>
+										</div>
 									</div>
 									<div className="activity__stars"><Stars ratings={ratings} /></div>
 								</div>

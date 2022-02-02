@@ -22,7 +22,7 @@ import VendorView from './compoonents/Layout/VendorView';
 const App = () => {
   const { isVendor } = useGlobalContext()
 
-  console.log(!(isVendor === false), "  isVendor")
+  useFetch("/api/vendor/570c8161-d7fb-4c70-98f2-faa8c8898e07/")
   return (<>
     <Router>
       <Routes>
