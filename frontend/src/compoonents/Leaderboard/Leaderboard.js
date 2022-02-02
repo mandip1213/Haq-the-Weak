@@ -16,22 +16,30 @@ const Leaderboard = () => {
 		<>
 			{tab === "global" ? <Global /> : <Global />}
 		</>
-
-
 	)
 };
 
 function Global() {
 	const { isLoading, data: globals, error } = useFetch("/api/leaderboard/")
 	if (isLoading) {
-		return <Loading />
+		return (
+			<div className="list  ">
+				<h1 className="heading">Leaderboard</h1>
+				<Loading />
+			</div>
+		)
 	} if (error) {
-		return <div>error</div>
+		return (< div className="list  " >
+			<h1 className="heading">Leaderboard</h1>
+			<div>error</div>
+		</div >)
 	}
 	return (
 
-		<div className="list  ">
+		<div className="list leaderboard  ">
+
 			<h1 className="heading">Leaderboard</h1>
+
 			<div className="list__body">
 				<table className="list__table">
 					<thead>

@@ -27,6 +27,10 @@ html {
     box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1), 0px 5px 12px rgba(0, 0, 0, 0.07);
 }
 
+.list>.heading {
+    margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 800px) {
     .list {
         margin: 0 auto;
@@ -41,7 +45,7 @@ html {
 
 .list__value {
     display: block;
-    font-size: 18px;
+    font-size: 1rem;
 }
 
 .list__label {
@@ -66,32 +70,32 @@ html {
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.08);
 }
 
-.list__row:first-of-type {
+.leaderboard .list__row:first-of-type {
     color: var(--gold-dark);
     background: var(--grey-9);
 }
 
-.list__row:first-of-type .list__cell:first-of-type {
+.leaderboard .list__row:first-of-type .list__cell:first-of-type {
     background: var(--gold);
     color: var(--gold-dark);
 }
 
-.list__row:nth-of-type(2) {
+.leaderboard .list__row:nth-of-type(2) {
     color: var(--grey-2);
     background: var(--grey-9);
 }
 
-.list__row:nth-of-type(2) .list__cell:first-of-type {
+.leaderboard .list__row:nth-of-type(2) .list__cell:first-of-type {
     background: var(--grey-4);
     color: var(--grey-2);
 }
 
-.list__row:nth-of-type(3) {
+.leaderboard .list__row:nth-of-type(3) {
     color: var(--bronze-dark);
     background: var(--grey-9);
 }
 
-.list__row:nth-of-type(3) .list__cell:first-of-type {
+.leaderboard .list__row:nth-of-type(3) .list__cell:first-of-type {
     background: var(--bronze);
     color: var(--bronze-dark);
 }
@@ -116,7 +120,29 @@ html {
 }
 
 .list__cell:first-of-type {
+    max-width: 50px;
     text-align: center;
     padding: 1rem 0.2rem;
     background: var(--grey-5);
+}
+
+@media screen and (max-width:800px) {
+    .list {
+        padding: 0.5rem !important;
+    }
+    .list__cell {
+        padding: 0.5rem;
+    }
+    .list>.heading {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .list {
+        padding: 0.5rem 0.1rem !important;
+    }
+    .list__cell {
+        padding: 0.25rem;
+    }
 }
