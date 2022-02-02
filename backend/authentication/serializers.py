@@ -25,6 +25,7 @@ class CustomObtainPairSerializer(TokenObtainPairSerializer):
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
         data['uuid'] = str(self.user.uuid)
+        data['is_vendor'] = str(self.user.is_vendor)
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
 
