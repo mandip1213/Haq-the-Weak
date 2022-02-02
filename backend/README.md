@@ -73,11 +73,17 @@
 <br/>
 
 ### Leaderboard Details
-* /api/leaderbord/ <!-- Travellers Leaderboard -->
+* /api/leaderbord/ <!-- Global  Leaderboard -->
 
        **Request Type : GET**
        -Returns the list of users and their scores based on the the total score of their visits and ranks them.
      *fields: user(user_id), visits, unique_visits, username, user_uuid, user_profile_picture, score*
+
+ * /api/following-leaderboard/  
+
+ 
+       **Request Type : GET**   
+       - returns leaderboard of people user follows
 
 ### Dashboard/Profile Details
 * /api/dashboard/ <!-- Personal Dashboard -->
