@@ -5,7 +5,8 @@ from .views import (DashboardViewSet,
                     VisitedPlacesViewSet,
                     GlobalLeaderboardViewSet,
                     LandingPageViewSet,
-                    FollowingLeaderboardViewSet)
+                    FollowingLeaderboardViewSet,
+                    PublicVisitedPlacesViewSet)
 
 router = DefaultRouter()
 router.register('vendor',VendorViewSet)
@@ -14,5 +15,6 @@ router.register('leaderboard',GlobalLeaderboardViewSet)
 router.register('dashboard',DashboardViewSet)
 router.register('index',LandingPageViewSet)
 router.register('following-leaderboard',FollowingLeaderboardViewSet)
+router.register('public-visit',PublicVisitedPlacesViewSet)
 
 urlpatterns = []

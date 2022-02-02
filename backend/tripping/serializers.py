@@ -80,3 +80,8 @@ class DashboardSerializer(serializers.ModelSerializer):
     class Meta:
         model = VisitedPlaces
         fields= ('id','user','vendor','score','created_at')
+
+class ActivityFeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VisitedPlaces
+        fields = "__all__"

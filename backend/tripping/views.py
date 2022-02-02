@@ -2,8 +2,12 @@ from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
 from .models import VisitedPlaces
 from .serializers import DashboardSerializer, DashboardVendorSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
-from utils.utils import get_distance
-from utils.permissions import IsAuthorOrReadOnly,ReadOnly,VisitedPlacesThrottle,IsVendorOrReadOnly
+from utils.utils import get_distance, get_geofence_near_me
+from utils.permissions import (IsAuthorOrReadOnly,
+                                ReadOnly,
+                                PublicVisitedPlacesThrottle,
+                                VisitedPlacesThrottle,
+                                IsVendorOrReadOnly)
 from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated,AllowAny
 from django.db.models import Count,Sum,Value,F,Q
 from rest_framework import viewsets, status, mixins,status
@@ -68,7 +72,43 @@ class VisitedPlacesViewSet(mixins.ListModelMixin,
         
         return Response(register_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
+class PublicVisitedPlacesViewSet(mixins.CreateModelMixin,
+                                viewsets.GenericViewSet):
+
+    permission_classes = [IsAuthorOrReadOnly]
+    parser_classes = [MultiPartParser,FormParser,JSONParser]
+    queryset = VisitedPlaces.objects.filter(public=True)
+    serializer_class = VisitedPlacesSerializer
+    lookup_field = 'id'
+    throttle_classes = (PublicVisitedPlacesThrottle,)
     
+    def create(self,request,**kwargs):
+        json_data = (request.data).copy()
+        id = request.user.id
+        json_data.update({"user":id})
+        print(json_data['latitude'],json_data['longitude'])
+        vendor_id = get_geofence_near_me(json_data['latitude'],json_data['longitude'],"Cafe")
+        
+        vendor = Vendor.objects.filter(id=vendor_id)
+        json_data.update({'vendor':vendor_id})
+        distance = get_distance(request.user.latest_latitude,request.user.latest_longitude,vendor.values('latitude')[0]['latitude'],vendor.values('longitude')[0]['longitude'])
+        distance_score = distance/20000
+        importance_score = vendor.values('importance_point')[0]['importance_point']
+        json_data['location_score'] = distance_score + importance_score
+
+        request.user.latest_latitude = vendor.values('latitude')[0]['latitude']
+        request.user.latest_longitude = vendor.values('longitude')[0]['longitude']
+        request.user.save()
+        
+        register_serializer = RegisterVisitSerializer(data=json_data)
+        
+        if register_serializer.is_valid():
+            new_visit = register_serializer.save(user=request.user,vendor=Vendor.objects.get(id=vendor_id))
+            if new_visit:
+                return Response(register_serializer.data,status=status.HTTP_201_CREATED)
+        
+        return Response(register_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
 
 class GlobalLeaderboardViewSet(mixins.ListModelMixin,
                         viewsets.GenericViewSet):
