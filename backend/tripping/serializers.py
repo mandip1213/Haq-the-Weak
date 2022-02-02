@@ -1,7 +1,7 @@
 from dataclasses import field
 from rest_framework import serializers
 
-from authentication.serializers import UserSerializer
+from authentication.serializers import UserSerializer,PublicUserSerializer
 from .models import *
 from authentication.models import User
 
@@ -14,6 +14,11 @@ class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = '__all__'
+
+class PublicVendorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = ('id','name','location','latitude','longitude','contact','type_of_place')
 
 class RegisterVisitSerializer(serializers.ModelSerializer):
     location_score = serializers.FloatField()
@@ -73,7 +78,7 @@ class DashboardVendorSerializer(serializers.ModelSerializer):
     
 class DashboardSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField()
-    user = UserSerializer()
+    user = PublicUserSerializer()
     vendor = DashboardVendorSerializer()
     score = serializers.FloatField()
     created_at = serializers.DateTimeField()
@@ -82,6 +87,9 @@ class DashboardSerializer(serializers.ModelSerializer):
         fields= ('id','user','vendor','score','created_at')
 
 class ActivityFeedSerializer(serializers.ModelSerializer):
+    user = PublicUserSerializer()
+    vendor = PublicVendorSerializer()
+
     class Meta:
         model = VisitedPlaces
-        fields = "__all__"
+        fields = ('user','content','vendor')

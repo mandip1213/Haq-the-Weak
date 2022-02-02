@@ -15,7 +15,7 @@ class VisitedPlaces(models.Model):
     created_at = models.DateTimeField(auto_now=True,editable=False)
     location_score = models.FloatField(editable=False,null=True)
     public = models.BooleanField(default=True)
-    # ratings = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
+    ratings = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)],default=3)
 
 
     class Meta:

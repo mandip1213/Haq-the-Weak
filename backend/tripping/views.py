@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
 from .models import VisitedPlaces
-from .serializers import DashboardSerializer, DashboardVendorSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
+from .serializers import DashboardSerializer, DashboardVendorSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer,ActivityFeedSerializer
 from utils.utils import get_distance, get_geofence_near_me
 from utils.permissions import (IsAuthorOrReadOnly,
                                 ReadOnly,
@@ -186,3 +186,26 @@ class LandingPageViewSet(viewsets.GenericViewSet):
     def list(self, request, *args, **kwargs):
         return Response({'vendors':self.no_of_vendors,'users':self.no_of_users,'visits':self.no_of_visits})
 
+
+class ActivityFeedViewSet(mixins.ListModelMixin,
+                        mixins.RetrieveModelMixin,
+                        viewsets.GenericViewSet):
+    queryset = VisitedPlaces.objects.all().filter(public=True)
+    serializer_class = ActivityFeedSerializer
+    permission_classes = [IsTheSameUser]
+
+    def list(self, request, *args, **kwargs):
+        query = request.user.following.all().values('id')
+        
+        query_filter = Q()
+        for i in query:
+            query_filter = query_filter | Q(user = i['id'])
+
+        queryset = self.filter_queryset(self.get_queryset().filter(query_filter).order_by('-created_at'))        
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
