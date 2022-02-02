@@ -114,6 +114,19 @@
 
        **Request Type : GET**
        - takes the data "user" and returns the users ("uuid","first_name","last_name","profile_picture","gender").
+
+# Endpoints for vendors
+ * /api/vendor/
+ 
+       * Request Type : post *
+       - takes ('username','email','password','confirm_password','name','location','latitude','longitude','image',type_of_place','contact')
+       - returns created vendor
+
+* /api/vendor/{vendor_id}
+       * request type get *  
+       -vendor profile
+
+
 # TODO
 * create a table of hometown i guess(Not Required)
 

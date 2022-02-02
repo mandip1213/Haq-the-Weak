@@ -15,37 +15,59 @@ import ScanQR from './compoonents/Vendor/ScanQR';
 import Four04 from './compoonents/extras/404';
 import QRscanner from './compoonents/Vendor/ScanQR';
 import VendorMap from './compoonents/Vendor/VendorMap';
+import VendorSignup from './compoonents/auth/VendorSignup';
+import useFetch from './compoonents/utils/UseFetch';
+import VendorView from './compoonents/Layout/VendorView';
 // import Loading from './compoonents/extras/Loading';
 const App = () => {
-  const { isLoggedIn } = useGlobalContext()
+  const { isVendor } = useGlobalContext()
+
+  console.log(!(isVendor === false), "  isVendor")
   return (<>
     <Router>
       <Routes>
+        <Route path="/vendor-signup" element={<VendorSignup />}> </Route>
         <Route path="/signup" element={<Signup />}> </Route>
         <Route path="/login" element={<Login />}> </Route>
 
-        <Route element={<LogInView />}>
-          {/* <Route path="/" element={<QRscanner />}> </Route> */}
-          <Route path="/" element={<Home />}> </Route>
-          <Route path="/dashboard" element={<Dashboard />}> </Route>
-          <Route path="/vendor" element={<Vendor />}> </Route>
-          <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
-          <Route path="/profile/:userid" element={<Profile />}> </Route>
-          <Route path="/profile/edit/:userid" element={<EditProfile />}> </Route>
-          <Route path="/leaderbord" element={<Leaderboard />}> </Route>
-          <Route path="/friends" element={<Temp />}> </Route>
-          <Route path="/add" element={<ScanQR />}> </Route>
-          <Route path="*" element={<Four04 />} ></Route>
-        </Route>
 
+        {isVendor === false ?
+          <Route element={<LogInView />}>
+            {/* user route */}
+            <Route path="/dashboard" element={<Dashboard />}> </Route>
+            <Route path="/profile/:userid" element={<Profile />}> </Route>
+            <Route path="/friends" element={<Temp />}> </Route>
+            <Route path="/" element={<Home />}> </Route>
+            <Route path="/leaderbord" element={<Leaderboard />}> </Route>
+            <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
+            <Route path="/add" element={<ScanQR />}> </Route>
+            <Route path="/profile/edit/:userid" element={<EditProfile />}> </Route>
+            <Route path="/vendor" element={<Vendor />}> </Route>
+          </Route>
+          : <>
+            {/* vendor route */}
+            <Route path="/" element={<VendorView />}></Route>
+          </>
+        }
+
+        <Route path="*" element={<Four04 />} ></Route>
 
       </Routes>
 
-    </Router>
+    </Router >
   </>)
 };
 function Temp() {
-  return (<><div>Under construction</div>
+
+  const { uuid } = useGlobalContext()
+  // const { isLoading, data, error } = useFetch(`/api/dashboard/`)
+  // const { isLoading, data, error } = useFetch(`/api/vendor/${uuid}/`)
+  // const { isLoading, data, error } = useFetch(`/api/vendor/${"7763a6b6-58a4-4ced-90f2-32443f5702ec"}/`)
+  // const { isLoading, data, error } = useFetch(`/api/vendor/${uuid}/`)
+  // console.log(data)
+  return (<>
+    <div>Under construction</div>
+
   </>
 
 

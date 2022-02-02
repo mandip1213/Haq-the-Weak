@@ -12,6 +12,10 @@ div#root {
     overflow: scroll !important;
 }
 
+a.user-only {
+    display: none;
+}
+
 
 /*
 body:before {

@@ -10,8 +10,6 @@ const Vendor = () => {
 	const [currCoords, setCurrCoords] = useState([]);
 
 	useEffect(() => {
-
-
 		const ac = new AbortController();
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(({ coords: { latitude: lat, longitude: long } }) => {
@@ -19,8 +17,8 @@ const Vendor = () => {
 				/* https://radar.com/documentation/api#:~:text=tags%20(string%2C%20optional,Defaults%20to%2010 */
 				fetch(`https://api.radar.io/v1/search/geofences?near=${lat},${long}&radius=10000&limit=10`, {
 					headers: {
-						authorization: "prj_test_pk_a82bd4875128c70b94c610afdee4fe507389d1b3"//my key
-						// authorization: "prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8" //aavash key
+						// authorization: "prj_test_pk_a82bd4875128c70b94c610afdee4fe507389d1b3"//my key
+						authorization: "prj_test_pk_a093ec8265fa68c9aaf03d7056fc35a045dc13c8" //aavash key
 					},
 					signal: ac.signal
 				}).then(res => res.json())
@@ -37,8 +35,6 @@ const Vendor = () => {
 				setVendors({ ...vendors, isLoading: false, error: "Please Provide map access" })
 				console.log("geolocation  error ", error)
 			});
-
-
 		} else {
 			console.log(" no geolocation");
 			// setVendors({ ..._vendors, isLoading: false, error: true })
@@ -61,13 +57,16 @@ const Vendor = () => {
 				// vendors.map(({ contact, id, image, is_spponsor, location, name, type_of_place }) => (
 				_vendors.length === 0 ? <div>NO Vendors Fouund Near your Location</div> :
 					_vendors.map((vendor) => {
-
+						// NOTE externalId is vendor Id in database
 						const { createdAt, description: name, enabled, externalId, geometry, geometryCenter: { coordinates }, geometryRadius, live, mode, tag, type, updatedAt, _id } = vendor;
 						console.log(coordinates)
 						return (
 							<div key={_id} style={{ display: "flex", justifyContent: "space-between" }}>
 								<div>
-									<Link to={{ pathname: `/vendor/${_id}?lat=${coordinates[1]}&long=${coordinates[0]}&curr_lat=${currCoords[0]}&curr_long=${currCoords[1]}`, state: { coordinates } }} state="state">
+									<Link
+										to={{
+											pathname: `/vendor/${externalId}?lat=${coordinates[1]}&long=${coordinates[0]}&curr_lat=${currCoords[0]}&curr_long=${currCoords[1]}`,
+										}} state="state">
 										{name}
 									</Link>
 								</div>
@@ -84,10 +83,9 @@ function TempVendor() {
 	const { isLoading, data, error } = useFetch("/api/vendor/")
 	return (
 		<div>
-
 			vendors
 		</div>
 	)
 }
-export default TempVendor;
-// export default Vendor;
+// export default TempVendor;
+export default Vendor;

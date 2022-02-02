@@ -9,7 +9,9 @@ const Login = () => {
 	const navigate = useNavigate()
 	const { dispatch, isLoggedIn } = useGlobalContext();
 	const [error, setError] = useState("")
-	const [loginDetails, setLoginDetails] = useState({ email: "temp@gmail.com", password: "temppassword	" })
+	// const [loginDetails, setLoginDetails] = useState({ email: "temp@gmail.com", password: "temppassword	" })
+	// const [loginDetails, setLoginDetails] = useState({ email: "esoaniol@gmail.com", password: "password	" })
+	const [loginDetails, setLoginDetails] = useState({ email: "vendor@gmail.com", password: "password	" })
 	// const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
 	const { email, password } = loginDetails;
@@ -55,19 +57,20 @@ const Login = () => {
 		catch (error) {
 			return setError("An unknown error occured")
 		}
-		const { access: access_token, refresh: refresh_token, uuid } = result
+		const { access: access_token, refresh: refresh_token, uuid, is_vendor: isVendor } = result
 
-		if (access_token && refresh_token && uuid) {
+		if (access_token && refresh_token && uuid && isVendor) {
 			console.log("hello");
 			localStorage.setItem("refresh_token", JSON.stringify(refresh_token));
 			localStorage.setItem("access_token", JSON.stringify(access_token));
 			localStorage.setItem("uuid", JSON.stringify(uuid))
+			localStorage.setItem("isVendor", JSON.stringify((isVendor == "False" ? false : true)))
 			dispatch({
 				type: "LOGIN",
 				payload: {
 					access_token: access_token,
 					refresh_token: refresh_token,
-					uuid
+					uuid, isVendor: (isVendor == "False" ? false : true)
 				}
 			})
 			return;

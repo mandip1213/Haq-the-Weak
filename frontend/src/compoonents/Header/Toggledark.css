@@ -1,9 +1,9 @@
-.checkbox {
+.toggle-dark .checkbox {
     opacity: 0;
     position: absolute;
 }
 
-.label {
+.toggle-dark .label {
     background-color: #111;
     border-radius: 50px;
     cursor: pointer;
@@ -17,7 +17,7 @@
     transform: scale(1.5);
 }
 
-.label .ball {
+.toggle-dark .label .ball {
     background-color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -29,14 +29,14 @@
     transition: transform 0.2s linear;
 }
 
-.checkbox:checked+.label .ball {
+.toggle-dark .checkbox:checked+.label .ball {
     transform: translateX(24px);
 }
 
-.fa-moon {
+.toggle-dark .fa-moon {
     color: #f1c40f;
 }
 
-.fa-sun {
+.toggle-dark .fa-sun {
     color: #f39c12;
 }

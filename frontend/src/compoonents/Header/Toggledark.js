@@ -15,7 +15,7 @@ const Toggledark = () => {
 	}, [isDark]);
 
 
-	return (<div>
+	return (<div className='toggle-dark'>
 		<input type="checkbox" className="checkbox" id="chk" onChange={() => setIsDark(prev => !prev)} />
 		<label className="label" htmlFor="chk">
 			<i className="fas fa-moon"></i>

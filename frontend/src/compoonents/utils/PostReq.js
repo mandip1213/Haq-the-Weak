@@ -11,7 +11,7 @@ const PostRequest = async ({ endpoint, access_token, options }) => {
 	})
 	const res = await _res.json()
 
-	console.log(res);
+	console.log("res from ", endpoint, res);
 }
 
 export const PatchRequest = async ({ endpoint, access_token, options }) => {

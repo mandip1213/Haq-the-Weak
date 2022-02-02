@@ -1,0 +1,11 @@
+form.vendor-signup {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    border: 2px solid green;
+    padding: 2rem;
+}
+
+.vendor-signup .input-container input {
+    padding: 0.5rem;
+}

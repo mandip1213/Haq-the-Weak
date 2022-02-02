@@ -2,15 +2,16 @@
 
 * scan qr (done) and send post req after checking location (remaining)
 * landing page
-* followings leaderboard
 * Activity feed 
 * vendor registration
+* batches
 * dashboard for vendor
 * Rating system for vendor
 
 
 
 # css todos 
+* followings leaderboard
 * responsiveness
 *minor change in all pages lol 
 
