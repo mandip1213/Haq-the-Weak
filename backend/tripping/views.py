@@ -1,26 +1,37 @@
 from rest_framework.response import Response
 from utils.permissions import IsTheSameUser
 from .models import VisitedPlaces
-from .serializers import DashboardSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
+from .serializers import DashboardSerializer, DashboardVendorSerializer, LeaderboardSerializer, VendorSerializer, VisitedPlacesSerializer, RegisterVisitSerializer
 from utils.utils import get_distance
-from utils.permissions import IsAuthorOrReadOnly,IsStaffOrReadOnly,ReadOnly,VisitedPlacesThrottle
-from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated
+from utils.permissions import IsAuthorOrReadOnly,ReadOnly,VisitedPlacesThrottle,IsVendorOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,IsAuthenticated,AllowAny
 from django.db.models import Count,Sum,Value,F,Q
 from rest_framework import viewsets, status, mixins,status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from authentication.models import User,Vendor
-
+from authentication.serializers import RegisterVendorSerializer
 # Create your views here.
 
 
 class VendorViewSet(mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin,viewsets.GenericViewSet):
 
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [IsVendorOrReadOnly]
     parser_classes = [MultiPartParser,FormParser]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
     lookup_field = 'id'
 
+    def get_permissions(self):
+        if self.action in ['create']:
+            return [AllowAny(), ]
+        return super(VendorViewSet,self).get_permissions()
+
+    def create(self, request, *args, **kwargs):
+        self.serializer_class = RegisterVendorSerializer
+        return super().create(request, *args, **kwargs)
+
+
+    
 
         
 class VisitedPlacesViewSet(mixins.ListModelMixin,
@@ -81,6 +92,8 @@ class FollowingLeaderboardViewSet(mixins.ListModelMixin,
         for i in query:
             print(i['id'])
             query_filter = query_filter | Q(user = i['id'])
+        query_filter = query_filter | Q(user = request.user.id)
+
         queryset = self.filter_queryset(self.get_queryset().filter(query_filter).values('user').annotate(unique_visits=Count('vendor',distinct=True),visits=Count('user'),score = Sum('location_score')).order_by(F('score').desc()))
         page = self.paginate_queryset(queryset)
         if page is not None:
@@ -99,14 +112,25 @@ class DashboardViewSet(viewsets.GenericViewSet):
     serializer_class = DashboardSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset().filter(user=request.user).annotate(score=F('location_score')).order_by('created_at'))
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+        if request.user.is_vendor == False:
+            queryset = self.filter_queryset(self.get_queryset().filter(user=request.user).annotate(score=F('location_score')).order_by('created_at'))
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+            serializer = self.get_serializer(queryset,many=True)
+            return Response(serializer.data)
+
+        elif request.user.is_vendor:
+            queryset = Vendor.objects.all().get(vendor=request.user)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = DashboardVendorSerializer(page)
+                return self.get_paginated_response(serializer.data)
+
+            serializer = DashboardVendorSerializer(queryset)
+            return Response(serializer.data)
 
 class LandingPageViewSet(viewsets.GenericViewSet):
     try:

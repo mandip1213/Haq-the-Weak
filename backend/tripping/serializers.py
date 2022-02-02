@@ -57,17 +57,26 @@ class   LeaderboardSerializer(serializers.ModelSerializer):
 
 
 class DashboardVendorSerializer(serializers.ModelSerializer):
+    visits = serializers.SerializerMethodField()
+    unique_visits = serializers.SerializerMethodField()
     class Meta:
         model = Vendor
-        fields = ('name','location','image','type_of_place')
+        fields = ('name','location','image','type_of_place','visits','unique_visits')
 
+    def get_visits(self,obj):
+        visited_places = VisitedPlaces.objects.all().filter(vendor=obj)
+        return visited_places.count()
+
+    def get_unique_visits(self,obj):
+        visited_places = VisitedPlaces.objects.all().filter(vendor=obj).distinct()
+        return visited_places.count()
+    
 class DashboardSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField()
     user = UserSerializer()
     vendor = DashboardVendorSerializer()
     score = serializers.FloatField()
     created_at = serializers.DateTimeField()
-
     class Meta:
         model = VisitedPlaces
         fields= ('id','user','vendor','score','created_at')
