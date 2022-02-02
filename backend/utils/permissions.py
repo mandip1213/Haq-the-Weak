@@ -16,13 +16,13 @@ class IsTheSameUserOrReadOnly(BasePermission):
         return obj == request.user
 
 
-class IsStaffOrReadOnly(BasePermission):
+class IsVendorOrReadOnly(BasePermission):
 
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS
 
     def has_object_permission(self, request, view, obj):
-        return request.user.is_staff
+        return  obj == request.user.vendor
 
 class IsTheSameUser(BasePermission):
 
@@ -68,3 +68,11 @@ class VisitedPlacesThrottle(SimpleRateThrottle):
         num_requests = int(num)
         duration = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400,'w':604800}[period[0]]
         return (num_requests, duration)
+
+class IsStaffOrReadOnly(BasePermission):
+
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_staff
