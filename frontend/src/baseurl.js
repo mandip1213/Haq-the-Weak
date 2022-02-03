@@ -1,2 +1,2 @@
-const baseUrl = "http://localhost:8000"
+const baseUrl = "https://tripbee.azurewebsites.net"
 export default baseUrl;
