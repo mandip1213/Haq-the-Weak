@@ -43,12 +43,13 @@ REST_FRAMEWORK = {
     },
     'DEFAULT_RENDERER_CLASSES':(
         'rest_framework.renderers.JSONRenderer',),
-        
+
 }
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'http://127.0.0.1:5500'
+    'http://127.0.0.1:5500',
+    "https://tripbeee.netlify.app"
     #add your host here
 ]
 # Application definition
