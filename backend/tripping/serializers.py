@@ -31,7 +31,7 @@ class RegisterVisitSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = VisitedPlaces
-        fields = ('id','user','vendor','content','public','location_score')
+        fields = ('id','user','vendor','content','public','location_score','ratings')
 
 
 
