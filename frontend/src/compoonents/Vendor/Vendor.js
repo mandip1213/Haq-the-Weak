@@ -44,7 +44,6 @@ const Vendor = () => {
 			console.log("aborted")
 		}
 	}, [])
-	//TODO remove cant updat statee after component is unmounnted
 	if (isLoading) {
 		return <Loading />
 	}

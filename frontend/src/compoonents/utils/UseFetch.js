@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import useGlobalContext from "./Globalcontext";
 import URL from "../../baseurl"
+import { handleLogout } from "./logout";
 
 const useFetch = (endpoint, dependencyArray = []) => {
 	const [state, setState] = useState({ isLoading: true, data: [], error: "" });
@@ -19,7 +20,7 @@ const useFetch = (endpoint, dependencyArray = []) => {
 
 			if (_res.status === 401) {
 				//token exdpired now reresh the access token
-				console.log("token expired I guess")/* Todo verify properly */
+				console.log("token expired I guess")/* Todo verify properly  from backend*/
 				const _res = await fetch(`${URL}/api/auth/token/refresh/`, {
 					method: "POST",
 					headers: {
@@ -35,7 +36,8 @@ const useFetch = (endpoint, dependencyArray = []) => {
 					// console.log("after dispatch");
 				} else {
 					setState({ ...state, error: "an unknown error occured ", isLoading: false })
-					//TODO: log user out
+					handleLogout(dispatch)
+					return;
 				}
 				// console.log("after dispatch inside usefecth");
 

@@ -25,20 +25,6 @@ const VendorSignup = () => {
 		console.log(name, " : ", value);
 		setVendorSignup({ ...vendorSignup, [name]: value })
 	}
-
-	// useEffect(() => {
-	// 	if (window.navigator.geolocation) {
-	// 		// Geolocation available
-	// 		window.navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-	// 			console.log(latitude, longitude)
-	// 		}, console.log);
-
-	// 	} else {
-	// 		//TODO handle this
-
-	// 	}
-
-	// }, [])
 	const signup = (_vendorDetails) => (e) => {
 		e.preventDefault();
 		console.log("signup");
@@ -116,12 +102,11 @@ const VendorSignup = () => {
 				console.log("geolocation error", error)
 				if (error.code === 1 && error.message.includes("denied"))
 					alert("Please allow access to location")
-				setError("Turn on location and allow access to signup ")
+				setError("Allow acces to location for signup. ")
 			});
 
 		} else {
-			//TODO handle this
-			setError("Sorry we can't get your location")
+			setError("There is no gps available in your device. Try again with another device.")
 
 		}
 

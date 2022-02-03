@@ -13,19 +13,11 @@ const VendorMap = (props) => {
 	const curr_lat = searchParams.get("curr_lat")
 	const curr_long = searchParams.get("curr_long")
 
-	const addVendor = () => {
-		PostRequest({
-			endpoint: `/api/visit/`, access_token: access_token, options: {
-				body: JSON.stringify({ vendor: vendorid })
-			}
-		})
-	}
 	return (
 		<div>
 			<div>Lorem ipsum dolor sit amet cotnsectetur adipisicing elit. Porro, natus.</div>
 			<div className="temp">
 				{/* TODO this is temp */}
-				<button onClick={addVendor}> Scan Qr</button>
 
 			</div>
 			<iframe width="600" height="450" loading="lazy" allowFullScreen

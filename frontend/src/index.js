@@ -15,7 +15,4 @@ ReactDOM.render(
   </React.StrictMode>,
 
   document.getElementById('root')
-  // document.querySelector("body")
-
-  /* TODO|:Change Here */
 );

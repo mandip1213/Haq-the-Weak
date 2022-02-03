@@ -231,7 +231,6 @@ height: 95vh; */
     }
     .side-menu .sidebar-link {
         margin-top: 0 !important;
-        /* todo the disalignment is due to lack of margin top on logout buttton on fullscreen  */
     }
     .side-menu .sidebar-link {
         flex-direction: column;

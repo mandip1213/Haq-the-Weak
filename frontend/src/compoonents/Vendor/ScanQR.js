@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import useGlobalContext from '../utils/Globalcontext';
-import PostRequest from '../utils/PostReq';
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import QrScan from 'react-qr-scanner';
 import "./ScanQR.css"
+import useFetch from '../utils/UseFetch';
 function isMobile() {
 	const toMatch = [
 		/Android/i,
@@ -19,7 +19,7 @@ function isMobile() {
 	});
 }
 const ScanQR = () => {
-	const { access_token } = useGlobalContext()
+
 	const [scanStatus, setScanStatus] = useState(true);
 	return (
 		<div className="add">
@@ -34,6 +34,8 @@ const ScanQR = () => {
 };
 
 function QRscanner({ setScanStatus }) {
+	const navigate = useNavigate()
+	const { access_token } = useGlobalContext()
 	const [qrscan, setQrscan] = useState('No result');
 	const [error, setError] = useState(false);//state for camera allowed
 	useEffect(async () => {
@@ -49,13 +51,23 @@ function QRscanner({ setScanStatus }) {
 		}
 	}, [])
 	const ar = window.outerWidth / window.outerHeight
-	const handleScan = data => {
+	const handleScan = async (data) => {
 		console.log("data  ", data);
+		data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
+
 		if (data) {
 			setQrscan(data)
+			const vendorid = data;
+			//validate vendorid
+			if (true/* validate qr scanned data */) {
+				//then redirect
+				navigate(`/add/vendor?id=${vendorid}`)
+			}
+
 			//TODO:add vendor
 		}
 	}
+
 	const handleError = err => {
 		if (err.name == "NotAllowedError") {
 			alert("You must give camera permissions to scan QR. ")
@@ -70,7 +82,7 @@ function QRscanner({ setScanStatus }) {
 					<span>QR Scanner</span>
 					<div className="qr-scanner">
 						<QrScan
-							delay={30000}
+							delay={3000}
 							// scans every 'delay' milliseconds/
 							onError={handleError}
 							onScan={handleScan}

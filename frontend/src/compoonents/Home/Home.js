@@ -6,6 +6,19 @@ import "./Home.css"
 import useFetch from '../utils/UseFetch';
 import Loading from "../extras/Loading"
 
+export const Stars = ({ ratings }) => {
+
+
+	return (<>
+		<span className={`activity__star ${ratings >= 1 && "rated"}`}>&#9733;</span>
+		<span className={`activity__star ${ratings >= 2 && "rated"}`}>&#9733;</span>
+		<span className={`activity__star ${ratings >= 3 && "rated"}`}>&#9733;</span>
+		<span className={`activity__star ${ratings >= 4 && "rated"}`}>&#9733;</span>
+		<span className={`activity__star ${ratings >= 5 && "rated"}`}>&#9733;</span>
+	</>
+	)
+}
+
 const Home = () => {
 	const { isLoggedIn, dispatch, access_token } = useGlobalContext()
 	const { isLoading, data: feeds, error } = useFetch("/api/feed/")
@@ -20,7 +33,7 @@ const Home = () => {
 					const { ratings, content, user: { username, gender, uuid, batch }, vendor: { name: vendorname, location, type_of_place } } = feed;
 					// TODO need date of visit
 					//TODO unique id
-
+					//TODO show leaderboard in home
 					return (
 						<div className="activity">
 
@@ -55,17 +68,4 @@ const Home = () => {
 		</>
 	)
 };
-function Stars({ ratings }) {
-
-
-	return (<>
-		<span className={`activity__star ${ratings >= 1 && "rated"}`}>&#9733;</span>
-		<span className={`activity__star ${ratings >= 2 && "rated"}`}>&#9733;</span>
-		<span className={`activity__star ${ratings >= 3 && "rated"}`}>&#9733;</span>
-		<span className={`activity__star ${ratings >= 4 && "rated"}`}>&#9733;</span>
-		<span className={`activity__star ${ratings >= 5 && "rated"}`}>&#9733;</span>
-	</>
-	)
-}
-
 export default Home;

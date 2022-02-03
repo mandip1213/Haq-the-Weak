@@ -12,6 +12,7 @@ import Leaderboard from './compoonents/Leaderboard/Leaderboard';
 import Profile from './compoonents/Profile/Profile';
 import EditProfile from './compoonents/Profile/EditProfile';
 import ScanQR from './compoonents/Vendor/ScanQR';
+import ConfirmScan from './compoonents/Vendor/ConfirmScan.js';
 import Four04 from './compoonents/extras/404';
 import QRscanner from './compoonents/Vendor/ScanQR';
 import VendorMap from './compoonents/Vendor/VendorMap';
@@ -36,11 +37,11 @@ const App = () => {
             {/* user route */}
             <Route path="/dashboard" element={<Dashboard />}> </Route>
             <Route path="/profile/:userid" element={<Profile />}> </Route>
-            <Route path="/friends" element={<Temp />}> </Route>
             <Route path="/" element={<Home />}> </Route>
             <Route path="/leaderbord" element={<Leaderboard />}> </Route>
             <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
             <Route path="/add" element={<ScanQR />}> </Route>
+            <Route path="/add/vendor" element={<ConfirmScan />}> </Route>
             <Route path="/profile/edit/:userid" element={<EditProfile />}> </Route>
             <Route path="/vendor" element={<Vendor />}> </Route>
           </Route>

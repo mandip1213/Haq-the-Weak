@@ -16,6 +16,8 @@ const Profile = () => {
 	}
 	const { isLoading, data: profileData, error } = useFetch(`/api/user/${userid}/`)
 	const [following, setFollowing] = useState(false);
+	// const [error, setError] = useState("");
+
 	useEffect(() => {
 		if (isLoading) return;
 		if (error) return;
@@ -27,7 +29,6 @@ const Profile = () => {
 
 	const handleFollow = (action) => (e) => {
 		console.log(action, "action")
-		//TODO : handle case for already followed
 		fetch(`${baseurl}/api/user/${uuid}/`, {
 			method: "PATCH",
 			body: JSON.stringify({
@@ -47,7 +48,10 @@ const Profile = () => {
 				//or decreasing followers count yourself , the user never knows lol
 
 			})
-			.catch(err => { console.log(err) })
+			.catch(err => {
+				console.log("error follow/unfolow", err)
+				// setError("An error occured . Sorry for inconvenience.")
+			})
 	}
 
 	const { first_name, last_name, bio, birthday, profile_picture, contact, home_town, username, followers, followers_count, following_count } = profileData
@@ -90,7 +94,7 @@ const Profile = () => {
 						<div>tc</div>
 						<div>he</div>
 					</div>
-					<div className="location"><i className="fas fa-map-marker-alt">{/* location icon */}</i> Dublin</div>
+					<div className="location"><i className="fas fa-map-marker-alt">{/*TODO location icon */}</i> Dublin</div>
 					<div className="follow-stats">
 
 						<span>{followers_count}</span>
