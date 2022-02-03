@@ -74,3 +74,16 @@ body.light {
     overflow-y: auto !important;
     overflow-x: hidden !important;
 }
+
+.small-screen-only {
+    display: none;
+}
+
+@media screen and (max-width:800px) {
+    .small-screen-only {
+        display: unset !important;
+    }
+    .large-screen-only {
+        display: none
+    }
+}

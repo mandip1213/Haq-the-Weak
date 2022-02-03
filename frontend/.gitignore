@@ -27,3 +27,6 @@ yarn-error.log*
 temp
 package-lock.json
 .gitignore
+
+index.html
+scripts.js

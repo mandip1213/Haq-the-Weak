@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
 import { Stars } from "../Home/Home"
-
+import "./ConfirmScan.css"
 import PostRequest from '../utils/PostReq';
 import useGlobalContext from '../utils/Globalcontext';
 
@@ -41,27 +41,36 @@ const ConfirmScan = () => {
 	}
 	return (<>
 		<div className="confirm-scan">
-			<div className="name">{name}</div>
-			<div className="rating"><Stars ratings={rating} /></div>
-			<div className="type_of_place">{type_of_place}</div>
-			{contact && <div className="contact">{contact}</div>}
-		</div>
-		<div className="form-type">
-			<div className="privacy">
 
-				<select name="privacy" id="privacy"
-					value={scanInput.rating}
-					onChange={handleChange}
-				>
-					<option value="public">public</option>
-					<option value="private">private</option>
-				</select>
-				<div className="input-type">
-					<label htmlFor="rating"></label>
-					<input type="number" min="1" max="5" name="rating" id="rating"
+			<div className="confirm-header">
+				<div className="vendor__main">
+					<div className="name">{name}</div>
+					<div className="type_of_place">{type_of_place}</div>
+				</div>
+				<div className="rating"><Stars ratings={rating} /></div>
+			</div>
+
+			{contact && <div className="contact">{contact}</div>}
+			<div>{/* TODO location icon */} {location}</div>
+
+			<div className="form-type">
+				<div className="privacy">
+					<label htmlFor="privacy">Privacy</label>
+
+					<select name="privacy" id="privacy"
 						value={scanInput.rating}
 						onChange={handleChange}
-					/>
+					>
+						<option value="public">public</option>
+						<option value="private">private</option>
+					</select>
+					<div className="input-type">
+						<label htmlFor="rating">Ratings</label>
+						<input type="number" min="1" max="5" name="rating" id="rating"
+							value={scanInput.rating}
+							onChange={handleChange}
+						/>
+					</div>
 					<button onClick={confirmScan}> Confirm Scan</button>
 				</div>
 			</div>

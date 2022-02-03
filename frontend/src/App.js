@@ -40,8 +40,8 @@ const App = () => {
             <Route path="/" element={<Home />}> </Route>
             <Route path="/leaderbord" element={<Leaderboard />}> </Route>
             <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
-            <Route path="/add" element={<ScanQR />}> </Route>
-            <Route path="/add/vendor" element={<ConfirmScan />}> </Route>
+            <Route path="/scan" element={<ScanQR />}> </Route>
+            <Route path="/scan/vendor" element={<ConfirmScan />}> </Route>
             <Route path="/profile/edit/:userid" element={<EditProfile />}> </Route>
             <Route path="/vendor" element={<Vendor />}> </Route>
           </Route>

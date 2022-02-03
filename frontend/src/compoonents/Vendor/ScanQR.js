@@ -61,7 +61,7 @@ function QRscanner({ setScanStatus }) {
 			//validate vendorid
 			if (true/* validate qr scanned data */) {
 				//then redirect
-				navigate(`/add/vendor?id=${vendorid}`)
+				navigate(`/scan/vendor?id=${vendorid}`)
 			}
 
 			//TODO:add vendor

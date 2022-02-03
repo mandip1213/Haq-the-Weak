@@ -2,6 +2,7 @@
     max-width: 1000px;
     margin: 0 auto;
     background-color: #2d2f40;
+    padding: 1rem;
 }
 
 .activity {
@@ -78,4 +79,28 @@
 
 .activity__content {
     padding-top: 0.5rem;
+}
+
+@media screen and (max-width:800px) {
+    .activities {
+        padding: 0.5rem 1rem !important;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .activities {
+        padding: 0.5rem 0.5rem !important;
+    }
+    .activity {
+        padding: 0.5rem !important;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .activities {
+        padding: 0.5rem 0.0rem !important;
+    }
+    .activity {
+        padding: 0.5rem !important;
+    }
 }

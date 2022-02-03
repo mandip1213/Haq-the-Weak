@@ -20,7 +20,6 @@ export const Stars = ({ ratings }) => {
 }
 
 const Home = () => {
-	const { isLoggedIn, dispatch, access_token } = useGlobalContext()
 	const { isLoading, data: feeds, error } = useFetch("/api/feed/")
 	if (isLoading) return <Loading />
 	if (error) return <div>error</div>;

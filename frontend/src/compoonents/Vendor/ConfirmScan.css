@@ -1,0 +1,25 @@
+.confirm-scan {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+}
+
+.vendor__main {
+    display: flex;
+    flex-direction: column;
+}
+
+.confirm-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-type {
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 2px solid green;
+}
+
+.scan-qr {
+    color: red
+}

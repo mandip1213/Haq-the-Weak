@@ -39,7 +39,6 @@ height: 95vh; */
     width: 100%;
     height: 100vh;
     /* border-radius: 20px; */
-    font-size: 15px;
     font-weight: 500;
     /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); */
     position: relative;
@@ -59,8 +58,8 @@ height: 95vh; */
     /* --link-color: */
 }
 
-.small-screen-only {
-    display: none;
+.explicitly-small-screen-only {
+    display: none !important;
 }
 
 @media screen and (max-width:800px) {
@@ -90,6 +89,9 @@ height: 95vh; */
     .large-screen-only {
         display: none !important;
     }
+    .explicitly-small-screen-only {
+        display: unset !important;
+    }
     .small-screen-only {
         display: unset;
     }
@@ -104,26 +106,22 @@ height: 95vh; */
     }
 }
 
-.sidebar .logo {
-    display: none;
-    width: 30px;
-    height: 30px;
-    background-color: #22b07d;
-    flex-shrink: 0;
-    color: #fff;
-    align-items: center;
-    border-radius: 50%;
-    justify-content: center;
-}
-
 .sidebar .logo-expand {
     text-decoration: none;
     color: #fff;
-    font-size: 19px;
     font-weight: 600;
     line-height: 34px;
     position: sticky;
     top: 0;
+}
+
+.logo {
+    text-decoration: none;
+    position: sticky;
+    top: 0;
+    font-size: 2rem;
+    color: #1010cd;
+    font-weight: bolder;
 }
 
 @media screen and (max-width:800px) {
@@ -148,28 +146,6 @@ height: 95vh; */
 .sidebar-link:hover a.sidebar-link,
 .sidebar-link.active {
     color: green !important;
-}
-
-.sidebar.collapse {
-    width: 90px;
-    border-right: 1px solid var(--border-color);
-}
-
-.sidebar.collapse .logo-expand,
-.sidebar.collapse .side-title {
-    display: none;
-}
-
-.sidebar.collapse .logo {
-    display: flex;
-}
-
-.sidebar.collapse .side-wrapper {
-    width: 30px;
-}
-
-.sidebar.collapse .side-menu svg {
-    margin-right: 30px;
 }
 
 @-webkit-keyframes bottom {
@@ -212,6 +188,7 @@ height: 95vh; */
 
 .side-menu svg {
     width: 30px;
+    aspect-ratio: 1/1;
     padding: 8px;
     border-radius: 10px;
     background-color: var(--button-bg);
@@ -268,6 +245,12 @@ height: 95vh; */
     .side-wrapper {
         width: 100%;
         align-self: stretch;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .medium-screen-only {
+        display: none !important;
     }
 }
 
