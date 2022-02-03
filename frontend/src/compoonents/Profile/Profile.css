@@ -57,7 +57,7 @@
     font-size: 1.15rem;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .name {
