@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../utils/Globalcontext';
 import { PatchRequest } from "../utils/PostReq"
@@ -11,6 +11,10 @@ const EditProfile = () => {
 	const [state, setState] = useState({ first_name, last_name, bio, birthday, contact, home_town, username });
 	const navigate = useNavigate()
 	const [error, setError] = useState("")
+
+	useEffect(() => {
+		document.title = "Trip Bee | Edit Profile"
+	}, [])
 	const handleEditProfile = async (e) => {
 		e.preventDefault()
 

@@ -19,8 +19,10 @@ function isMobile() {
 	});
 }
 const ScanQR = () => {
-
 	const [scanStatus, setScanStatus] = useState(true);
+	useEffect(() => {
+		document.title = "Trip Bee | Scan QR"
+	}, [])
 	return (
 		<div className="add">
 			< button className="action-button "

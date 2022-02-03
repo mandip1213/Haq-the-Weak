@@ -7,7 +7,10 @@ const Dashboard = () => {
 
 	// const { isLoading, data: dashboard, error } = useFetch("/api/visit/");
 	//TODO return s all visits
+	useEffect(() => {
+		document.title = "Trip Bee | Dashboard "
 
+	}, [])
 	if (isLoading) {
 		return (
 			<div className="list dashboard">

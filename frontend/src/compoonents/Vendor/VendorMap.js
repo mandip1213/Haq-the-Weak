@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import useGlobalContext from '../utils/Globalcontext';
-import PostRequest from '../utils/PostReq';
 
 const VendorMap = (props) => {
 	console.log(useParams(), " params")
@@ -12,6 +11,11 @@ const VendorMap = (props) => {
 	const long = searchParams.get("long")
 	const curr_lat = searchParams.get("curr_lat")
 	const curr_long = searchParams.get("curr_long")
+
+	useEffect(() => {
+		document.title = "Trip Bee | Vendor Near Me"
+		/* TODO change title to vendor name */
+	}, [])
 
 	return (
 		<div>

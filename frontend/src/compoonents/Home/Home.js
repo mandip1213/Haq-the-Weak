@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom"
 import useGlobalContext from '../utils/Globalcontext';
 import LandingPage from "./LandingPage"
@@ -21,6 +21,12 @@ export const Stars = ({ ratings }) => {
 
 const Home = () => {
 	const { isLoading, data: feeds, error } = useFetch("/api/feed/")
+
+	useEffect(() => {
+		document.title = "Trip Bee | Feed"
+
+
+	}, [])
 	if (isLoading) return <Loading />
 	if (error) return <div>error</div>;
 	if (feeds.length === 0) return <div>You have no feeds. Try following someone.</div>

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 const Leaderboard = () => {
 	const [endpoint, setEndpoint] = useState("leaderboard");
 	useEffect(() => {
+		document.title = "Trip Bee | Leaderboard"
 	}, [])
 	console.log("rerender")
 	return (

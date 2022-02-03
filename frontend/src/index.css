@@ -58,6 +58,38 @@ body.light {
 }
 
 
+/* final colors */
+
+body.light {
+    --main-bg-color: rgba(255, 255, 255, 0.849) !important;
+    --body-font: "Inter", sans-serif !important;
+    --body-color: #2b2b2e !important;
+    --button-bg: #ccc9dc !important;
+    --border-color: rgb(128 129 145 / 24%) !important;
+    --video-bg: #252936 !important;
+    --delay: 0s !important;
+}
+
+:root {
+    --outer-bg-color: #1f1d2b;
+    --sidebar-link-color: #808191;
+    --sidebar-link-active-color: green;
+    --logo-text-color: blue;
+    --outlet-bg-color: #2d2f40;
+    --button-color: red;
+    --button-font-color: green;
+    --button-hover-color: red;
+    --button-font-hover-color: green;
+    --feed-border-color: red;
+    --feed-separate-color: red;
+    /*  */
+    --button-bg: #353340;
+    --border-color: rgb(128 129 145 / 24%);
+    --video-bg: #252936;
+    --delay: 0s;
+}
+
+
 /* ///TODO style it */
 
 ::-webkit-scrollbar {

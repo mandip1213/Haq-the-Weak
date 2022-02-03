@@ -19,6 +19,13 @@ const VendorSignup = () => {
 
 	const [error, setError] = useState()
 	const profile_picture = createRef()
+
+	useEffect(() => {
+
+		document.title = "Trip Bee | Vendor Signup"
+
+	}, [])
+
 	const { username, email, password, confirm_password, name, location, latitude, longitude, image, type_of_place, contact } = vendorSignup;
 	const handleChange = ({ target: { name, value } }) => {
 		if (error) setError("");

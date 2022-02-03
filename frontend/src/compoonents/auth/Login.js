@@ -17,9 +17,11 @@ const Login = () => {
 	const { email, password } = loginDetails;
 
 	React.useEffect(() => {
+		document.title = "Trip Bee | Login"
 		if (isLoggedIn) {
 			navigate("/");
 		}
+
 	}, [isLoggedIn])
 
 	const togglePassword = (e) => {

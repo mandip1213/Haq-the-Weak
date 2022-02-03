@@ -35,9 +35,9 @@ const App = () => {
         {isVendor === false ?
           <Route element={<LogInView />}>
             {/* user route */}
+            <Route path="/" element={<Home />}> </Route>
             <Route path="/dashboard" element={<Dashboard />}> </Route>
             <Route path="/profile/:userid" element={<Profile />}> </Route>
-            <Route path="/" element={<Home />}> </Route>
             <Route path="/leaderbord" element={<Leaderboard />}> </Route>
             <Route path="/vendor/:vendorid" element={<VendorMap />}> </Route>
             <Route path="/scan" element={<ScanQR />}> </Route>

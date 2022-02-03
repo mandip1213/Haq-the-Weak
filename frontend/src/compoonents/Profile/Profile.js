@@ -17,7 +17,9 @@ const Profile = () => {
 	const { isLoading, data: profileData, error } = useFetch(`/api/user/${userid}/`)
 	const [following, setFollowing] = useState(false);
 	// const [error, setError] = useState("");
-
+	useEffect(() => {
+		document.title = "Trip Bee | Profile"
+	}, [])
 	useEffect(() => {
 		if (isLoading) return;
 		if (error) return;

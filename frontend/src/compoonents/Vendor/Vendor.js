@@ -10,6 +10,10 @@ const Vendor = () => {
 	const [currCoords, setCurrCoords] = useState([]);
 
 	useEffect(() => {
+		document.title = "Trip Bee | Vendors Near Me"
+	}, [])
+
+	useEffect(() => {
 		const ac = new AbortController();
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(({ coords: { latitude: lat, longitude: long } }) => {

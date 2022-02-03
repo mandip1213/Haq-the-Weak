@@ -33,6 +33,8 @@ function Signup() {
 	/* use effect */
 
 	React.useEffect(() => {
+		document.title = "Trip Bee | Signup"
+
 		if (isLoggedIn) {
 			navigate("/");
 		}

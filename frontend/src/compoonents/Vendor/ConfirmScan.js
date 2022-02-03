@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
@@ -14,7 +14,9 @@ const ConfirmScan = () => {
 	const { isLoading, data, error } = useFetch(`/api/vendor/${vendorid}/`)
 	const [scanInput, setScanInput] = useState({ rating: 3, privacy: "public" });
 	const [_error, setError] = useState("");
-
+	useEffect(() => {
+		document.title = "Trip Bee | Confirm Scan"
+	}, [])
 	if (isLoading) return <Loading />
 	if (error) return <div className='error'>{error}</div>;
 	const { contact, id, image, latitude, location, longitude, name, rating, type_of_place } = data;
