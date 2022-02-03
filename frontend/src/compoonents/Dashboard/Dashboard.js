@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
 const Dashboard = () => {
@@ -30,7 +30,8 @@ const Dashboard = () => {
 		)
 	}
 	const user = dashboard[0].user
-	const { first_name, last_name, username, profile_picture, batch, batch_count, total_score } = user;
+	// const { first_name, last_name, username, profile_picture, batch, batch_count, total_score } = user;
+	const { username, profile_picture } = user;
 	// const { first_name, last_name, username, date_of_birth, gender, profile_picture, uuid, followers_count, following_count, followers, following, batch, batch_count } = user;
 
 	/*

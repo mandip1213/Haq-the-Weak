@@ -14,7 +14,6 @@ import EditProfile from './compoonents/Profile/EditProfile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 import ConfirmScan from './compoonents/Vendor/ConfirmScan.js';
 import Four04 from './compoonents/extras/404';
-import QRscanner from './compoonents/Vendor/ScanQR';
 import VendorMap from './compoonents/Vendor/VendorMap';
 import VendorSignup from './compoonents/auth/VendorSignup';
 import useFetch from './compoonents/utils/UseFetch';
@@ -58,14 +57,8 @@ const App = () => {
     </Router >
   </>)
 };
-function Temp() {
+/* function Temp() {
 
-  const { uuid } = useGlobalContext()
-  // const { isLoading, data, error } = useFetch(`/api/dashboard/`)
-  // const { isLoading, data, error } = useFetch(`/api/vendor/${uuid}/`)
-  // const { isLoading, data, error } = useFetch(`/api/vendor/${"7763a6b6-58a4-4ced-90f2-32443f5702ec"}/`)
-  // const { isLoading, data, error } = useFetch(`/api/vendor/${uuid}/`)
-  // console.log(data)
   return (<>
     <div>Under construction</div>
 
@@ -73,5 +66,5 @@ function Temp() {
 
 
   )
-}
+} */
 export default App;

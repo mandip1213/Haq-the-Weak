@@ -1,19 +1,110 @@
-.profile-card {
-    padding: 1rem 4rem;
-    background: #2d2f40;
-    margin: 0 6rem 0 4rem;
+.error {
+    margin-top: 1rem;
+    color: red;
+    text-align: center;
+    font-size: 1rem;
+    background-color: rgb(242, 222, 222);
+    padding: 0.25rem;
+}
+
+#login-form .fs-title {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.25rem 1rem;
+}
+
+#login-form .fs-subtitle {
+    font-weight: normal;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+/*
+#login-form {
+    width: 400px;
+    margin: 2rem auto;
+    text-align: center;
     position: relative;
-    height: 100%;
+} */
+
+#login-form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    /* margin: 0 1rem; */
+    margin: auto;
+    /*stacking fieldsets above each other*/
+    /* position: relative; */
 }
 
-.card-header {
+#login-form>* {
+    margin-top: 1rem;
+}
+
+#login-form .input-container {
     display: flex;
-    align-items: center;
-    gap: 10%;
-    margin-left: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.profile-action {
+.input-container input,
+.input-container textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-family: montserrat;
+    color: #2C3E50;
+}
+
+.label {
+    display: block;
+}
+
+.password-input {
+    position: relative;
+}
+
+.password-input>span {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translatey(-45%);
+    cursor: pointer;
+}
+
+.show-hide-password:after {
+    position: absolute;
+    content: ' ';
+    left: 50%;
+    top: 50%;
+    transform: translate(-55%, -55%) rotate(-45deg);
+    /* transform: rotate(-45deg); */
+    width: 3px;
+    height: 80%;
+    background-color: #333;
+}
+
+.password-input {
+    align-self: stretch;
+}
+
+.to-signup {
+    text-align: center;
+}
+
+#login-form .action-button {
     width: 100px;
     background-color: rgba(39, 174, 95, 0.8);
     font-weight: bold;
@@ -21,147 +112,63 @@
     border: 0 none;
     border-radius: 1px;
     cursor: pointer;
-    padding: 5px 5px;
+    padding: 10px 5px;
+    margin: 10px 5px;
 }
 
-.profile-action:hover,
-.profile-action:focus {
+#login-form .action-button:hover,
+#login-form .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
     background-color: rgba(39, 174, 95, 1);
 }
 
-.name>span {
-    margin-right: 0.5rem;
+75% {
+    background-position: right top;
 }
 
-.pic {
-    padding: 8px;
-    background: linear-gradient(130deg, #74b9ff, #e66767);
-    border-radius: 50%;
-    animation: animated-gradient 2s linear infinite;
+100% {
+    background-position: left top;
 }
 
-.pic img {
-    display: block;
-    --img: 250px;
-    width: var(--img);
-    aspect-ratio: 1/1 !important;
-    border-radius: 50%;
-}
 
-.right {
-    /* border: 2px solid green; */
-    flex: 1;
-    display: flex;
-    gap: 0.5rem;
-    font-size: 1.15rem;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
 }
-
-.name {
-    color: #EEEDF0;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.batches {
-    display: flex;
-    gap: 1rem;
-}
-
-.follow-stats span {
-    margin-right: 1ch;
-}
-
-.follow-stats {
-    display: flex;
-    align-items: center;
-}
-
-.bio {
-    padding: 2rem 0;
-    text-align: center;
-    word-wrap: break-word;
-}
-
-.numbers {
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.numbers .item {
-    flex: 1;
-    text-transform: uppercase;
-    font-size: 13px;
-    color: #CB69C1;
-    font-weight: 500;
-}
-
-.numbers .item span {
-    display: block;
-    color: #2c3a47;
-    font-size: 30px;
-}
-
-.border {
-    width: 2px;
-    height: 30px;
-    /*   background: #bbb; */
-    background: linear-gradient(130deg, #74b9ff, #e66767);
-}
-
-@keyframes animated-gradient {
-    25% {
-        background-position: left bottom;
-    }
-    50% {
-        background-position: right bottom;
-    }
-    75% {
-        background-position: right top;
-    }
-    100% {
-        background-position: left top;
-    }
-}
-
 @media screen and (max-width:1200px) {
     .profile-card {
         margin: 0 2rem;
         padding: 1rem 3rem;
     }
+    
     .pic img {
         --img: 200px;
     }
 }
-
 @media screen and (max-width:600px) {
     .profile-card {
         margin: 0 0.5rem;
         padding: 1rem 1rem;
     }
+    
     .card-header {
         flex-direction: column;
     }
 }
-
 @media screen and (max-width:400px) {
     .profile-card {
         margin: 0 0.5rem;
         padding: 1rem 0.25rem;
     }
+    
     .card-header {
         flex-direction: column;
     }
+    
     .profile-card .name {
         align-self: center;
         display: flex;
         flex-direction: column;
         /* align-items: center; */
     }
+    
     .card-header {
         padding-bottom: 2rem;
         border-bottom: 2px solid green;
