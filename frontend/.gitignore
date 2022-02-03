@@ -25,3 +25,5 @@ yarn-error.log*
 
 # by me
 temp
+package-lock.json
+.gitignore

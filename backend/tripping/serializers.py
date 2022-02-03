@@ -5,17 +5,21 @@ from authentication.serializers import UserSerializer,PublicUserSerializer
 from .models import *
 from authentication.models import User
 
-class VisitedPlacesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = VisitedPlaces
-        fields = ('id','user','vendor','content','public')
-
 class VendorSerializer(serializers.ModelSerializer):
     rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Vendor
-        fields = ('id','name','location','latitude','longitude','contact','image','type_of_place','rating')
+        fields = ('id',
+                'name',
+                'location',
+                'latitude',
+                'longitude',
+                'contact',
+                'image',
+                'type_of_place',
+                'rating',
+                )
 
     def get_rating(self,obj):
         visits = VisitedPlaces.objects.all().filter(vendor=obj.id)
@@ -24,6 +28,12 @@ class VendorSerializer(serializers.ModelSerializer):
             return str(average_rating['ratings__avg'])
         return None
 
+
+
+class VisitedPlacesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VisitedPlaces
+        fields = ('id','user','vendor','content','public')
 
 
 class RegisterVisitSerializer(serializers.ModelSerializer):
@@ -98,4 +108,4 @@ class ActivityFeedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = VisitedPlaces
-        fields = ('user','content','vendor','ratings')
+        fields = ('user','content','vendor','ratings','created_at')

@@ -205,7 +205,8 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
                 'longitude',
                 'image',
                 'type_of_place',
-                'contact')
+                'contact',
+                'profile_picture')
 
     def validate(self, attrs):
         password = attrs['password']

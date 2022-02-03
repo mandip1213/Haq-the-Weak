@@ -40,7 +40,10 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES':{
         'visits':'1/d',
         'public_visits':'1/w'
-    }
+    },
+    'DEFAULT_RENDERER_CLASSES':(
+        'rest_framework.renderers.JSONRenderer',),
+        
 }
 
 CORS_ALLOWED_ORIGINS = [
