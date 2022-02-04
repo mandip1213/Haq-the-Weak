@@ -13,7 +13,8 @@ const VendorSignup = () => {
 		'username': "Hamro cafe", 'email': "vendor@gmail.com",
 		'password': "password",
 		'confirm_password': "password", 'name': "Hamro cafe", 'location': "Nuwakot", 'latitude': "",
-		'longitude': "", 'image': "", 'type_of_place': "Cafe", 'contact': 98_322_111_34
+		'longitude': "", 'image': "", 'type_of_place': "Cafe", 'contact': 98_322_111_34,
+		latitude: 0, longitude: 0
 	}
 	const [vendorSignup, setVendorSignup] = useState(initialState);
 
@@ -78,9 +79,12 @@ const VendorSignup = () => {
 		formdata.append("password", password)
 		formdata.append("confirm_password", confirm_password)
 		formdata.append("name", name)
-		formdata.append("latitude", latitude)
-		formdata.append("longitude", longitude.toFixed(6))
-		formdata.append("location", location.toFixed(6))
+
+		// console.log(typeof (latitude))
+
+		formdata.append("latitude", Number(latitude).toFixed(6))
+		formdata.append("longitude", Number(longitude).toFixed(6))
+		formdata.append("location", location)
 		formdata.append("type_of_place", type_of_place)
 		formdata.append("contact", contact)
 
@@ -155,12 +159,12 @@ const VendorSignup = () => {
 
 				<div className="input-container">
 					<label htmlFor="latitude" className="label">latitude</label>
-					<input type="text" className="input" value={latitude} id="latitude" name="latitude" onChange={handleChange} />
+					<input type="number" className="input" value={latitude} id="latitude" name="latitude" onChange={handleChange} />
 				</div>
 
 				<div className="input-container">
 					<label htmlFor="longitude" className="label">longitude</label>
-					<input type="text" className="input" value={longitude} id="longitude" name="longitude" onChange={handleChange} />
+					<input type="number" className="input" value={longitude} id="longitude" name="longitude" onChange={handleChange} />
 				</div>
 
 				<div className="input-container">
