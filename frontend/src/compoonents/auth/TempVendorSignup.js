@@ -12,7 +12,7 @@ const VendorSignup = () => {
 	const initialState = {
 		'username': "Hamro cafe", 'email': "vendor@gmail.com",
 		'password': "password",
-		'confirm_password': "password", 'name': "Hamro cafe", 'location': "Nuwakot", 'latitude': "",
+		'confirm_password': "password", 'name': "Hamro cafe", 'location': "Chitwan", 'latitude': "",
 		'longitude': "", 'image': "", 'type_of_place': "Cafe", 'contact': 98_322_111_34,
 		latitude: 0, longitude: 0
 	}
