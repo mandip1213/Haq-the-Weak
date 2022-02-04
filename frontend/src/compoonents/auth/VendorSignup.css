@@ -1,11 +1,66 @@
 form.vendor-signup {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 1rem !important;
+}
+
+.vendor-signup fieldset {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
-    border: 2px solid green;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 2rem;
+    margin: auto;
+    border: none;
+}
+
+.vendor-signup legend {
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.25rem 1rem;
+}
+
+.vendor__signupo-text {
+    text-align: center;
 }
 
 .vendor-signup .input-container input {
     padding: 0.5rem;
+}
+
+.vendor-signup button {
+    /* TODO styule it  */
+}
+
+@media screen and (max-width:500px) {
+    .vendor-signup {
+        margin: 1rem auto;
+        width: 95vw;
+    }
+    .vendor-signup fieldset {
+        padding: 2rem 0.5rem;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .vendor-signup {
+        width: 95vw;
+    }
+    .vendor-signup fieldset {
+        padding: 1rem 0.5rem;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:350px) {
+    .vendor-signup {
+        width: 100vw;
+    }
+    .vendor-signup fieldset {
+        padding: 1rem 0.5rem;
+        width: 95%;
+    }
 }

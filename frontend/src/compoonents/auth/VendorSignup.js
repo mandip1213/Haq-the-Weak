@@ -119,8 +119,10 @@ const VendorSignup = () => {
 
 	}
 	return (
-		<div className="vendor-signup">
-			<form action="" onSubmit={signup(vendorSignup)} className="vendor-signup">
+		<form action="" onSubmit={signup(vendorSignup)} className="vendor-signup">
+			<fieldset>
+				<legend >Vendor Registration</legend>
+				<h3 className="vendor__signupo-text">Lets join our hands for the better of Toursim and everyone </h3>
 				<div className="input-container">
 					{error && <div className="error">{error}</div>}
 					<label htmlFor="email" className="label">Email</label>
@@ -188,12 +190,8 @@ const VendorSignup = () => {
 				<button>Signup</button>
 
 				<div className="naming-is-hard">Already a member? <Link to="/login">login</Link></div>
-			</form>
-
-
-		</div>
-
-
+			</fieldset>
+		</form>
 	)
 };
 
