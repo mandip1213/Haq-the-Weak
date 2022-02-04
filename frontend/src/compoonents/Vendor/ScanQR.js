@@ -84,7 +84,7 @@ function QRscanner({ setScanStatus }) {
 					<span>QR Scanner</span>
 					<div className="qr-scanner">
 						<QrScan
-							delay={3000}
+							delay={300}
 							// scans every 'delay' milliseconds/
 							onError={handleError}
 							onScan={handleScan}
