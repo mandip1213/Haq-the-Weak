@@ -1,14 +1,13 @@
 html {
     --black: #21252a;
-    --grey-1: #343a40;
-    --grey-2: #495057;
+    --color-2: #495057;
     --grey-3: #868e96;
-    --grey-4: #adb5bd;
-    --grey-5: #ced4da;
+    --sn-highlight-color-2: #adb5bd;
+    --sn-highlight-color: #ced4da;
     --grey-6: #dee2e6;
     --grey-7: #e9ecef;
     --grey-8: #f1f3f5;
-    --grey-9: #f8f9fa;
+    --top-3-bg-color: #f8f9fa;
     --trans-black: rgba(33, 37, 42, 0.9);
     --red: #e10600;
     --gold: #ffda65;
@@ -22,7 +21,7 @@ html {
     max-width: 1000px;
     /* max-width: 600px; */
     margin: 0 auto 0;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 0.4rem;
     box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1), 0px 5px 12px rgba(0, 0, 0, 0.07);
 }
@@ -72,7 +71,7 @@ html {
 
 .leaderboard .list__row:first-of-type {
     color: var(--gold-dark);
-    background: var(--grey-9);
+    background: var(--top-3-bg-color);
 }
 
 .leaderboard .list__row:first-of-type .list__cell:first-of-type {
@@ -81,18 +80,18 @@ html {
 }
 
 .leaderboard .list__row:nth-of-type(2) {
-    color: var(--grey-2);
-    background: var(--grey-9);
+    color: var(--color-2);
+    background: var(--top-3-bg-color);
 }
 
 .leaderboard .list__row:nth-of-type(2) .list__cell:first-of-type {
-    background: var(--grey-4);
-    color: var(--grey-2);
+    background: var(--sn-highlight-color-2);
+    color: var(--color-2);
 }
 
 .leaderboard .list__row:nth-of-type(3) {
     color: var(--bronze-dark);
-    background: var(--grey-9);
+    background: var(--top-3-bg-color);
 }
 
 .leaderboard .list__row:nth-of-type(3) .list__cell:first-of-type {
@@ -123,7 +122,7 @@ html {
     max-width: 50px;
     text-align: center;
     padding: 1rem 0.2rem;
-    background: var(--grey-5);
+    background: var(--sn-highlight-color);
 }
 
 @media screen and (max-width:800px) {

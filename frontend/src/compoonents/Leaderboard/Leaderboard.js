@@ -12,7 +12,7 @@ const Leaderboard = () => {
 	console.log("rerender")
 	return (
 		<>
-			< div className="list  " >
+			< div className="list leaderboard  " >
 				<h1 className="heading">Leaderboard</h1>
 				<div className="tabs--">
 					<button onClick={() => { setEndpoint("leaderboard") }}> Global</button>
@@ -20,8 +20,6 @@ const Leaderboard = () => {
 
 				</div>
 				{
-
-
 					<LeaderboardTable endpoint={endpoint} />
 				}
 

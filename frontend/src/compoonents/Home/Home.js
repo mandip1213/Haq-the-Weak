@@ -27,12 +27,26 @@ const Home = () => {
 
 
 	}, [])
-	if (isLoading) return <Loading />
-	if (error) return <div>error</div>;
-	if (feeds.length === 0) return <div>You have no feeds. Try following someone.</div>
+	if (isLoading) return (<div className="activities">
+		<h2 className='heading'>Feed</h2>
+		<Loading /></div>);
+	if (error) return (
+		<div className="activities">
+			<h2 className='heading'>Feed</h2>
+			<div className='loading-error'>error</div>;
+		</div>
+	)
+	if (feeds.length === 0) return (
+		<div className="activities loading">
+			<h2 className='heading'>Feed</h2>
+			<div>You have no feeds. Try following someone.</div>
+		</div>
+	);
+
 	return (
 		<>
 			<div className="activities">
+				<h2 className='heading'>Feed</h2>
 				{feeds.map(feed => {
 					feed.content = "Dont visit this place"
 					const { ratings, content, user: { username, gender, uuid, batch }, vendor: { name: vendorname, location, type_of_place } } = feed;

@@ -18,7 +18,7 @@ const ConfirmScan = () => {
 		document.title = "Trip Bee | Confirm Scan"
 	}, [])
 	if (isLoading) return <Loading />
-	if (error) return <div className='error'>{error}</div>;
+	if (error) return <div className='loading-error'>{error}</div>;
 	const { contact, id, image, latitude, location, longitude, name, rating, type_of_place } = data;
 	const handleChange = ({ target: { name, value } }) => {
 		setScanInput({ ...scanInput, [name]: value })
@@ -53,7 +53,7 @@ const ConfirmScan = () => {
 			</div>
 
 			{contact && <div className="contact">{contact}</div>}
-			<div>
+			<div className="location">
 				<svg
 					className="location-icon"
 					viewBox="0 0 395.71 395.71"

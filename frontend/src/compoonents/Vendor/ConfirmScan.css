@@ -4,6 +4,11 @@
     padding: 1rem 3rem;
 }
 
+.confirm-scan .location {
+    display: flex;
+    align-items: center;
+}
+
 .vendor__main {
     display: flex;
     flex-direction: column;

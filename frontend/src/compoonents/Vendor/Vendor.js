@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useFetch from '../utils/UseFetch';
+import "./Vendor.css"
 import Loading from "../extras/Loading"
 import { Link } from "react-router-dom"
+import Stars from "../Home/Home"
 
 const Vendor = () => {
 	const [vendors, setVendors] = useState({ isLoading: true, _vendors: [], error: false });
@@ -48,22 +49,52 @@ const Vendor = () => {
 			console.log("aborted")
 		}
 	}, [])
-	if (isLoading) {
-		return <Loading />
-	}
+	if (isLoading) return (
+		<div className='vendors-near-me'>
+			<h2 className="heading">Vendors near me</h2>
+			<Loading />
+		</div>)
+
 	if (error) {
-		return <div>Error</div>
+		return (
+			<div className='vendors-near-me'>
+				<h2 className="heading">Vendors near me</h2>
+				<div className='loading-error'>{error} </div>
+			</div>)
 	}
 	return (
-		<div>
+		<div className='vendors-near-me'>
+			<h2 className="heading">Vendors near me</h2>
 			{
 				// vendors.map(({ contact, id, image, is_spponsor, location, name, type_of_place }) => (
 				_vendors.length === 0 ? <div>NO Vendors Fouund Near your Location</div> :
 					_vendors.map((vendor) => {
 						// NOTE externalId is vendor Id in database
-						const { createdAt, description: name, enabled, externalId, geometry, geometryCenter: { coordinates }, geometryRadius, live, mode, tag, type, updatedAt, _id } = vendor;
+						const { metatage: { contact, location }, createdAt, description: name, enabled, externalId, geometry, geometryCenter: { coordinates }, geometryRadius, live, mode, tag, type, updatedAt, _id } = vendor;
 						console.log(coordinates)
-						return (
+						return (<>
+
+
+							<div className="confirm-header">
+								<div className="vendor__main">
+									<div className="name">{name}</div>
+									<div className="type_of_place">{tag}</div>
+								</div>
+								<div className="rating"><Stars ratings={Math.ceil(Math.random() * 3) + 2} /></div>
+							</div>
+							{contact && <div className="contact">{contact ? contact : "9823741782"}</div>}
+							<div className="location">
+								<svg
+									className="location-icon"
+									viewBox="0 0 395.71 395.71"
+									fill="currentColor"
+								>
+									<path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
+		c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+		C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
+		c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/>
+								</svg>{location}</div>
+
 							<div key={_id} style={{ display: "flex", justifyContent: "space-between" }}>
 								<div>
 									<Link
@@ -75,6 +106,8 @@ const Vendor = () => {
 								</div>
 								<div>{tag}</div>
 							</div>
+						</>
+
 						)
 					})
 			}
@@ -82,13 +115,4 @@ const Vendor = () => {
 		</div >
 	)
 };
-function TempVendor() {
-	const { isLoading, data, error } = useFetch("/api/vendor/")
-	return (
-		<div>
-			vendors
-		</div>
-	)
-}
-// export default TempVendor;
 export default Vendor;

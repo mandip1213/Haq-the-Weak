@@ -1,0 +1,9 @@
+.vendors-near-me {
+    padding: 1rem 2rem;
+}
+
+@media screen and (max-width:800px) {
+    .vendors-near-me {
+        padding: 1rem;
+    }
+}
