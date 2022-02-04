@@ -55,7 +55,7 @@ function QRscanner({ setScanStatus }) {
 	const ar = window.outerWidth / window.outerHeight
 	const handleScan = async (data) => {
 		console.log("data  ", data);
-		data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
+		// data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
 
 		if (data) {
 			setQrscan(data)
