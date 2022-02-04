@@ -205,8 +205,7 @@ class RegisterVendorSerializer(serializers.ModelSerializer):
                 'longitude',
                 'image',
                 'type_of_place',
-                'contact',
-                'profile_picture')
+                'contact')
 
     def validate(self, attrs):
         password = attrs['password']
@@ -262,7 +261,8 @@ class PublicUserSerializer(serializers.ModelSerializer):
                 'followers_count',
                 'following_count',
                 'batch',
-                'batch_count')
+                'batch_count',
+                'profile_picture')
 
     @staticmethod
     def get_following_count(self):
