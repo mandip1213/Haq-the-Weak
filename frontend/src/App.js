@@ -17,6 +17,7 @@ import Four04 from './compoonents/extras/404';
 // import QRscanner from './compoonents/Vendor/ScanQR';
 import VendorMap from './compoonents/Vendor/VendorMap';
 import VendorSignup from './compoonents/auth/VendorSignup';
+import TempVendorSignup from './compoonents/auth/TempVendorSignup';
 import useFetch from './compoonents/utils/UseFetch';
 import VendorView from './compoonents/Layout/VendorView';
 // import Loading from './compoonents/extras/Loading';
@@ -28,7 +29,7 @@ const App = () => {
   return (<>
     <Router>
       <Routes>
-        <Route path="/vendor-signup" element={<VendorSignup />}> </Route>
+        <Route path="/vendor-signup" element={<TempVendorSignup />}> </Route>
         <Route path="/signup" element={<Signup />}> </Route>
         <Route path="/login" element={<Login />}> </Route>
 
