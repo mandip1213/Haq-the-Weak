@@ -20,7 +20,7 @@
 
 .header-logo-text {
     font-size: 2rem;
-    color: blue;
+    color: #18b2bb;
     font-weight: bolder;
 }
 
@@ -70,7 +70,7 @@
     flex-shrink: 0; */
     width: 30px;
     height: 30px;
-    color: green;
+    color: #18b2bb;
 }
 
 

@@ -54,7 +54,8 @@
 }
 
 .activity__body {
-    border: 2px solid #384752;
+    border: 2px solid #4e6d6f;
+    /* border: 2px solid #384752; */
     padding: 1rem;
 }
 
@@ -76,6 +77,7 @@
 
 .acitvity__vendor .vendor-name {
     font-size: 1.1rem;
+    color: #18b2bb;
 }
 
 .acitvity__vendor .vendor-type {

@@ -120,7 +120,7 @@ height: 95vh; */
     position: sticky;
     top: 0;
     font-size: 2rem;
-    color: #1010cd;
+    color: #18b2bb;
     font-weight: bolder;
 }
 
@@ -140,12 +140,13 @@ height: 95vh; */
 
 .sidebar-link:hover svg,
 .sidebar-link.active svg {
-    color: green;
+    color: var(--special-text-color)
 }
 
 .sidebar-link:hover a.sidebar-link,
 .sidebar-link.active {
-    color: green !important;
+    color: var(--special-text-color) !important;
+    /* color: green !important; */
 }
 
 @-webkit-keyframes bottom {

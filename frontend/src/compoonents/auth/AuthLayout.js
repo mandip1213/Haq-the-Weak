@@ -16,7 +16,7 @@ const AuthLayout = ({ children }) => {
 						<img src={right} className="right" alt="right" />
 					</div>
 
-					<div className="logo-text">Trip Bee</div>
+					<div className="logo-text">TripBee</div>
 
 				</div>
 

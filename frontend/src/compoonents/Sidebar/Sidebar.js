@@ -11,7 +11,7 @@ const Sidebar = () => {
 		<>
 			<div className="sidebar">
 
-				<div className="logo" >Trip Bee</div>
+				<div className="logo" >TripBee</div>
 				<div className="side-wrapper">
 					<div className="side-menu">
 

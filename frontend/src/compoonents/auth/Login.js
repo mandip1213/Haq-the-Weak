@@ -94,6 +94,7 @@ const Login = () => {
 				<fieldset>
 					<legend className="fs-title">Login</legend>
 					<h3 className='fs-subtitle'	> some senseless text here</h3>
+					{/*  */}
 
 					{error && <div className="error">{error}</div>}
 

@@ -180,7 +180,7 @@ function Signup() {
 				<fieldset>
 
 					<legend className="fs-title">Create  account</legend>
-					<h3 className="fs-subtitle">Some senseless text here </h3>
+					<h3 className="fs-subtitle">Signup or Regret</h3>
 					{error.tab && error.tab === 1 && <div className="error">{error.message}</div>}
 
 					<div className="input-container">
@@ -233,26 +233,26 @@ function Signup() {
 			{tab === 2 &&
 				<fieldset>
 					<legend className="fs-title">Personal Details</legend>
-					<h3 className="fs-subtitle">Some senseless text here</h3>
+					{/* <h3 className="fs-subtitle">We will kee</h3> */}
 					{error.tab && error.tab === 2 && <div className="error">{error.message}</div>}
 
-					<div className="input-container">
-						<label htmlFor="firstname" className="label">firstname</label>
+					<div style={{ paddingTop: "1rem" }} className="input-container">
+						<label htmlFor="firstname" className="label">first Name</label>
 						<input type="text" className="input" value={firstname} id="firstname" name="firstname"
 							onChange={handleChange} />
 					</div>
 
 					<div className="input-container">
-						<label htmlFor="lastname" className="label">lastname</label>
+						<label htmlFor="lastname" className="label">last Name</label>
 						<input type="text" className="input" value={lastname} id="lastname" name="lastname"
 							onChange={handleChange} />
 					</div>
 
 					<div className="input-container">
-						<label htmlFor="home_town" className="label">home_town</label>
+						<label htmlFor="home_town" className="label">home District</label>
 						{/* <select  type="text" className="input" value={home_town} id="home_town" name="home_town"
 							onChange={handleChange} /> */}
-						<select name="home_town" id="home_town">
+						<select name="home_town" id="home_town" value={home_town} onChange={handleChange} >
 
 							{districts.map(district => <option value={district}>{district}</option>)}
 						</select>
@@ -261,8 +261,11 @@ function Signup() {
 
 					<div className="input-container">
 						<label htmlFor="gender" className="label">gender</label>
-						<input type="text" className="input" value={gender} id="gender" name="gender"
-							onChange={handleChange} />
+						<select name="gender" id="gender" value={gender} onChange={handleChange} >
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							{/* <option value="Male">Male</option> */}
+						</select>
 					</div >
 
 					< div className="button-div">
@@ -295,7 +298,7 @@ function Signup() {
 						<label htmlFor="contact" className="label">contact</label>
 						<input type="tel" className="input" name="contact" id="contact"
 							maxLength="10"
-							pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+							// pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
 							value={contact}
 							// required
 							onChange={handleChange} />
@@ -324,12 +327,12 @@ function Signup() {
 
 					< div className="button-div">
 						<button type="button" name="previous" onClick={() => { setTab(2) }} className="previous action-button"  >Previous</button>
-						<button type="submit" name="submit" className="submit action-button"  >Submit</button>
+						<button type="submit" name="submit" className="submit action-button"  >Signup</button>
 					</div>
 				</fieldset>
 			}
 			{/* page 3 */}
-		</form>
+		</form >
 
 	)
 }

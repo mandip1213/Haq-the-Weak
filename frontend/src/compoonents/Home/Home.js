@@ -60,7 +60,7 @@ const Home = () => {
 							<div className="activity__header">
 								<div className="activity__user">
 									<img className="activity__user-image" src="https://images.unsplash.com/photo-1587918842454-870dbd18261a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=943&q=80" />
-									<div>	<Link to={`/profile/${uuid}`}>{username}</Link> visited {location}.</div>
+									<div>	<Link style={{ color: "var(--special-text-color)" }} to={`/profile/${uuid}`}>{username}</Link> visited {location}.</div>
 								</div>
 								<span className="activity__date">10 minutes ago</span>
 

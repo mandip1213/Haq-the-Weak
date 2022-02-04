@@ -11,8 +11,8 @@ const Header = () => {
 
 		const formdata = new FormData()
 		formdata.append("user", "newuser")
-		fetch("http://localhost:8000/api/search/", {
-			body: formdata
+		fetch("http://localhost:8000/api/searchuser/?user=aviato", {
+			// body: formdata
 			// body: JSON.stringify({ user: "newuser" })
 		}).then(res => res.json())
 			.then(res => {

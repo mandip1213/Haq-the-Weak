@@ -98,11 +98,33 @@ body.light {
     --button-font-hover-color: green;
     --feed-border-color: red;
     --feed-separate-color: red;
+    --yellow-touch-color: #f2d250;
+    --yellow-touch-color-2: #fed70d;
+    --special-text-color: #10b810;
+    /* --special-text-color: #edfdfd; */
+    --special-text-color: #fed70d;
+    ;
+    color: #62afbf;
+    /* green */
+    color: #fed70d;
+    /* yellow */
+    color: #f2d250;
+    /* yellow */
+    color: #91cbf4;
+    /* blue */
+    color: #f88787;
+    /* red */
+    color: #edfdfd;
+    /* text light */
     /*  */
     --button-bg: #353340;
     --border-color: rgb(128 129 145 / 24%);
     --video-bg: #252936;
     --delay: 0s;
+}
+
+label {
+    text-transform: capitalize;
 }
 
 

@@ -91,13 +91,13 @@ const Profile = () => {
 								</button>}
 					</div>
 
-					<div className="batches">
+					{/* <div className="batches">
 						<div>ba</div>
 						<div>tc</div>
 						<div>he</div>
-					</div>
+					</div> */}
 					<div className="location">
-
+						Dublin
 						<svg
 							className='location-icon'
 							viewBox="0 0 395.71 395.71"
@@ -108,7 +108,7 @@ const Profile = () => {
 		C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
 		c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/>
 						</svg>
-						Dublin</div>
+					</div>
 					<div className="follow-stats">
 
 						<span>{followers_count}</span>

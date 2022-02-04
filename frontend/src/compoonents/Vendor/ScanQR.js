@@ -100,7 +100,7 @@ function QRscanner({ setScanStatus }) {
 						<div>To give access, follow the following steps:</div>
 					</div>
 					{isMobile() ?
-						<ol className='instructons' >
+						<ol className='instructons' style={{ padding: "1rem" }}>
 							<li data-outlined="false" class="">To the right of the address bar, tap More<strong>&nbsp;</strong>
 								<strong>&#8942;  &gt;  Settings</strong>.</li>
 							<li data-outlined="false" class="">Tap <strong>Site Settings</strong>.</li>
@@ -113,7 +113,7 @@ function QRscanner({ setScanStatus }) {
 								</ul>
 							</li>
 						</ol> :
-						<ol className='instructons'>
+						<ol className='instructons' style={{ padding: "1rem" }}>
 							<li>At the top right, click More
 								<strong>&#8942;  &gt;   Settings</strong>.</li>
 							<li>Click <strong>Privacy and security&nbsp;</strong>
