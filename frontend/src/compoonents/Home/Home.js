@@ -4,11 +4,10 @@ import useGlobalContext from '../utils/Globalcontext';
 import LandingPage from "./LandingPage"
 import "./Home.css"
 import useFetch from '../utils/UseFetch';
+import baseurl from '../../baseurl';
 import Loading from "../extras/Loading"
 
 export const Stars = ({ ratings }) => {
-
-
 	return (<>
 		<span className={`activity__star ${ratings >= 1 && "rated"}`}>&#9733;</span>
 		<span className={`activity__star ${ratings >= 2 && "rated"}`}>&#9733;</span>
@@ -21,12 +20,14 @@ export const Stars = ({ ratings }) => {
 
 const Home = () => {
 	const { isLoading, data: feeds, error } = useFetch("/api/feed/")
-
-	useEffect(() => {
+	const { uuid, access_token } = useGlobalContext()
+	useEffect(async () => {
 		document.title = "Trip Bee | Feed"
 
 
 	}, [])
+
+
 	if (isLoading) return (<div className="activities">
 		<h2 className='heading'>Feed</h2>
 		<Loading /></div>);

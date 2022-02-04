@@ -3,28 +3,38 @@ import URL from "../../baseurl"
 import { Link, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../utils/Globalcontext';
 import "./Signup.css"
+import { Eye } from "./Login"
 
 function Signup() {
 	/* states */
-	const [tab, setTab] = useState(3);
+	const [tab, setTab] = useState(1);
 	const [signupDetails, setsignupDetails] = useState({
 		// email: "",
-		email: "temp@mail.com",
-		username: "ellipsers",
-		password: "temppassword", confirmPassword: "temppassword",
-		gender: "Male",
+		email: "",
+		username: "",
+		password: "", confirmPassword: "",
+		gender: "",
 		birthday: "",
 		// birthday: new Date("2000-01-01").toISOString().substring(0, 10),
-		firstname: "lorem", lastname: "ipsum",
-		bio: "Nepal lies between China and India ", home_town: "Morang",
+		firstname: "", lastname: "",
+		bio: " ", home_town: "",
 		contact: ""
 	})
-	const [error, setError] = useState({})
 
 	// const [signupDetails, setsignupDetails] = useState({
-	// 	email: "", password: "", confirmPassword: "",
-	// 	username: "", firstname: "", lastname: "", bio: "", home_town: "",gender: "",birtthday:"2000-01-01",
+	// 	// email: "",
+	// 	email: "tempp@gmail.com",
+	// 	username: "ellipsers",
+	// 	password: "temppassword", confirmPassword: "temppassword",
+	// 	gender: "Male",
+	// 	birthday: "",
+	// 	// birthday: new Date("2000-01-01").toISOString().substring(0, 10),
+	// 	firstname: "lorem", lastname: "ipsum",
+	// 	bio: "Nepal lies between China and India ", home_town: "Morang",
+	// 	contact: ""
 	// })
+	const [error, setError] = useState({})
+
 
 	const navigate = useNavigate()
 	const { isLoggedIn } = useGlobalContext()
@@ -137,10 +147,24 @@ function Signup() {
 				// "Content-type": "application/json"
 			}
 		}).then(res => res.json())
-			.then(res => console.log(res)).catch(error => {
+			.then(res => {
+				navigate("/login")
+				console.log(res)
+			}).catch(error => {
 				setError({ tab: 3, message: "an unknown error occured" })
 			})
 
+	}
+	const togglePassword = (e) => {
+		e.currentTarget.classList.toggle("show-hide-password")
+		const element = document.querySelector("input.password")
+		element.type = (element.type === "text" ? "password" : "text")
+	}
+	const toggleConfirmPassword = (e) => {
+		/* not time to do in same function */
+		e.currentTarget.classList.toggle("show-hide-password")
+		const element = document.querySelector("input.confirm-password")
+		element.type = (element.type === "text" ? "password" : "text")
 	}
 	return (
 		/* < !--multistep form-- >*/
@@ -169,26 +193,36 @@ function Signup() {
 
 					<div className="input-container">
 						<label htmlFor="username" className="label">Username</label>
+
+
 						<input type="text" className="input" value={username} id="username" name="username" onChange={handleChange} />
 					</div>
 
 					<div className="input-container">
 						<label htmlFor="password" className="label">Password</label>
-						<input type="text" className="input" value={password} id="password" name="password" onChange={handleChange} />
+						<div className="password-input">
+							<input type="password" name="password" id="password" className="input password" value={password} onChange={handleChange} />
+							<span className='show-hide-password' onClick={togglePassword}><Eye />
+							</span>
+						</div>
 					</div >
 
 
 					<div className="input-container">
 						<label htmlFor="confirmPassword" className="label">Confirm Password</label>
-						<input type="text" className="input" value={confirmPassword} id="confirmPassword" name="confirmPassword" onChange={handleChange} />
+						<div className="password-input">
+							<input type="password" name="confirmPassword" id="confirmPassword" className="input confirm-password" value={confirmPassword} onChange={handleChange} />
+							<span className='show-hide-password' onClick={toggleConfirmPassword}><Eye />
+							</span>
+						</div>
 					</div >
 
 					< div className="button-div">
 						<button type="button" name="next" onClick={() => { setTab(2) }}
-							className="next action-button" >Next</button>
+							className="next action-button next-first" >Next</button>
 					</div>
 
-					<div className="naming-is-hard">Already a member? <Link to="/login">login</Link></div>
+					<div className="to-login">Already a member? <Link to="/login">login</Link></div>
 
 				</fieldset>
 			}

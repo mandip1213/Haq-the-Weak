@@ -14,7 +14,7 @@ import EditProfile from './compoonents/Profile/EditProfile';
 import ScanQR from './compoonents/Vendor/ScanQR';
 import ConfirmScan from './compoonents/Vendor/ConfirmScan.js';
 import Four04 from './compoonents/extras/404';
-import QRscanner from './compoonents/Vendor/ScanQR';
+// import QRscanner from './compoonents/Vendor/ScanQR';
 import VendorMap from './compoonents/Vendor/VendorMap';
 import VendorSignup from './compoonents/auth/VendorSignup';
 import useFetch from './compoonents/utils/UseFetch';
@@ -22,6 +22,7 @@ import VendorView from './compoonents/Layout/VendorView';
 // import Loading from './compoonents/extras/Loading';
 const App = () => {
   const { isVendor } = useGlobalContext()
+
 
   useFetch("/api/vendor/570c8161-d7fb-4c70-98f2-faa8c8898e07/")
   return (<>

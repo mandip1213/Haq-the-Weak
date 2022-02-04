@@ -70,7 +70,7 @@ const Vendor = () => {
 				_vendors.length === 0 ? <div>NO Vendors Fouund Near your Location</div> :
 					_vendors.map((vendor) => {
 						// NOTE externalId is vendor Id in database
-						const { metatage: { contact, location }, createdAt, description: name, enabled, externalId, geometry, geometryCenter: { coordinates }, geometryRadius, live, mode, tag, type, updatedAt, _id } = vendor;
+						const { metatag, createdAt, description: name, enabled, externalId, geometry, geometryCenter: { coordinates }, geometryRadius, live, mode, tag, type, updatedAt, _id } = vendor;
 						console.log(coordinates)
 						return (<>
 
@@ -82,7 +82,7 @@ const Vendor = () => {
 								</div>
 								<div className="rating"><Stars ratings={Math.ceil(Math.random() * 3) + 2} /></div>
 							</div>
-							{contact && <div className="contact">{contact ? contact : "9823741782"}</div>}
+							{/* {contact && <div className="contact">{contact ? contact : "9823741782"}</div>} */}
 							<div className="location">
 								<svg
 									className="location-icon"
@@ -93,7 +93,11 @@ const Vendor = () => {
 		c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
 		C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
 		c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/>
-								</svg>{location}</div>
+								</svg>
+
+								{/* {location} */}
+
+							</div>
 
 							<div key={_id} style={{ display: "flex", justifyContent: "space-between" }}>
 								<div>

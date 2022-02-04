@@ -111,8 +111,7 @@ const Login = () => {
 						</div>
 					</div>
 
-					<div className="forgot-password"><Link to="/login " className="hover-link">forgot password?</Link></div>
-					<button type="submit" className=" action-button">Login</button>
+					<button type="submit" className="login action-button">Login</button>
 
 					<div className="to-signup">Don't have an account ?   <Link to="/signup" className="hover-link">signup</Link></div>
 				</fieldset>
@@ -146,4 +145,5 @@ function Eye() {
 		</svg>
 	)
 }
-export default (Login)
+export default Login
+export { Eye }

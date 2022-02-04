@@ -89,6 +89,10 @@
     margin: 10px 5px;
 }
 
+.next.next-first {
+    width: 100% !important;
+}
+
 #signup-form .action-button:hover,
 #signup-form .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
@@ -151,6 +155,10 @@
 #progressbar li:first-child:after {
     /*connector not needed before the first step*/
     content: none;
+}
+
+.to-login {
+    text-align: center;
 }
 
 
