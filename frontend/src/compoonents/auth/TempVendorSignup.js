@@ -79,8 +79,8 @@ const VendorSignup = () => {
 		formdata.append("confirm_password", confirm_password)
 		formdata.append("name", name)
 		formdata.append("latitude", latitude)
-		formdata.append("longitude", longitude)
-		formdata.append("location", location)
+		formdata.append("longitude", longitude.toFixed(6))
+		formdata.append("location", location.toFixed(6))
 		formdata.append("type_of_place", type_of_place)
 		formdata.append("contact", contact)
 
