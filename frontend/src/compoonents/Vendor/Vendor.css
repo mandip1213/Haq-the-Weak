@@ -1,5 +1,8 @@
 .vendors-near-me {
     padding: 1rem 2rem;
+    max-width: 1000px;
+    margin: auto;
+    font-size: 1.1rem;
 }
 
 @media screen and (max-width:800px) {

@@ -35,7 +35,7 @@
     background-color: rgba(39, 174, 95, 1);
 }
 
-.name>span {
+.profile-card .name>span {
     margin-right: 0.5rem;
 }
 
@@ -65,7 +65,7 @@
     align-items: flex-start;
 }
 
-.name {
+.profile-card .name {
     color: #EEEDF0;
     font-size: 1.5rem;
     font-weight: 600;

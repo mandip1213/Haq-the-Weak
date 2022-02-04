@@ -43,6 +43,12 @@
     flex-direction: column;
 }
 
+.vendor__main .name {
+    color: #18b2bb;
+    display: flex;
+    flex-direction: column;
+}
+
 .confirm-header {
     display: flex;
     justify-content: space-between;

@@ -96,6 +96,9 @@ const Profile = () => {
 						<div>tc</div>
 						<div>he</div>
 					</div> */}
+
+					{/* TODO public vendor */}
+
 					<div className="location">
 						Dublin
 						<svg
