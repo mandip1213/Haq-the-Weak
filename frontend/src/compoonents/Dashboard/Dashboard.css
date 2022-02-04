@@ -1,0 +1,17 @@
+.emergency-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width:800px) {
+    .emergency-class {
+        flex-direction: column;
+        align-items: start;
+        padding-bottom: 0.5rem;
+        ;
+    }
+    .total-score>h2 {
+        margin-left: 1rem;
+    }
+}

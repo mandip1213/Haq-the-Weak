@@ -32,9 +32,14 @@ a {
     color: blue;
 }
 
+select {
+    padding: 0.25rem 0.5rem
+}
+
 .location-icon {
     margin-right: 0.25rem;
-    width: 30px;
+    margin-left: 0.25rem;
+    width: 20px;
     aspect-ratio: 1/1;
 }
 

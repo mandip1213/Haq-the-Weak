@@ -4,6 +4,35 @@
     padding: 1rem 3rem;
 }
 
+@media screen and (max-width:800px) {
+    .confirm-scan {
+        padding: 1rem 2rem 1rem 1rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .confirm-scan {
+        padding: 1rem 1rem;
+    }
+}
+
+.action-button {
+    background-color: rgba(39, 174, 95, 0.8);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+.action-button:hover,
+.action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    background-color: rgba(39, 174, 95, 1);
+}
+
 .confirm-scan .location {
     display: flex;
     align-items: center;

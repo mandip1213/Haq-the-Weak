@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Loading from '../extras/Loading';
+import "./Dashboard.css"
 import useFetch from '../utils/UseFetch';
 const Dashboard = () => {
 
@@ -42,18 +43,17 @@ const Dashboard = () => {
 		<h1 className="head">Dashboard</h1>
 		<div className="list__body">
 
-			<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+			<div className='emergency-class' >
 
 				<div className="left" style={{ display: "flex", alignItems: "center" }}>
 					<div className="name ">
 						<img className="user__image" /* tempclass */ src={profile_picture ? profile_picture : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"} alt="" /></div>
 					<div className="name"><h3>{username}</h3></div>
 				</div>
-
-				<div>
+				<div className='total-score'>
 					{/* TODO batches  */}
 					{/* TODO peronal links facebook social media */}
-					<h2>Total Reascore: 505</h2>
+					<h2>Total Score: 505</h2>
 				</div>
 
 			</div>

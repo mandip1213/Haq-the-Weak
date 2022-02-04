@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../utils/Globalcontext';
 import "./Signup.css"
 import { Eye } from "./Login"
+import districts from './district';
 
 function Signup() {
 	/* states */
@@ -249,8 +250,12 @@ function Signup() {
 
 					<div className="input-container">
 						<label htmlFor="home_town" className="label">home_town</label>
-						<input type="text" className="input" value={home_town} id="home_town" name="home_town"
-							onChange={handleChange} />
+						{/* <select  type="text" className="input" value={home_town} id="home_town" name="home_town"
+							onChange={handleChange} /> */}
+						<select name="home_town" id="home_town">
+
+							{districts.map(district => <option value={district}>{district}</option>)}
+						</select>
 					</div >
 
 

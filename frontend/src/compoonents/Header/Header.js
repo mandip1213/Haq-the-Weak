@@ -7,7 +7,20 @@ import useGlobalContext from '../utils/Globalcontext';
 const Header = () => {
 	const { uuid } = useGlobalContext()
 
+	React.useEffect(() => {
 
+		const formdata = new FormData()
+		formdata.append("user", "newuser")
+		fetch("http://localhost:8000/api/search/", {
+			body: formdata
+			// body: JSON.stringify({ user: "newuser" })
+		}).then(res => res.json())
+			.then(res => {
+				console.log("res from /api/search", res)
+			})
+
+
+	}, [])
 	return (
 		<div className="header">
 
