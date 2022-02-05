@@ -65,7 +65,7 @@ function QRscanner() {
 		// data = "7f94ecad-f701-4f62-a352-1769de728e38"  /*   Gen Z Bakery Cafe */
 		// data = "75662d04-1fbe-4cdb-bf92-56025776a278"  /*   The Chitwan Lodge */
 		// "74452850 - d71d - 4270 - 9832 - 9ecffac0a6f2"  /*   The Raven Cafe */
-		// "2bf6fc55 - ae19 - 47fc - a351 - 05f42d79d60a"  /*   Panipuri Nation */
+		// data = "2bf6fc55-ae19-47fc-a351-05f42d79d60a"  /*   Panipuri Nation */
 		// data = "11488800-9a53-4d92-a002-8c6a9a64581a"  /*   Hotel Everest Inn */
 
 		if (data) {

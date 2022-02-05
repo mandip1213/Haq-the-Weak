@@ -32,11 +32,14 @@ const ConfirmScan = () => {
 				})
 			}
 		})
+		console.log("addded res", res)
+		navigate("/dashboard")
 		if (res === 1) {
 			//success
-			navigate("/dashboard")
+			console.log("succerss")
 		} else {
 			//failure
+			console.log("faiolue")
 			setError("Sorry The Vendor QR couldnot be scanned.")
 		}
 	}
