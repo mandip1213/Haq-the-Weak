@@ -187,7 +187,7 @@ const VendorSignup = () => {
 					<input type="file" id="profile_picture" name="profile_picture" ref={profile_picture} />
 				</div>
 
-				<button>Signup</button>
+				<button className="vendor-signup action-button">Signup</button>
 
 				<div className="naming-is-hard">Already a member? <Link to="/login">login</Link></div>
 			</fieldset>

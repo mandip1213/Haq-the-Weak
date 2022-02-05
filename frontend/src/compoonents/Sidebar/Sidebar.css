@@ -3,7 +3,7 @@ img {
 }
 
 div#root {
-    font-family: var(--body-font);
+    /* font-family: var(--body-font); */
     color: var(--body-color);
     width: 100%;
 }

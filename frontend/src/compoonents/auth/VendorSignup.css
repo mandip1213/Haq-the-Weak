@@ -7,10 +7,29 @@ form.vendor-signup {
 .vendor-signup fieldset {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px 2px var(--special-text-color);
+    /* box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); */
     padding: 2rem;
+    background-color: white;
     margin: auto;
     border: none;
+}
+
+button.vendor-signup {
+    background-color: rgba(39, 174, 95, 0.8);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+button.vendor-signup:hover,
+button.vendor-signup:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    background-color: rgba(39, 174, 95, 1);
 }
 
 .vendor-signup legend {

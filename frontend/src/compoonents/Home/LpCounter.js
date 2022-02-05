@@ -19,8 +19,8 @@ const LpCounter = () => {
 						Get connected with TripBee as a Partner and Join us in the Adventure to Digitalize the Nepalese Tourism!
 					</p>
 
-					<a href="#">Sign Up as a Vendor <i className="fas fa-arrow-circle-right"></i
-					></a>
+					<Link to="/vendor-signup">Sign Up as a Vendor <i className="fas fa-arrow-circle-right"></i
+					></Link>
 				</div>
 
 			</div>

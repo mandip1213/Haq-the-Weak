@@ -10,10 +10,10 @@ const VendorSignup = () => {
 	// 	'longitude': "", 'image': "", 'type_of_place': "", 'contact': ""
 	// }
 	const initialState = {
-		'username': "Hamro cafe", 'email': "vendor@gmail.com",
-		'password': "password",
-		'confirm_password': "password", 'name': "Hamro cafe", 'location': "Chitwan", 'latitude': "",
-		'longitude': "", 'image': "", 'type_of_place': "Cafe", 'contact': 98_322_111_34,
+		'username': "", 'email': "",
+		'password': "",
+		'confirm_password': "", 'name': "", 'location': "Chitwan", 'latitude': "",
+		'longitude': "", 'image': "", 'type_of_place': "Cafe", 'contact': 0,
 		latitude: 0, longitude: 0
 	}
 	const [vendorSignup, setVendorSignup] = useState(initialState);
@@ -216,7 +216,7 @@ const VendorSignup = () => {
 					<input type="file" id="profile_picture" name="profile_picture" ref={profile_picture} />
 				</div>
 
-				<button>Signup</button>
+				<button className="vendor-signup">Signup</button>
 
 				<div className="naming-is-hard">Already a member? <Link to="/login">login</Link></div>
 			</fieldset>

@@ -59,18 +59,21 @@ const Login = () => {
 		catch (error) {
 			return setError("An unknown error occured")
 		}
-		const { access: access_token, refresh: refresh_token, uuid, is_vendor: isVendor } = result
+		const { access: access_token, refresh: refresh_token, uuid, is_vendor: isVendor, username, profile_picture } = result
 
-		if (access_token && refresh_token && uuid && isVendor) {
+		if (access_token && refresh_token && uuid && isVendor && username) {
 			console.log("hello");
 			localStorage.setItem("refresh_token", JSON.stringify(refresh_token));
 			localStorage.setItem("access_token", JSON.stringify(access_token));
 			localStorage.setItem("uuid", JSON.stringify(uuid))
+			localStorage.setItem("username", JSON.stringify(username))
+			localStorage.setItem("profile_picture", JSON.stringify(profile_picture))
 			localStorage.setItem("isVendor", JSON.stringify((isVendor == "False" ? false : true)))
 			dispatch({
 				type: "LOGIN",
 				payload: {
 					access_token: access_token,
+					username, profile_picture,
 					refresh_token: refresh_token,
 					uuid, isVendor: (isVendor == "False" ? false : true)
 				}
@@ -78,6 +81,7 @@ const Login = () => {
 			return;
 		} else {
 			console.log("not enough field on respnse");
+			setError("Invalid account")
 		}
 
 

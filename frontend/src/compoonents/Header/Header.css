@@ -37,7 +37,7 @@
     border: none;
     background-color: var(--button-bg);
     border-radius: 8px;
-    font-family: var(--body-font);
+    /* font-family: var(--body-font); */
     font-size: 14px;
     font-weight: 500;
     padding: 0 40px 0 16px;

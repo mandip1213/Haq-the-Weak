@@ -6,6 +6,8 @@ const initialState = {
 
 	access_token: "",
 	refresh_token: "",
+	username: "",
+	profile_picture: "",
 	uuid: "",
 	isLoggedIn: false,
 	isVendor: false
@@ -15,12 +17,16 @@ const initializeState = (state) => {
 	let access_token = localStorage.getItem("access_token");
 	let uuid = localStorage.getItem("uuid")
 	let isVendor = localStorage.getItem("isVendor")
-	if (access_token && refresh_token && uuid) {
+	let username = localStorage.getItem("username")
+	let profile_picture = localStorage.getItem("profile_picture")
+	if (access_token && refresh_token && uuid && username) {
 		refresh_token = JSON.parse(refresh_token)
 		access_token = JSON.parse(access_token)
 		isVendor = JSON.parse(isVendor)
 		uuid = JSON.parse(uuid)
-		return { ...state, access_token, refresh_token, uuid, isLoggedIn: true, isVendor }
+		username = JSON.parse(username)
+		profile_picture = JSON.parse(profile_picture)
+		return { ...state, access_token, refresh_token, uuid, isLoggedIn: true, isVendor, username, profile_picture }
 	}
 	return state
 }

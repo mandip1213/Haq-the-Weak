@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from '../extras/Loading';
 import "./Dashboard.css"
 import useFetch from '../utils/UseFetch';
+import Male from "../images/boyprofile.jpg"
+import Female from "../images/girlprofile.jpg"
+import Vendor from "../images/vendor.jpeg"
 const Dashboard = () => {
-
 	const { isLoading, data: dashboard, error } = useFetch("/api/dashboard/");
 
 	// const { isLoading, data: dashboard, error } = useFetch("/api/visit/");
@@ -38,8 +40,9 @@ const Dashboard = () => {
 
 		)
 	}
+	const total = dashboard.reduce((prev, curr) => (prev + curr.score), 0)
 	const user = dashboard[0].user
-	const { first_name, last_name, username, profile_picture, batch, batch_count, total_score } = user;
+	const { gender, first_name, last_name, username, profile_picture, batch, batch_count, total_score } = user;
 	// const { first_name, last_name, username, date_of_birth, gender, profile_picture, uuid, followers_count, following_count, followers, following, batch, batch_count } = user;
 
 	/*
@@ -52,13 +55,14 @@ const Dashboard = () => {
 
 				<div className="left" style={{ display: "flex", alignItems: "center" }}>
 					<div className="name ">
-						<img className="user__image" /* tempclass */ src={profile_picture ? profile_picture : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"} alt="" /></div>
+						<img className="user__image" /* tempclass */ src={profile_picture ? profile_picture :
+							(gender === "Male" ? Male : Female)} /></div>
 					<div className="name"><h3>{username}</h3></div>
 				</div>
 				<div className='total-score'>
 					{/* TODO batches  */}
 					{/* TODO peronal links facebook social media */}
-					<h2>Total Score: 505</h2>
+					<h2>Total Score: {total}</h2>
 				</div>
 
 			</div>
@@ -78,8 +82,8 @@ const Dashboard = () => {
 
 					{dashboard.length !== 0 && dashboard.map(({ user, vendor, id, score }, index) => {
 						let { name, location, image, type_of_place } = vendor
-						image = image ? image : "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg"
-
+						image = image ? image : Vendor
+						// setTotal(prev => prev + score)
 						return (
 							<tr key={id} className='list__row'>
 								<td className="list__cell"><span className="list__value">{index + 1}</span></td>

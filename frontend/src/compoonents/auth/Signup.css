@@ -29,6 +29,7 @@
 /*form styles*/
 
 #signup-form {
+    box-shadow: 0 0 10px 2px var(--special-text-color);
     width: 400px;
     margin: 2rem auto;
     /* text-align: center; */
@@ -73,7 +74,7 @@
     border-radius: 3px;
     margin-bottom: 10px;
     width: 100%;
-    font-family: montserrat;
+    /* font-family: montserrat; */
     color: #2C3E50;
 }
 

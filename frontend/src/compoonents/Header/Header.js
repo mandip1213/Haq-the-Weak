@@ -3,9 +3,10 @@ import "./Header.css";
 import { Link } from "react-router-dom"
 import Toggledark from './Toggledark';
 import useGlobalContext from '../utils/Globalcontext';
+import Profilepic from "../images/boyprofile.jpg"
 
 const Header = () => {
-	const { uuid } = useGlobalContext()
+	const { uuid, username, profile_picture } = useGlobalContext()
 
 	React.useEffect(() => {
 
@@ -45,9 +46,9 @@ const Header = () => {
 					<Link to={`/profile/${uuid}`}>
 
 						<img className="user-img"
-							src="https://images.unsplash.com/photo-1587918842454-870dbd18261a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=943&q=80" alt="" />
+							src={profile_picture ? profile_picture : Profilepic} alt="" />
 					</Link>
-					<div className="user-name">Thomas</div>
+					<div className="user-name">{username}</div>
 				</div>
 
 				{/* 	<svg viewBox="0 0 492 492" fill="currentColor">

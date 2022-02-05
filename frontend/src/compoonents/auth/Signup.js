@@ -141,19 +141,55 @@ function Signup() {
 		// 	console.log(key, values);
 		// }
 
-		fetch(`${URL}/api/user/`, {
-			method: "POST",
-			body: formdata,
-			headers: {
-				// "Content-type": "application/json"
-			}
-		}).then(res => res.json())
-			.then(res => {
-				navigate("/login")
-				console.log(res)
-			}).catch(error => {
-				setError({ tab: 3, message: "an unknown error occured" })
-			})
+		// fetch(`${URL}/api/user/`, {
+		// 	method: "POST",
+		// 	body: formdata,
+		// 	headers: {
+		// 		// "Content-type": "application/json"
+		// 	}
+		// }).then(res => res.json())
+		// 	.then(res => {
+		// 		navigate("/login")
+		// 		console.log(res)
+		// 	}).catch(error => {
+		// 		setError({ tab: 3, message: "an unknown error occured" })
+		// 	})
+
+
+
+		if (window.navigator.geolocation) {
+			// Geolocation available
+			window.navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+				if (!latitude || !longitude)
+					return;
+				console.table(latitude, longitude)
+				console.log("test")
+				formdata.append("home_latitude", latitude)
+				formdata.append("home_longitude", longitude)
+				fetch(`${URL}/api/user/`, {
+					method: "post",
+					body: formdata,
+				}).then(res => res.json())
+					.then(res => {
+						console.log(res)
+						navigate("/login")
+					})
+					.catch(error => {
+						console.log("error   ", error)
+						setError({ tab: 3, message: "An error occured" })
+					})
+
+			}, (error) => {
+				console.log("geolocation error", error)
+				if (error.code === 1 && error.message.includes("denied"))
+					alert("Please allow access to location")
+				setError({ tab: 3, message: "Allow acces to location for signup. " })
+			});
+
+		} else {
+			setError({ tab: 3, message: "There is no gps available in your device. Try again with another device." })
+
+		}
 
 	}
 	const togglePassword = (e) => {

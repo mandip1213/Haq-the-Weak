@@ -58,6 +58,8 @@ function QRscanner() {
 		console.log("data  ", data);
 		// data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
 		// data = "75662d04-1fbe-4cdb-bf92-56025776a278"
+		data = "9e1d2255-ee2e-4877-865e-f3381c1eeeab"
+
 
 		if (data) {
 			setQrscan(data)
