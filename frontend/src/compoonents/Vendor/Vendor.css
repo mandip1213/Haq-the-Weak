@@ -5,6 +5,26 @@
     font-size: 1.1rem;
 }
 
+.vendor-near-me {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-bottom: 2px solid #4e6d6f;
+}
+
+a.show-direction:hover {
+    color: #eedf8b;
+}
+
+a.show-direction {
+    color: #FEF9DE;
+}
+
+body.light a.show-direction :hover {}
+
+body.light a.show-direction {
+    color: var(--special-text-color)
+}
+
 @media screen and (max-width:800px) {
     .vendors-near-me {
         padding: 1rem;

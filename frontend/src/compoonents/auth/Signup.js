@@ -14,11 +14,11 @@ function Signup() {
 		email: "",
 		username: "",
 		password: "", confirmPassword: "",
-		gender: "",
+		gender: "Male",
 		birthday: "",
 		// birthday: new Date("2000-01-01").toISOString().substring(0, 10),
 		firstname: "", lastname: "",
-		bio: " ", home_town: "",
+		bio: " ", home_town: "Kathmandu",
 		contact: ""
 	})
 
@@ -44,7 +44,7 @@ function Signup() {
 	/* use effect */
 
 	React.useEffect(() => {
-		document.title = "Trip Bee | Signup"
+		document.title = "TripBee | Signup"
 
 		if (isLoggedIn) {
 			navigate("/");

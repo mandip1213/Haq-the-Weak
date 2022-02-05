@@ -17,7 +17,7 @@ const Login = () => {
 	const { email, password } = loginDetails;
 
 	React.useEffect(() => {
-		document.title = "Trip Bee | Login"
+		document.title = "TripBee | Login"
 		if (isLoggedIn) {
 			navigate("/");
 		}
@@ -93,7 +93,7 @@ const Login = () => {
 
 				<fieldset>
 					<legend className="fs-title">Login</legend>
-					<h3 className='fs-subtitle'	> some senseless text here</h3>
+					<h3 className='fs-subtitle'	> Get , Set and Go !</h3>
 					{/*  */}
 
 					{error && <div className="error">{error}</div>}

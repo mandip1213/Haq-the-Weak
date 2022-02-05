@@ -7,13 +7,13 @@ import { Link } from "react-router-dom"
 const Leaderboard = () => {
 	const [endpoint, setEndpoint] = useState("leaderboard");
 	useEffect(() => {
-		document.title = "Trip Bee | Leaderboard"
+		document.title = "TripBee | Leaderboard"
 	}, [])
 	console.log("rerender")
 	return (
 		<>
 			< div className="list leaderboard  " >
-				<h1 className="heading">Leaderboard</h1>
+				<h1 className="heading outline-heading">Leaderboard</h1>
 				<div className="tabs--">
 					<button onClick={() => { setEndpoint("leaderboard") }}> Global</button>
 					<button onClick={() => { setEndpoint("following-leaderboard") }}> Followings</button>

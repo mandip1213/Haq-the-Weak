@@ -22,7 +22,7 @@ const VendorSignup = () => {
 
 	useEffect(() => {
 
-		document.title = "Trip Bee | Vendor Signup"
+		document.title = "TripBee | Vendor Signup"
 
 	}, [])
 

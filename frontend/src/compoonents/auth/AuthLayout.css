@@ -2,8 +2,11 @@
     margin: 0 auto;
     /* box-sizing: border-box; */
     padding: 1rem 2rem;
-    border: 2px solid green;
+    /* border: 2px solid green; */
+    background: white;
     width: 450px;
+    border-radius: 10px;
+    margin-top: 1rem;
 }
 
 .logo-wrapper {

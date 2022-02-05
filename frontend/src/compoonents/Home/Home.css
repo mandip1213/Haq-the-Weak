@@ -14,6 +14,7 @@
     padding-left: 0 !important;
     margin-bottom: 1rem;
     border-bottom: 2px solid black;
+    padding-bottom: 2rem;
 }
 
 .activity:last-child {
@@ -22,10 +23,16 @@
 
 .activity__star.rated {
     color: yellow;
+    font-size: 1.25rem;
     ;
 }
 
+body.light .activity__star.rated {
+    color: #bbbb0d
+}
+
 .activity__header {
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

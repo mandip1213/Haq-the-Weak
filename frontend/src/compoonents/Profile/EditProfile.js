@@ -13,7 +13,7 @@ const EditProfile = () => {
 	const [error, setError] = useState("")
 
 	useEffect(() => {
-		document.title = "Trip Bee | Edit Profile"
+		document.title = "TripBee | Edit Profile"
 	}, [])
 	const handleEditProfile = async (e) => {
 		e.preventDefault()

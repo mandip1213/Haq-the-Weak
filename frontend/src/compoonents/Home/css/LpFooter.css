@@ -1,0 +1,40 @@
+footer {
+    background-color: var(--dark-blue-3);
+    padding: 5rem;
+    overflow: hidden;
+    color: var(--blue)
+}
+
+.lp-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-start {
+    display: flex;
+    gap: 0.5rem
+}
+
+@media screen and (max-width:800px) {
+    footer {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .lp-footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem
+    }
+}
+
+.footer-nav a {
+    color: var(--blue)
+}
+
+.lp-address {
+    display: flex;
+    align-items: center;
+}

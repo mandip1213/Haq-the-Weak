@@ -16,6 +16,12 @@ html {
     --bronze-dark: #80582c;
 }
 
+.tabs-- {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .list {
     width: 100%;
     max-width: 1000px;

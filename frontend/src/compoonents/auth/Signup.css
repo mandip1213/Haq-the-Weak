@@ -33,7 +33,10 @@
     margin: 2rem auto;
     /* text-align: center; */
     position: relative;
-    border: 2px solid green;
+    background: white;
+    border-radius: 10px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 #signup-form fieldset {

@@ -53,6 +53,25 @@ select {
     padding-left: 0;
 }
 
+.outline-heading {
+    color: #18b2bb !important
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
+.name span {
+    /* color: */
+    text-transform: capitalize;
+}
+
+body.light .name span {
+    color: #18b2bb;
+    ;
+    text-transform: capitalize;
+}
+
 body.light {
     --main-bg-color: rgba(255, 255, 255, 0.849) !important;
     --body-font: "Inter", sans-serif !important;
@@ -61,6 +80,11 @@ body.light {
     --border-color: rgb(128 129 145 / 24%) !important;
     --video-bg: #252936 !important;
     --delay: 0s !important;
+    background-color: white;
+}
+
+body.light .outlet>div {
+    background: white;
 }
 
 :root {
@@ -84,6 +108,7 @@ body.light {
     --border-color: rgb(128 129 145 / 24%) !important;
     --video-bg: #252936 !important;
     --delay: 0s !important;
+    --special-text-color: #979721 !important;
 }
 
 :root {

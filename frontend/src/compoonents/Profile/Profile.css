@@ -13,6 +13,10 @@
     margin-left: auto;
 }
 
+.profile-action a {
+    color: white;
+}
+
 .profile-action {
     width: 100px;
     background-color: rgba(39, 174, 95, 0.8);
@@ -107,7 +111,7 @@
 
 .numbers .item span {
     display: block;
-    color: #2c3a47;
+    color: var(--special-text-color);
     font-size: 30px;
 }
 

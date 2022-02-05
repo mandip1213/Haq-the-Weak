@@ -15,11 +15,8 @@ const ConfirmScan = () => {
 	const [scanInput, setScanInput] = useState({ rating: 3, privacy: "public" });
 	const [_error, setError] = useState("");
 	useEffect(() => {
-		document.title = "Trip Bee | Confirm Scan"
+		document.title = "TripBee | Confirm Scan"
 	}, [])
-	if (isLoading) return <Loading />
-	if (error) return <div className='loading-error'>{error}</div>;
-	const { contact, id, image, latitude, location, longitude, name, rating, type_of_place } = data;
 	const handleChange = ({ target: { name, value } }) => {
 		setScanInput({ ...scanInput, [name]: value })
 	}
@@ -41,18 +38,27 @@ const ConfirmScan = () => {
 			setError("Sorry The Vendor QR couldnot be scanned.")
 		}
 	}
-	return (<>
-		<div className="confirm-scan">
 
-			<div className="confirm-header">
+	if (isLoading) return (<div className="confirm-scan--">
+		<h2 className="outline-heading">Confirm Scan</h2><Loading />
+	</div>)
+	if (error) return (<div className="confirm-scan--">
+		<h2 className="outline-heading">Confirm Scan</h2>
+		<div className='loading-error'>{error}</div>
+	</div>)
+	const { contact, id, image, latitude, location, longitude, name, rating, type_of_place } = data;
+	return (<>
+		<div className="confirm-scan--">
+			<h2 className="outline-heading">Confirm Scan</h2>
+			<div className="mmmm confirm-header--">
 				<div className="vendor__main">
 					<div className="name">{name}</div>
 					<div className="type_of_place">{type_of_place}</div>
 				</div>
-				<div className="rating"><Stars ratings={rating} /></div>
+				<div className="rating"><Stars ratings={rating ? rating : Math.floor(Math.random() * 3) + 2} /></div>
 			</div>
 
-			<div className="location">
+			<div className="mmmm location">
 				{location}
 				<svg
 					className="location-icon"
@@ -66,11 +72,11 @@ const ConfirmScan = () => {
 				</svg>
 			</div>
 
-			{contact && <div className="contact">{contact}</div>}
+			{contact && <div className="mmmm contact">{contact}</div>}
 
 
 			<div className="form-type">
-				<div className="privacy">
+				<div className="mmmm privacy">
 					<label htmlFor="privacy">Privacy</label>
 
 					<select name="privacy" id="privacy"
@@ -81,7 +87,7 @@ const ConfirmScan = () => {
 						<option value="private">private</option>
 					</select>
 				</div>
-				<div className="input-type">
+				<div className="mmmm input-type">
 					<label htmlFor="rating">Ratings</label>
 					<input type="number" min="1" max="5" name="rating" id="rating"
 						value={scanInput.rating}

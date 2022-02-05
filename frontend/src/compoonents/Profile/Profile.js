@@ -18,7 +18,7 @@ const Profile = () => {
 	const [following, setFollowing] = useState(false);
 	// const [error, setError] = useState("");
 	useEffect(() => {
-		document.title = "Trip Bee | Profile"
+		document.title = "TripBee | Profile"
 	}, [])
 	useEffect(() => {
 		if (isLoading) return;

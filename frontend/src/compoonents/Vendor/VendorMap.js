@@ -16,12 +16,12 @@ const VendorMap = (props) => {
 	console.log(name, "  name")
 	console.log(tag, "  tag")
 	useEffect(() => {
-		document.title = "Trip Bee | Vendor Near Me"
+		document.title = "TripBee | Vendor Near Me"
 		/* TODO change title to vendor name */
 	}, [])
 
 	return (
-		<div class="vendor-map">
+		<div className="vendor-map">
 			<div className="name" >{name}</div>
 			<div className="type_of_place">{tag}</div>
 			<div className="temp">

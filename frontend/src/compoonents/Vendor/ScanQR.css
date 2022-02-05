@@ -1,6 +1,11 @@
 .qr-scanner {
     width: fit-content;
-    padding: 1rem;
+    padding: 1rem 0;
+}
+
+.add-vendor button {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .qr-scanner video {
@@ -8,6 +13,22 @@
     max-width: 300px;
     margin-right: 0;
     aspect-ratio: 1/1 !important;
+}
+
+.add-vendor {
+    padding: 1rem 2rem;
+    margin: auto;
+    margin-top: 3rem;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.scanning {
+    font-size: 1.5rem;
+    ;
 }
 
 .qr-scanner section {

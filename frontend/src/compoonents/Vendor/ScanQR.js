@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useGlobalContext from '../utils/Globalcontext';
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import QrScan from 'react-qr-scanner';
 import "./ScanQR.css"
 import useFetch from '../utils/UseFetch';
@@ -19,23 +19,24 @@ function isMobile() {
 	});
 }
 const ScanQR = () => {
-	const [scanStatus, setScanStatus] = useState(true);
+	const navigate = useNavigate()
+
 	useEffect(() => {
-		document.title = "Trip Bee | Scan QR"
+		document.title = "TripBee | Scan QR"
 	}, [])
 	return (
-		<div className="add">
-			< button className="action-button "
-				onClick={() => { setScanStatus(prev => !prev) }}
-			>
-				{scanStatus ? "Cancel Scan" : "Scan QR"}
+		<div className="add-vendor">
+
+			<h2 className="outline-heading">QR Scanner</h2>
+			<QRscanner />
+			< button className="action-button ">
+				<Link to="/">	Cancel Scan</Link>
 			</button>
-			{scanStatus && <QRscanner setScanStatus={setScanStatus} />}
 		</div>
 	)
 };
 
-function QRscanner({ setScanStatus }) {
+function QRscanner() {
 	const navigate = useNavigate()
 	const { access_token } = useGlobalContext()
 	const [qrscan, setQrscan] = useState('No result');
@@ -56,6 +57,7 @@ function QRscanner({ setScanStatus }) {
 	const handleScan = async (data) => {
 		console.log("data  ", data);
 		// data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
+		// data = "75662d04-1fbe-4cdb-bf92-56025776a278"
 
 		if (data) {
 			setQrscan(data)
@@ -79,9 +81,9 @@ function QRscanner({ setScanStatus }) {
 	return (
 		<div className="qr-wrapper">
 
+
 			{!error ?
 				<div>
-					<span>QR Scanner</span>
 					<div className="qr-scanner">
 						<QrScan
 							delay={300}
@@ -91,7 +93,7 @@ function QRscanner({ setScanStatus }) {
 							style={{ objectFit: "fill", aspectRatio: `${window.outerWidth}/${window.outerHeight}` }}
 						/>
 					</div>
-					<div>{qrscan === "No result" ? " Scanning ... " : qrscan}</div>
+					<div className='scanning'>{qrscan === "No result" ? " Scanning ... " : qrscan}</div>
 				</div> :
 				<div className="instructions">
 					<div className="access-error" >
@@ -101,13 +103,13 @@ function QRscanner({ setScanStatus }) {
 					</div>
 					{isMobile() ?
 						<ol className='instructons' style={{ padding: "1rem" }}>
-							<li data-outlined="false" class="">To the right of the address bar, tap More<strong>&nbsp;</strong>
+							<li data-outlined="false" className="">To the right of the address bar, tap More<strong>&nbsp;</strong>
 								<strong>&#8942;  &gt;  Settings</strong>.</li>
-							<li data-outlined="false" class="">Tap <strong>Site Settings</strong>.</li>
-							<li data-outlined="false" class="">Tap <strong>Camera</strong>.</li>
-							<li data-outlined="false" class="">Tap to turn the camera on or off.
+							<li data-outlined="false" className="">Tap <strong>Site Settings</strong>.</li>
+							<li data-outlined="false" className="">Tap <strong>Camera</strong>.</li>
+							<li data-outlined="false" className="">Tap to turn the camera on or off.
 								<ul>
-									<li data-outlined="false" class="">If you see the site you want to use under <strong>Blocked</strong>, tap the site
+									<li data-outlined="false" className="">If you see the site you want to use under <strong>Blocked</strong>, tap the site
 										&nbsp;<strong>&gt;Access your Camera</strong>
 										<strong>&gt;&nbsp;Allow</strong>.</li>
 								</ul>

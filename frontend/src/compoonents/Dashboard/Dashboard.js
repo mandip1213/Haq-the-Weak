@@ -9,24 +9,29 @@ const Dashboard = () => {
 	// const { isLoading, data: dashboard, error } = useFetch("/api/visit/");
 	//TODO return s all visits
 	useEffect(() => {
-		document.title = "Trip Bee | Dashboard "
+		document.title = "TripBee | Dashboard "
 
 	}, [])
 	if (isLoading) {
 		return (
-			<div className="list dashboard">
-				<h1 className="head">Dashboard</h1>
+			<div className="list  dashboard">
+				<h1 className="heading outline-heading ">Dashboard</h1>
 				<Loading />
 			</div>
 
 		)
 	}
 	if (error) {
-		return (<div>error: {error}</div>)
+		return (<div className="list  dashboard">
+			<h1 className="heading outline-heading ">Dashboard</h1>
+			<div className="error">
+				{error}
+			</div>
+		</div>)
 	}
 	if (dashboard.length === 0) {
-		return (<div className="list dashboard">
-			<h1 className="head">Dashboard</h1>
+		return (<div className="list  dashboard">
+			<h1 className="heading outline-heading ">Dashboard</h1>
 			<div>You have no scans</div>
 		</div>
 
@@ -39,8 +44,8 @@ const Dashboard = () => {
 
 	/*
 	*/
-	return (<div className="list dashboard">
-		<h1 className="head">Dashboard</h1>
+	return (<div className="list  dashboard">
+		<h1 className="heading outline-heading ">Dashboard</h1>
 		<div className="list__body">
 
 			<div className='emergency-class' >

@@ -1,0 +1,54 @@
+.lp-features {
+    margin: auto;
+    padding-top: 5rem;
+}
+
+.lp main {
+    background-color: rgb(24, 31, 42);
+}
+
+.lp-features-items p {
+    font-size: 1.1rem;
+}
+
+.lp-features-items h2 {
+    font-size: 1.5rem;
+}
+
+.lp-features-items {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.lp-single-feature {
+    /*  */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 350px;
+    padding: 2rem;
+}
+
+.lp-single-feature h2 {
+    color: var(--blue);
+    /*  */
+}
+
+.lp-upper,
+.lp-lower {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lp-upper {
+    margin-bottom: 5rem;
+}
+
+@media screen and (max-width:800px) {
+    .lp-upper,
+    .lp-lower {
+        flex-direction: column;
+        text-align: center;
+    }
+}
