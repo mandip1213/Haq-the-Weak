@@ -8,20 +8,20 @@ import Profilepic from "../images/boyprofile.jpg"
 const Header = () => {
 	const { uuid, username, profile_picture } = useGlobalContext()
 
-	React.useEffect(() => {
+	// React.useEffect(() => {
 
-		const formdata = new FormData()
-		formdata.append("user", "newuser")
-		fetch("http://localhost:8000/api/searchuser/?user=aviato", {
-			// body: formdata
-			// body: JSON.stringify({ user: "newuser" })
-		}).then(res => res.json())
-			.then(res => {
-				console.log("res from /api/search", res)
-			})
+	// 	const formdata = new FormData()
+	// 	formdata.append("user", "newuser")
+	// 	fetch("http://localhost:8000/api/searchuser/?user=aviato", {
+	// 		// body: formdata
+	// 		// body: JSON.stringify({ user: "newuser" })
+	// 	}).then(res => res.json())
+	// 		.then(res => {
+	// 			console.log("res from /api/search", res)
+	// 		})
 
 
-	}, [])
+	// }, [])
 	return (
 		<div className="header">
 
