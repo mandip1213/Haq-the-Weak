@@ -102,12 +102,12 @@ const LpFooter = () => {
 
 				<div className="footer-nav">
 					<ul>
-						<li><a href="#">about us</a></li>
-						<li><a href="#">jobs</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Offers</a></li>
 						<li>
 							<a href="#"></a>
 						</li>
-						<li><a href="#">blog</a></li>
+						<li><a href="#">log</a></li>
 					</ul>
 				</div>
 
