@@ -59,7 +59,14 @@ function QRscanner() {
 		// data = "7763a6b6-58a4-4ced-90f2-32443f5702ec"/* temp */
 		// data = "75662d04-1fbe-4cdb-bf92-56025776a278"
 		// data = "9e1d2255-ee2e-4877-865e-f3381c1eeeab"
-
+		// f02db21c-f3d9-4fb7-ac47-14e154ee0cd0  /*   Hotel Atithi and Satkaar */
+		// data = "d72cc8e2-4b07-4a01-a95c-945c26e7256d" /*   Fun Forest Resort */
+		// data = "9e1d2255-ee2e-4877-865e-f3381c1eeeab"   /* The ice restro and bar */
+		// data = "7f94ecad-f701-4f62-a352-1769de728e38"  /*   Gen Z Bakery Cafe */
+		// data = "75662d04-1fbe-4cdb-bf92-56025776a278"  /*   The Chitwan Lodge */
+		// "74452850 - d71d - 4270 - 9832 - 9ecffac0a6f2"  /*   The Raven Cafe */
+		// "2bf6fc55 - ae19 - 47fc - a351 - 05f42d79d60a"  /*   Panipuri Nation */
+		// data = "11488800-9a53-4d92-a002-8c6a9a64581a"  /*   Hotel Everest Inn */
 
 		if (data) {
 			setQrscan(data)

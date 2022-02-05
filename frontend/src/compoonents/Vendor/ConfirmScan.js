@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Loading from '../extras/Loading';
 import useFetch from '../utils/UseFetch';
 import { Stars } from "../Home/Home"
@@ -8,6 +8,7 @@ import PostRequest from '../utils/PostReq';
 import useGlobalContext from '../utils/Globalcontext';
 
 const ConfirmScan = () => {
+	const navigate = useNavigate()
 	const [searchParams] = useSearchParams()
 	const vendorid = searchParams.get("id")
 	const { access_token } = useGlobalContext()
@@ -27,12 +28,13 @@ const ConfirmScan = () => {
 				body: JSON.stringify({
 					vendor: vendorid,
 					rating: scanInput.rating,
-					public: scanInput.rating === "public" ? true : false
+					public: true
 				})
 			}
 		})
 		if (res === 1) {
 			//success
+			navigate("/dashboard")
 		} else {
 			//failure
 			setError("Sorry The Vendor QR couldnot be scanned.")
