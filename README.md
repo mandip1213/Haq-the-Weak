@@ -3,9 +3,9 @@ Trip Bee : You Travel, We Reward
 
 It is that simple
 
-### site live at [TripBee](https://tripbeee.netlify.app) 
+### Site live at [TripBee](https://tripbeee.netlify.app) 
 
-The project was made to demonstrate at the Hackathon , organized by [Locus](https://locus.pcampus.edu.np/). Though We couldnot actually win it , it was fun .
+The project was made to demonstrate at the Hackathon, organized by [Locus](https://locus.pcampus.edu.np/). Though We couldnot actually win it , it was fun .
 
 ### Group Members
 * [Aavash Chhetri](https://www.linkedin.com/in/aavash-chhetri/)
